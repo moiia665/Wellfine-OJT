@@ -196,8 +196,9 @@ header h1{font-size:15px;font-weight:700;flex:1}
 .home-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Noto Sans KR',sans-serif}
 
 .confetti{position:fixed;pointer-events:none;z-index:9999}
-.np{display:block;font-family:"Noto Sans Devanagari",sans-serif;font-size:.75em;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.4;text-align:center}
-.np-sm{font-family:"Noto Sans Devanagari",sans-serif;font-size:.72em;color:var(--muted);font-weight:400;text-align:center}
+.np{display:block;font-family:"Noto Sans Devanagari",sans-serif;font-size:.75em;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.4}
+.np-sm{font-family:"Noto Sans Devanagari",sans-serif;font-size:.72em;color:var(--muted);font-weight:400}
+.np-center{display:block;font-family:"Noto Sans Devanagari",sans-serif;font-size:.82em;color:var(--muted);font-weight:400;margin-top:3px;line-height:1.5;text-align:center}
 
   .lang-bar{display:flex;gap:10px;justify-content:center;margin-bottom:-8px}
   .lang-btn{padding:6px 20px;border-radius:20px;border:2px solid;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;background:transparent}
@@ -217,9 +218,9 @@ header h1{font-size:15px;font-weight:700;flex:1}
 
   <div style="width:220px;height:70px"><img src="wellfine_logo.jpg" style="width:100%;height:100%;object-fit:contain"></div>
   <div class="logo-mark" onclick="openPartSheet()">OJT</div>
-  <h1>생산팀 신입 오퍼레이터 교육<span class="np">उत्पादन टोलीका नयाँ अपरेटरको तालिम</span></h1>
-  <p>웰파인에 입사하신 것을 환영합니다!<span class="np" style="display:block;font-size:.82em;margin-top:3px">वेलफाइनमा स्वागत छ!</span></p>
-  <span class="splash-hint">↑ OJT를 눌러 시작하세요<span class="np" style="display:block;font-size:.9em;margin-top:2px">↑ OJT थिचेर सुरु गर्नुस्</span></span>
+  <h1>생산팀 신입 오퍼레이터 교육<span class="np-center">उत्पादन टोलीका नयाँ अपरेटरको तालिम</span></h1>
+  <p>웰파인에 입사하신 것을 환영합니다!<span class="np-center">वेलफाइनमा स्वागत छ!</span></p>
+  <span class="splash-hint">↑ OJT를 눌러 시작하세요<span class="np-center">↑ OJT थिचेर सुरु गर्नुस्</span></span>
 </div>
 
 <!-- PART SELECT SHEET -->
@@ -395,14 +396,15 @@ header h1{font-size:15px;font-weight:700;flex:1}
 <div id="complete-screen">
   <div class="trophy">🏆</div>
   <h2 id="complete-title">파트 완료!</h2>
+  <p id="complete-title-np" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;color:var(--muted);margin-top:-12px"></p>
   <p id="complete-msg"></p>
-  <button class="home-btn" onclick="goHome()">홈으로 돌아가기</button>
+  <button class="home-btn" onclick="goHome()">홈으로 돌아가기 <span class="np-sm">घरमा जानुस्</span></button>
 </div>
 
 <!-- BOTTOM BAR -->
 <div class="bottom-bar" id="bottom-bar">
   <div class="bottom-info">
-    <span>파트 진도</span>
+    <span>파트 진도<span class="np-sm" style="display:inline"> · विभाग प्रगति</span></span>
     <strong id="progress-text">0 / 0 완료</strong>
   </div>
   <div class="prog-bar-outer">
@@ -519,6 +521,7 @@ const MODULES = {
 };
 
 const PART_NAMES = { bae:'배합 파트', chung:'충전 파트' };
+const PART_NAMES_NP = { bae:'मिश्रण विभाग', chung:'भर्ने विभाग' };
 
 // ── 상태 ─────────────────────────────────────────────
 let curPart = null, curModules = [], curModule = null, quizDone = false;
@@ -588,7 +591,7 @@ function enterPart(part) {
   closeSheet();
   hide(['home-screen','module-detail','complete-screen']);
   show({ 'main-header':'flex', 'module-list':'flex', 'bottom-bar':'flex' });
-  document.getElementById('header-title').textContent = PART_NAMES[part];
+  document.getElementById('header-title').innerHTML = PART_NAMES[part] + '<span class="np" style="font-size:.6em;display:block;margin-top:1px">' + (PART_NAMES_NP[part]||'') + '</span>';
   renderList(); updateProg();
   pushState({ view: 'list', part });
 }
@@ -712,7 +715,7 @@ function goBack() {
 function updateProg() {
   const done = getDone(curPart), n = done.length, total = curModules.length;
   const pct = total ? Math.round(n/total*100) : 0;
-  document.getElementById('progress-text').textContent = n + ' / ' + total + ' 완료';
+  document.getElementById('progress-text').innerHTML = n + ' / ' + total + ' 완료 <span class="np-sm">पूर्ण</span>';
   document.getElementById('progress-bar').style.width = pct + '%';
   document.getElementById('ring-fg').style.strokeDashoffset = 94.2 - 94.2*pct/100;
   document.getElementById('ring-pct').textContent = pct + '%';
@@ -721,8 +724,9 @@ function updateProg() {
 function showComplete() {
   hide(['module-list','main-header','bottom-bar']);
   document.getElementById('complete-title').textContent = PART_NAMES[curPart] + ' 완료!';
+  document.getElementById('complete-title-np').textContent = (PART_NAMES_NP[curPart]||'') + ' पूर्ण भयो!';
   document.getElementById('complete-msg').innerHTML =
-    curModules.length + '개 모듈을 모두 수료했습니다.<br>수고하셨습니다! 🎉';
+    `${curModules.length}개 모듈을 모두 수료했습니다.<br>수고하셨습니다! 🎉<br><span style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.9em;color:var(--muted)">${curModules.length} पाठ सबै पूरा भयो।<br>धन्यवाद! 🎉</span>`;
   show({ 'complete-screen':'flex' }); confetti();
 }
 
