@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>생산팀 신입 OJT 교육</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0f1117; --surface:#1a1e2e; --surface2:#222740;
+  --accent:#f5a623; --accent2:#e05c2c;
+  --green:#3dd68c; --red:#ff4d4d; --blue:#4fc3f7;
+  --text:#e8eaf2; --muted:#7a7f9a; --border:#2d3250; --card:#1e2235;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:999;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease;overflow:hidden}
+#splash::after{content:'';position:absolute;inset:0;width:100%;height:100%;background:url('wellfine_bg.png') center center/300% no-repeat;opacity:.9;pointer-events:none;z-index:0}
+#splash>*{position:relative;z-index:1}
+#splash.hidden{opacity:0;pointer-events:none}
+.logo-mark{width:80px;height:80px;border:3px solid #d4830a;border-radius:20px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:#d4830a;cursor:pointer;animation:pulse 1.8s ease infinite;transition:transform .15s ease}
+.logo-mark:active{transform:scale(.92)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(180,100,0,.4)}50%{box-shadow:0 0 0 20px rgba(180,100,0,0)}}
+#splash h1{font-size:20px;font-weight:900;letter-spacing:-.5px;color:#1a1e2e}
+#splash p{font-size:14px;color:#3a7d55;font-weight:700;letter-spacing:-.3px}
+.splash-hint{font-size:12px;color:#c07a10;animation:blink 2s ease infinite;margin-top:-6px}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* PART SELECT SHEET */
+#part-sheet{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:flex-end;background:rgba(0,0,0,.65);backdrop-filter:blur(6px)}
+.sheet-box{width:100%;background:var(--surface);border-radius:24px 24px 0 0;padding:28px 20px 48px;display:flex;flex-direction:column;gap:12px;animation:sheetUp .3s ease}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-title{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;text-align:center;margin-bottom:6px}
+.sheet-card{display:flex;align-items:center;gap:16px;border-radius:16px;padding:18px 16px;cursor:pointer;transition:transform .15s,border-color .2s;border:1.5px solid var(--border);background:var(--card)}
+.sheet-card:active{transform:scale(.97)}
+.sheet-card.s-bae{border-color:rgba(245,166,35,.4)}
+.sheet-card.s-chung{border-color:rgba(79,195,247,.3)}
+.sheet-card.s-coming{opacity:.45;cursor:default}
+.sheet-card.s-coming:active{transform:none}
+.sc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.s-bae .sc-icon{background:rgba(245,166,35,.12)}
+.s-chung .sc-icon{background:rgba(79,195,247,.1)}
+.sc-info{flex:1}
+.sc-info h3{font-size:16px;font-weight:900}
+.sc-info p{font-size:12px;color:var(--muted);margin-top:3px}
+.sc-badge{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.s-bae .sc-badge{background:rgba(245,166,35,.1);color:var(--accent)}
+.s-chung .sc-badge{background:rgba(79,195,247,.1);color:var(--blue)}
+.sc-arrow{font-size:20px;color:var(--muted)}
+.sheet-cancel{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:12px;padding:14px;width:100%;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:4px}
+
+/* HOME */
+#home-screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:60px}
+.home-hero{padding:32px 20px 24px;border-bottom:1px solid var(--border);background:linear-gradient(160deg,var(--surface) 0%,var(--bg) 100%)}
+.ojt-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent);background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.home-hero h1{font-size:24px;font-weight:900;line-height:1.3;letter-spacing:-.5px}
+.home-hero h1 span{color:var(--accent)}
+.home-hero p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
+.home-stats{display:flex;gap:10px;margin-top:20px}
+.stat-chip{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center}
+.stat-chip .s-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--accent)}
+.stat-chip .s-label{font-size:10px;color:var(--muted);margin-top:2px}
+.part-section{padding:20px 16px 0}
+.part-section>h2{font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--muted);margin-bottom:12px}
+.part-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;margin-bottom:12px;transition:transform .15s}
+.part-card:active{transform:scale(.98)}
+.part-card-body{padding:20px 18px;display:flex;align-items:center;gap:16px}
+.part-icon{width:52px;height:52px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px}
+.part-info{flex:1}
+.part-info h3{font-size:17px;font-weight:900;letter-spacing:-.3px}
+.part-info p{font-size:12px;color:var(--muted);margin-top:4px}
+.part-count{display:inline-block;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.part-arrow{font-size:20px;color:var(--muted)}
+.h-bae{border-color:rgba(245,166,35,.35)}
+.h-bae .part-icon{background:rgba(245,166,35,.12)}
+.h-bae .part-count{background:rgba(245,166,35,.1);color:var(--accent)}
+.h-chung{border-color:rgba(79,195,247,.3)}
+.h-chung .part-icon{background:rgba(79,195,247,.1)}
+.h-chung .part-count{background:rgba(79,195,247,.1);color:var(--blue)}
+.h-coming{opacity:.5;cursor:default}
+.h-coming:active{transform:none}
+.coming-tag{margin:0 18px 14px;font-size:11px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;display:inline-block}
+.home-progress-wrap{padding:16px}
+.home-progress-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px}
+.home-progress-box h3{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:.5px}
+.prog-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.prog-row:last-child{margin-bottom:0}
+.prog-label{font-size:12px;font-weight:700;width:50px;flex-shrink:0}
+.prog-bar{flex:1;height:6px;background:var(--border);border-radius:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:6px;transition:width .5s ease}
+.fill-bae{background:var(--accent)}
+.fill-chung{background:var(--blue)}
+.prog-pct{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;width:32px;text-align:right;flex-shrink:0}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:none;align-items:center;gap:12px}
+header h1{font-size:15px;font-weight:700;flex:1}
+.back-home-btn{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;color:var(--text);flex-shrink:0}
+.progress-ring{width:36px;height:36px;position:relative;flex-shrink:0}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring circle{fill:none;stroke-width:3;stroke-linecap:round}
+.ring-bg{stroke:var(--border)}
+.ring-fg{stroke:var(--green);transition:stroke-dashoffset .5s ease}
+.progress-ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--green)}
+
+/* MODULE LIST */
+#module-list{padding:16px 16px 100px;display:none;flex-direction:column;gap:10px}
+.module-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .2s;animation:fadeUp .3s ease backwards}
+.module-card:active{transform:scale(.98)}
+.module-card.completed{border-color:rgba(61,214,140,.3)}
+.card-header{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.module-num{width:36px;height:36px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.module-card.completed .module-num{background:rgba(61,214,140,.1);color:var(--green);border-color:rgba(61,214,140,.3)}
+.card-info{flex:1}
+.card-info h3{font-size:14px;font-weight:700;line-height:1.3}
+.card-info p{font-size:11px;color:var(--muted);margin-top:2px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0}
+.module-card.completed .status-dot{background:var(--green);box-shadow:0 0 6px var(--green)}
+@keyframes fadeUp{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* MODULE DETAIL */
+#module-detail{display:none;min-height:100vh;padding-bottom:100px}
+.detail-header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:14px}
+.back-btn{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;color:var(--text);flex-shrink:0}
+.detail-header h2{font-size:15px;font-weight:700;flex:1;line-height:1.3}
+.module-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);padding:2px 7px;border-radius:5px;white-space:nowrap}
+
+/* TABS */
+.tab-nav{display:flex;background:var(--surface);border-bottom:1px solid var(--border)}
+.tab-btn{flex:1;padding:12px 4px;font-size:12px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab-btn .tab-icon{font-size:16px}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn.done{color:var(--green)}
+.tab-panel{display:none;padding:20px 16px}
+.tab-panel.active{display:block}
+
+/* EXPLAIN TAB */
+.explain-box{background:var(--surface2);border:2px dashed var(--accent);border-radius:14px}
+.explain-label{padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(245,166,35,.1);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.img-ph-logo{width:100%;aspect-ratio:4/1;background:var(--surface);border:2px dashed var(--border);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);margin-top:14px}
+.hint-box{background:rgba(224,92,44,.08);border:1px solid rgba(224,92,44,.25);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;margin-top:14px;display:flex;gap:10px}
+.hint-icon{font-size:18px;flex-shrink:0}
+
+/* QUIZ TAB */
+.quiz-wrapper{display:flex;flex-direction:column;gap:16px}
+.question-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px 16px}
+.question-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent2);margin-bottom:10px;text-transform:uppercase}
+.question-text{font-size:15px;font-weight:700;line-height:1.6}
+.options{display:flex;flex-direction:column;gap:8px}
+.option-btn{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px 14px;cursor:pointer;font-size:14px;color:var(--text);transition:all .2s;text-align:left;font-family:'Noto Sans KR',sans-serif;width:100%}
+.option-btn:active:not(:disabled){transform:scale(.98)}
+.option-num{width:26px;height:26px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--muted);flex-shrink:0}
+.option-btn.correct{border-color:var(--green);background:rgba(61,214,140,.07)}
+.option-btn.correct .option-num{background:var(--green);color:#000;border-color:var(--green)}
+.option-btn.wrong{border-color:var(--red);background:rgba(255,77,77,.07)}
+.option-btn.wrong .option-num{background:var(--red);color:#fff;border-color:var(--red)}
+.option-btn:disabled{cursor:default}
+.result-banner{border-radius:12px;padding:14px 16px;display:none;align-items:center;gap:12px;font-size:14px;font-weight:700}
+.result-banner.show{display:flex}
+.correct-banner{background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.3);color:var(--green)}
+.wrong-banner{background:rgba(255,77,77,.1);border:1px solid rgba(255,77,77,.3);color:var(--red)}
+.r-icon{font-size:22px}
+.next-tab-btn{background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:none;transition:opacity .2s;font-family:'Noto Sans KR',sans-serif}
+.next-tab-btn:active{opacity:.8}
+.next-tab-btn.show{display:block}
+
+/* VIDEO TAB */
+.video-wrapper{background:var(--surface2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;text-align:center}
+.video-label{padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);background:rgba(61,214,140,.07);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.video-inner{width:100%;aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;margin:0 auto}
+.video-inner video{width:100%;height:100%;object-fit:cover;display:block}
+.video-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);width:100%}
+.play-icon{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.06);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:22px}
+.video-ph p{font-size:12px;text-align:center;line-height:1.6;padding:0 20px}
+.video-desc{padding:14px 16px;font-size:13px;line-height:1.7;color:var(--muted);border-top:1px solid var(--border);text-align:left}
+.complete-btn{background:linear-gradient(135deg,var(--green),#27b578);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans KR',sans-serif}
+.complete-btn:active{opacity:.85}
+.complete-btn.done{background:var(--surface2);color:var(--green);border:1px solid rgba(61,214,140,.3);cursor:default}
+
+/* BOTTOM BAR */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,17,23,.95);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:10px 20px 16px;display:none;flex-direction:column;gap:6px;z-index:80}
+.bottom-info{display:flex;justify-content:space-between;align-items:center}
+.bottom-info span{font-size:11px;color:var(--muted)}
+.bottom-info strong{font-size:11px;color:var(--green)}
+.prog-bar-outer{height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+.prog-bar-inner{height:100%;background:linear-gradient(90deg,var(--green),var(--accent));border-radius:4px;transition:width .5s ease}
+
+/* COMPLETE */
+#complete-screen{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:40px 24px;text-align:center}
+.trophy{font-size:72px;margin-bottom:8px}
+#complete-screen h2{font-size:26px;font-weight:900}
+#complete-screen p{font-size:14px;color:var(--muted);line-height:1.7}
+.home-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Noto Sans KR',sans-serif}
+
+.confetti{position:fixed;pointer-events:none;z-index:9999}
+.np{display:block;font-family:"Noto Sans Devanagari",sans-serif;font-size:.75em;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.4}
+.np-sm{font-family:"Noto Sans Devanagari",sans-serif;font-size:.72em;color:var(--muted);font-weight:400}
+
+  .lang-bar{position:absolute;top:18px;right:18px;display:flex;gap:8px;z-index:10}
+  .lang-btn{padding:5px 14px;border-radius:20px;border:2px solid;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+  .lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .lang-btn.inactive{background:transparent;color:var(--accent);border-color:var(--accent)}
+  .lang-btn.inactive:hover{background:var(--accent);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash" style="position:relative">
+  <div class="lang-bar">
+    <button class="lang-btn inactive" onclick="location.href='index.html'">한국어</button>
+    <button class="lang-btn active" onclick="void(0)">नेपाली</button>
+  </div>
+
+  <div style="width:220px;height:70px"><img src="wellfine_logo.jpg" style="width:100%;height:100%;object-fit:contain"></div>
+  <div class="logo-mark" onclick="openPartSheet()">OJT</div>
+  <h1>생산팀 신입 오퍼레이터 교육<span class="np">उत्पादन टोलीका नयाँ अपरेटरको तालिम</span></h1>
+  <p>웰파인에 입사하신 것을 환영합니다!</p>
+  <span class="splash-hint">↑ OJT를 눌러 시작하세요</span>
+</div>
+
+<!-- PART SELECT SHEET -->
+<div id="part-sheet" onclick="sheetBgClick(event)">
+  <div class="sheet-box">
+    <div class="sheet-title">📂 학습할 파트를 선택하세요</div>
+
+    <div class="sheet-card s-bae" onclick="enterPart('bae')">
+      <div class="sc-icon">🧪</div>
+      <div class="sc-info">
+        <h3>배합 파트</h3>
+        <p>밸브 조작, CIP 위생, 원료 계량 외</p>
+        <span class="sc-badge" id="sheet-bae-badge">10개 모듈</span>
+      </div>
+      <span class="sc-arrow">›</span>
+    </div>
+
+    <div class="sheet-card s-chung s-coming">
+      <div class="sc-icon">💧</div>
+      <div class="sc-info">
+        <h3>충전 파트</h3>
+        <p>스틱 충전, 봉합, 검사 공정 외</p>
+        <span class="sc-badge">준비 중<span class="np-sm"> तयारी भइरहेको</span></span>
+      </div>
+      <span class="sc-arrow">›</span>
+    </div>
+
+    <button class="sheet-cancel" onclick="closeSheet()">닫기</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home-screen">
+  <div class="home-hero">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div class="ojt-badge">⚙️ WELLFINE OJT</div>
+      <button onclick="goSplash()" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Noto Sans KR',sans-serif">🏠 처음으로<span class="np-sm"> सुरुमा</span></button>
+    </div>
+    <h1>생산팀<br><span>신입 오퍼레이터</span> 교육<span class="np">उत्पादन टोली नयाँ अपरेटर तालिम</span></h1>
+    <p>학습할 파트를 선택하세요.<span class="np">सिक्ने विभाग छान्नुस्।</span></p>
+  </div>
+
+  <div class="part-section">
+    <h2>📂 파트 선택</h2>
+
+    <div class="part-card h-bae" onclick="enterPart('bae')">
+      <div class="part-card-body">
+        <div class="part-icon">🧪</div>
+        <div class="part-info">
+          <h3>배합 파트<span class="np">मिश्रण विभाग</span></h3>
+          <p>밸브 조작, CIP 위생, 원료 계량 외<span class="np">भल्भ, CIP सरसफाइ, कच्चा पदार्थ तौल</span></p>
+          <span class="part-count" id="home-bae-badge">10개 모듈</span>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+            <div class="prog-bar" style="flex:1"><div class="prog-fill fill-bae" id="home-bae-bar" style="width:0%"></div></div>
+            <span class="prog-pct" style="color:var(--accent)" id="home-bae-pct">0%</span>
+          </div>
+        </div>
+        <span class="part-arrow">›</span>
+      </div>
+    </div>
+
+    <div class="part-card h-chung h-coming">
+      <div class="part-card-body">
+        <div class="part-icon">💧</div>
+        <div class="part-info">
+          <h3>충전 파트<span class="np">भर्ने विभाग</span></h3>
+          <p>스틱 충전, 봉합, 검사 공정 외<span class="np">स्टिक भर्ने, सिलाई, निरीक्षण</span></p>
+          <span class="part-count" style="background:rgba(79,195,247,.1);color:var(--blue)">준비 중<span class="np-sm"> तयारी भइरहेको</span></span>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+            <div class="prog-bar" style="flex:1"><div class="prog-fill fill-chung" style="width:0%"></div></div>
+            <span class="prog-pct" style="color:var(--blue)">0%</span>
+          </div>
+        </div>
+        <span class="part-arrow">›</span>
+      </div>
+      <div class="coming-tag">🔒 콘텐츠 준비 중</div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- HEADER -->
+<header id="main-header">
+  <button class="back-home-btn" onclick="goHome()">🏠</button>
+  <h1 id="header-title">배합 파트</h1>
+  <div class="progress-ring">
+    <svg width="36" height="36" viewBox="0 0 36 36">
+      <circle class="ring-bg" cx="18" cy="18" r="15"/>
+      <circle class="ring-fg" id="ring-fg" cx="18" cy="18" r="15" stroke-dasharray="94.2" stroke-dashoffset="94.2"/>
+    </svg>
+    <span id="ring-pct">0%</span>
+  </div>
+</header>
+
+<!-- MODULE LIST -->
+<div id="module-list"></div>
+
+<!-- MODULE DETAIL -->
+<div id="module-detail">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goBack()">←</button>
+    <h2 id="detail-title"></h2>
+    <span class="module-tag" id="detail-tag"></span>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" id="tab-explain" onclick="switchTab('explain')">
+      <span class="tab-icon">📖</span>설명
+    </button>
+    <button class="tab-btn" id="tab-quiz" onclick="switchTab('quiz')">
+      <span class="tab-icon">✏️</span>문제
+    </button>
+    <button class="tab-btn" id="tab-video" onclick="switchTab('video')">
+      <span class="tab-icon">▶️</span>영상
+    </button>
+  </div>
+
+  <!-- 설명 -->
+  <div id="panel-explain" class="tab-panel active">
+    <div class="explain-box">
+      <div class="explain-label">🖼️ 설명 이미지</div>
+      <div id="explain-img-inner" style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted)">
+        <span style="font-size:36px">📷</span>
+        <p style="font-size:13px;font-weight:700;color:var(--accent)">이미지 추가 예정</p>
+        <p id="explain-filename" style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted)"></p>
+      </div>
+    </div>
+    <div class="img-ph-logo" style="background:transparent;border:none;padding:0;aspect-ratio:auto;height:48px;width:160px;margin:0 auto"><img src="wellfine_logo.jpg" style="width:100%;height:100%;object-fit:contain"></div>
+    <div class="hint-box">
+      <span class="hint-icon">💡</span>
+      <span id="hint-text"></span>
+    </div>
+    <button class="next-tab-btn show" style="margin-top:16px" onclick="switchTab('quiz')">문제 풀기 →</button>
+  </div>
+
+  <!-- 문제 -->
+  <div id="panel-quiz" class="tab-panel">
+    <div class="quiz-wrapper">
+      <div class="question-box">
+        <div class="question-label">🔥 확인 문제</div>
+        <div class="question-text" id="quiz-question"></div>
+      </div>
+      <div class="options" id="quiz-options"></div>
+      <div class="result-banner" id="result-banner">
+        <span class="r-icon" id="result-icon"></span>
+        <span id="result-text"></span>
+      </div>
+      <button class="next-tab-btn" id="to-video-btn" onclick="switchTab('video')">영상 보러 가기 →</button>
+    <div style="display:flex;justify-content:center;margin-top:20px">
+      <div style="width:120px;height:38px;overflow:hidden"><img src="wellfine_logo.jpg" style="width:100%;height:100%;object-fit:contain"></div>
+    </div>
+    </div>
+  </div>
+
+  <!-- 영상 -->
+  <div id="panel-video" class="tab-panel">
+    <div class="video-wrapper">
+      <div class="video-label">📹 현장 숏폼 영상</div>
+      <div class="video-inner" id="video-inner"></div>
+      <div class="video-desc" id="video-desc"></div>
+    </div>
+    <button class="complete-btn" id="complete-btn" onclick="completeModule()">
+      ✅ 이 모듈 완료하기
+      <span class="np-sm">यो पाठ पूर्ण गर्नुस्</span>
+    </button>
+    <div style="display:flex;justify-content:center;margin-top:20px">
+      <div style="width:120px;height:38px;overflow:hidden"><img src="wellfine_logo.jpg" style="width:100%;height:100%;object-fit:contain"></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETE -->
+<div id="complete-screen">
+  <div class="trophy">🏆</div>
+  <h2 id="complete-title">파트 완료!</h2>
+  <p id="complete-msg"></p>
+  <button class="home-btn" onclick="goHome()">홈으로 돌아가기</button>
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar" id="bottom-bar">
+  <div class="bottom-info">
+    <span>파트 진도</span>
+    <strong id="progress-text">0 / 0 완료</strong>
+  </div>
+  <div class="prog-bar-outer">
+    <div class="prog-bar-inner" id="progress-bar" style="width:0%"></div>
+  </div>
+</div>
+
+<script>
+
+const MODULE_IMAGES = {
+  '01': 'bae_01_explain_np.jpg',
+  '02': 'bae_02_explain_np.jpg',
+  '03': 'bae_03_explain_np.jpg',
+  '04': 'bae_04_explain_np.jpg',
+  '05': 'bae_05_explain_np.jpg',
+  '06': 'bae_06_explain_np.jpg',
+  '07': 'bae_07_explain_np.jpg',
+  '08': 'bae_08_explain_np.jpg',
+  '09': 'bae_09_explain_np.jpg',
+  '10': 'bae_10_explain_np.jpg',
+};
+
+// ── 뒤로가기 처리 ────────────────────────────────────
+function pushState(state) {
+  history.pushState(state, '');
+}
+
+window.addEventListener('popstate', (e) => {
+  const state = e.state;
+  if (!state) {
+    // 스택 바닥 = 스플래시로
+    goSplash();
+    return;
+  }
+  if (state.view === 'home') {
+    goHome();
+  } else if (state.view === 'list') {
+    // 모듈 상세에서 목록으로
+    if (document.getElementById('module-detail').style.display !== 'none') {
+      hide(['module-detail']);
+      show({ 'module-list':'flex', 'main-header':'flex', 'bottom-bar':'flex' });
+      renderList(); updateProg();
+    } else {
+      goHome();
+    }
+  }
+});
+
+// ── 데이터 ───────────────────────────────────────────
+const MODULES = {
+  bae: [
+    { id:1,  title:"버터플라이 밸브 개폐 확인",       category:"밸브 조작",
+      hint:"핸들 방향만 보면 됩니다. 수직(━) = 잠금, 일직선(┃) = 열림. 작업 전 반드시 육안 확인하세요.",
+      question:"버터플라이 밸브가 '잠금(LOCKED)' 상태일 때 핸들의 올바른 모양은 무엇입니까?",
+      options:["배관과 일직선(┃) 방향","배관과 45도 기울어진 방향","배관과 수직(━) 방향","핸들을 완전히 뽑아낸 상태","핸들이 시계 방향으로 계속 돌아가는 상태"],
+      answer:2, videoFile:"bae_01_butterfly_valve.mp4",
+      videoDesc:"작업자가 핸들을 돌려 배관과 수직(ㄱ자)으로 맞춘 뒤, 손가락으로 가리키며 '잠금 확인!'이라고 외치는 15초 영상." },
+    { id:2,  title:"원료 계량 전 영점(TARE) 설정",    category:"계량",
+      hint:"빈 용기를 올린 뒤 반드시 TARE 버튼을 누르세요. 0.00kg 확인 후 계량 시작!",
+      question:"계량 전 로더셀(저울)의 '영점(Zeroing/TARE)' 설정이 중요한 가장 큰 이유는 무엇입니까?",
+      options:["탱크의 가열 속도를 높이기 위해","충수 기준량 오차로 인한 공정 편차를 예방하기 위해","교반기의 회전 속도를 조절하기 위해","배관의 누수 여부를 확인하기 위해","전력 소모를 줄여 설비를 보호하기 위해"],
+      answer:1, videoFile:"bae_02_tare_zero.mp4",
+      videoDesc:"빈 용기를 저울에 올린 후, 인디케이터의 '영점' 버튼을 눌러 화면이 0.00kg으로 변하는 과정을 클로즈업한 영상." },
+    { id:3,  title:"CIP 세척과 CIP BALL 확인",         category:"CIP 위생",
+      hint:"CIP 가동 시작 후 탱크 상단에서 BALL이 실제로 돌아가는지 반드시 육안 확인하세요!",
+      question:"CIP 세척 중 CIP BALL이 회전하지 않을 경우 발생하는 주요 문제는 무엇입니까?",
+      options:["탱크 내부 압력의 급격한 상승","세척액의 농도 저하","세정 사각지대 발생으로 인한 위생 불량","메인 차단기 전원 차단","교반기 축의 처짐 현상"],
+      answer:2, videoFile:"bae_03_cip_ball.mp4",
+      videoDesc:"탱크 뚜껑 사이로 CIP BALL이 힘차게 회전하며 세척액을 분사하는 모습과, 정지된 불량 상태를 비교해서 보여주는 영상." },
+    { id:4,  title:"제조지시서 물 종류 확인",          category:"원료 투입",
+      hint:"배관 라벨과 제조지시서 표기를 나란히 놓고 대조 확인 후 밸브를 여세요.",
+      question:"제조지시서에 명시된 물 종류를 혼동하여 투입했을 때 발생하는 결과는 무엇입니까?",
+      options:["살균 온도 도달 지연","제품의 pH 기준 이탈","배합액의 거품(Foam) 과다 발생","필터 하우징의 파손","밸브 핸들의 조작 불능"],
+      answer:1, videoFile:"bae_04_water_type.mp4",
+      videoDesc:"작업자가 제조지시서상의 'RO수' 글자를 가리킨 뒤, 실제 배관의 'RO수' 라벨을 대조하며 밸브를 여는 동작 영상." },
+    { id:5,  title:"열수 CIP 살균 표준",               category:"CIP 위생",
+      hint:"90℃ 도달 확인 → 타이머 20분 시작. 온도가 떨어지면 시간 재측정!",
+      question:"열수 CIP 살균 공정 시 준수해야 할 표준 온도와 유지 시간은 얼마입니까?",
+      options:["70℃ 이상, 10분간 유지","80℃ 이상, 15분간 유지","90℃ 이상 도달 후 20분간 유지","100℃ 도달 즉시 종료","60℃ 이하, 30분간 유지"],
+      answer:2, videoFile:"bae_05_hot_cip.mp4",
+      videoDesc:"판넬의 온도 표시계가 90℃를 넘기는 모습과 타이머가 20분을 가리키는 장면을 빠르게 교차 편집한 영상." },
+    { id:6,  title:"3정 5S — 정돈의 실천",             category:"현장 관리",
+      hint:"그림자 표시판(쉐도우보드)을 보면 어떤 도구가 어디에 있어야 하는지 바로 알 수 있습니다.",
+      question:"3정 5S 중 '정돈'의 정의로 가장 올바른 것은 무엇입니까?",
+      options:["필요한 것과 불필요한 것을 구분해 버리는 것","필요한 물건을 누구나 쉽게 찾도록 정해진 위치에 놓는 것","설비 외관의 먼지를 닦아내는 것","작업복을 깨끗하게 세탁하여 입는 것","기계의 고장 원인을 분석하여 수리하는 것"],
+      answer:1, videoFile:"bae_06_5s.mp4",
+      videoDesc:"어질러진 작업대 위의 공구들을 정해진 그림판(쉐도우보드) 위에 딱딱 맞춰 정리하는 비포/애프터 영상." },
+    { id:7,  title:"충전 전 드레인 밸브 점검",         category:"충전 공정",
+      hint:"이송 펌프를 켜기 전 마지막으로 드레인 밸브를 손으로 직접 확인하고 '드레인 확인!'을 외치세요.",
+      question:"충전 공정에서 호퍼 이송 전, 배합액 소실을 막기 위해 반드시 육안으로 확인해야 하는 것은?",
+      options:["서비스 탱크의 전압 상태","드레인 밸브의 잠금 상태","공기 정화 장치의 필터 색상","작업장 바닥의 습도","빈 파우치의 인쇄 디자인"],
+      answer:1, videoFile:"bae_07_drain_valve.mp4",
+      videoDesc:"이송 펌프 스위치를 올리기 직전, 아래쪽 드레인 밸브를 손으로 한 번 더 꽉 조이며 '드레인 확인!'이라고 체크하는 모습." },
+    { id:8,  title:"체크리스트를 통한 에러 방지",     category:"작업 관리",
+      hint:"한 단계가 끝날 때마다 즉시 V 체크! 나중에 몰아서 하면 의미가 없습니다.",
+      question:"휴먼에러 중 '깜빡함(누락)'을 방지하고 작업 단계를 구분하기 위해 활용하는 도구는?",
+      options:["작업용 내열 장갑","레이저 프린터 프로그램","체크리스트","온도 조절 인디케이터","무선 호출기"],
+      answer:2, videoFile:"bae_08_checklist.mp4",
+      videoDesc:"작업자가 한 공정을 마칠 때마다 볼펜으로 체크리스트에 'V' 표시를 하며 꼼꼼하게 넘기는 모습." },
+    { id:9,  title:"이상 소음 발생 시 대응",           category:"이상 대응",
+      hint:"소음이 '그럴 수도 있지'하고 방치하면 큰 고장으로 이어집니다. 즉시 정지 → 보고가 정답!",
+      question:"설비 가동 중 평소와 다른 이상음이나 진동이 지속될 때 가장 올바른 조치는 무엇입니까?",
+      options:["소음이 멈출 때까지 기다린다","교반기 속도를 더 높여본다","즉시 설비를 정지하고 관리자 및 공무팀에 보고한다","기계에 윤활유를 다량 붓는다","작업자가 직접 공구로 설비를 분해해본다"],
+      answer:2, videoFile:"bae_09_abnormal_noise.mp4",
+      videoDesc:"기계 옆에서 귀를 기울이다가 이상함을 감지하고 즉시 빨간색 비상정지 버튼을 누른 뒤 인터폰으로 보고하는 모습." },
+    { id:10, title:"배합 전 최종 육안 검사",           category:"품질 관리",
+      hint:"손전등으로 탱크 바닥까지 비추세요. 눈으로 잔수, 코로 이취, 두 가지 모두 확인!",
+      question:"CIP 종료 후 다음 배합을 시작하기 전, 탱크 내부에서 반드시 점검해야 할 2가지는?",
+      options:["압력과 습도","이미·이취(이상한 맛과 냄새) 및 잔수(남은 물)","전압과 전류 수치","소모품 재고량과 필기구 위치","조명 밝기와 도어 잠금 소리"],
+      answer:1, videoFile:"bae_10_visual_check.mp4",
+      videoDesc:"손전등을 들고 탱크 뚜껑을 열어 안쪽 바닥까지 비춰보며 잔수가 없는지 확인하고 코로 냄새를 맡는 동작 영상." },
+  ],
+  chung: [] // 추후 추가
+};
+
+const PART_NAMES = { bae:'배합 파트', chung:'충전 파트' };
+
+// ── 상태 ─────────────────────────────────────────────
+let curPart = null, curModules = [], curModule = null, quizDone = false;
+
+const getDone = p => JSON.parse(localStorage.getItem('ojt_' + p) || '[]');
+const saveDone = (p, a) => localStorage.setItem('ojt_' + p, JSON.stringify(a));
+
+// ── 초기화 ───────────────────────────────────────────
+window.addEventListener('load', () => {
+  // 스플래시는 OJT 클릭 시에만 넘어갑니다
+});
+
+// ── 스플래시 시트 ────────────────────────────────────
+function openPartSheet() {
+  const splash = document.getElementById('splash');
+  splash.classList.add('hidden');
+  splash.style.pointerEvents = 'none';
+  // 트랜지션 끝나면 완전히 숨김
+  setTimeout(() => { splash.style.display = 'none'; }, 650);
+  const d = getDone('bae'), t = MODULES.bae.length;
+  document.getElementById('sheet-bae-badge').textContent =
+    d.length ? d.length + '/' + t + ' 완료' : t + '개 모듈';
+  document.getElementById('part-sheet').style.display = 'flex';
+}
+function closeSheet() {
+  document.getElementById('part-sheet').style.display = 'none';
+}
+function sheetBgClick(e) {
+  if (e.target === document.getElementById('part-sheet')) {
+    closeSheet();
+    showHome();
+  }
+}
+
+// ── 홈 ───────────────────────────────────────────────
+function showHome() {
+  show({ 'home-screen':'flex' });
+  hide(['main-header','module-list','module-detail','bottom-bar','complete-screen']);
+  document.getElementById('part-sheet').style.display = 'none';
+  refreshHome();
+  pushState({ view: 'home' });
+}
+function goHome() { curPart = null; showHome(); }
+function goSplash() {
+  hide(['home-screen','main-header','module-list','module-detail','bottom-bar','complete-screen']);
+  document.getElementById('part-sheet').style.display = 'none';
+  const splash = document.getElementById('splash');
+  splash.style.display = 'flex';
+  splash.style.opacity = '0';
+  splash.style.pointerEvents = 'auto';
+  splash.classList.remove('hidden');
+  requestAnimationFrame(() => requestAnimationFrame(() => { splash.style.opacity = '1'; }));
+}
+
+function refreshHome() {
+  const d = getDone('bae'), t = MODULES.bae.length;
+  const pct = t ? Math.round(d.length / t * 100) : 0;
+  document.getElementById('home-bae-bar').style.width = pct + '%';
+  document.getElementById('home-bae-pct').textContent = pct + '%';
+  document.getElementById('home-bae-badge').textContent =
+    d.length ? d.length + '/' + t + ' 완료' : t + '개 모듈';
+}
+
+// ── 파트 진입 ────────────────────────────────────────
+function enterPart(part) {
+  curPart = part; curModules = MODULES[part];
+  closeSheet();
+  hide(['home-screen','module-detail','complete-screen']);
+  show({ 'main-header':'flex', 'module-list':'flex', 'bottom-bar':'flex' });
+  document.getElementById('header-title').textContent = PART_NAMES[part];
+  renderList(); updateProg();
+  pushState({ view: 'list', part });
+}
+
+// ── 모듈 목록 ────────────────────────────────────────
+function renderList() {
+  const done = getDone(curPart);
+  const el = document.getElementById('module-list');
+  el.innerHTML = '';
+  curModules.forEach((m, i) => {
+    const d = document.createElement('div');
+    d.className = 'module-card' + (done.includes(m.id) ? ' completed' : '');
+    d.style.animationDelay = i * 0.05 + 's';
+    d.innerHTML = `<div class="card-header">
+      <div class="module-num">${String(m.id).padStart(2,'0')}</div>
+      <div class="card-info"><h3>${m.title}</h3><p>${m.category}</p></div>
+      <div class="status-dot"></div></div>`;
+    d.onclick = () => openModule(m);
+    el.appendChild(d);
+  });
+}
+
+// ── 모듈 상세 ────────────────────────────────────────
+function openModule(m) {
+  curModule = m; quizDone = false;
+  hide(['module-list','main-header','bottom-bar']);
+  show({ 'module-detail':'block' });
+  pushState({ view: 'detail', part: curPart });
+
+  document.getElementById('detail-title').innerHTML = m.title + (m.titleNp ? '<span class="np">' + m.titleNp + '</span>' : '');
+  document.getElementById('detail-tag').textContent = 'MODULE ' + String(m.id).padStart(2,'0');
+  document.getElementById('hint-text').textContent = m.hint;
+  const padId = String(m.id).padStart(2,'0');
+  const imgEl = document.getElementById('explain-img-inner');
+  const imgKey = padId;
+  if (curPart === 'bae' && MODULE_IMAGES[imgKey]) {
+    imgEl.innerHTML = '<img src="' + MODULE_IMAGES[imgKey] + '" style="width:100%;height:auto;display:block;border-radius:10px">';
+  } else {
+    imgEl.innerHTML = '<span style=\'font-size:36px\'>📷</span><p style=\'font-size:13px;font-weight:700;color:var(--accent)\'>이미지 추가 예정</p><p style=\'font-size:10px;font-family:JetBrains Mono,monospace;color:var(--muted)\'>' + curPart + '_' + padId + '_explain.jpg</p>';
+  }
+
+  document.getElementById('quiz-question').textContent = m.question;
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  m.options.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'option-btn';
+    b.innerHTML = `<span class="option-num">${i+1}</span><span>${o}</span>`;
+    b.onclick = () => answer(i, m.answer);
+    opts.appendChild(b);
+  });
+  document.getElementById('result-banner').className = 'result-banner';
+  document.getElementById('to-video-btn').className = 'next-tab-btn';
+
+  document.getElementById('video-inner').innerHTML = `
+    <div class="video-ph"><div class="play-icon">▶</div>
+    <p>영상 파일 연결 예정<br>
+    <span style="color:var(--accent);font-size:11px;font-family:'JetBrains Mono',monospace">${m.videoFile}</span></p></div>`;
+  // 영상 파일 연결 시 위 내용 대신 사용:
+  // document.getElementById('video-inner').innerHTML = `<video src="${m.videoFile}" controls playsinline></video>`;
+  document.getElementById('video-desc').textContent = m.videoDesc;
+
+  const done = getDone(curPart).includes(m.id);
+  const cb = document.getElementById('complete-btn');
+  cb.textContent = done ? '✅ 완료된 모듈' : '✅ 이 모듈 완료하기
+      <span class="np-sm">यो पाठ पूर्ण गर्नुस्</span>';
+  cb.className = 'complete-btn' + (done ? ' done' : '');
+  switchTab('explain');
+}
+
+function switchTab(t) {
+  ['explain','quiz','video'].forEach(n => {
+    document.getElementById('panel-'+n).classList.toggle('active', n===t);
+    document.getElementById('tab-'+n).classList.toggle('active', n===t);
+  });
+  if (t==='quiz' && quizDone) document.getElementById('tab-quiz').classList.add('done');
+  if (t==='video') document.getElementById('tab-video').classList.add('done');
+  window.scrollTo(0,0);
+}
+
+function answer(chosen, correct) {
+  if (quizDone) return; quizDone = true;
+  document.querySelectorAll('.option-btn').forEach((b,i) => {
+    b.disabled = true;
+    if (i===correct) b.classList.add('correct');
+    if (i===chosen && chosen!==correct) b.classList.add('wrong');
+  });
+  const ok = chosen===correct;
+  const banner = document.getElementById('result-banner');
+  banner.className = 'result-banner show ' + (ok ? 'correct-banner' : 'wrong-banner');
+  document.getElementById('result-icon').textContent = ok ? '🎉' : '❌';
+  document.getElementById('result-text').textContent = ok
+    ? '정답입니다! 이제 영상을 확인하세요.'
+    : '오답입니다. 정답은 ' + (correct+1) + '번입니다.';
+  document.getElementById('to-video-btn').className = 'next-tab-btn show';
+  document.getElementById('tab-quiz').classList.add('done');
+}
+
+function completeModule() {
+  if (!curModule) return;
+  let done = getDone(curPart);
+  if (!done.includes(curModule.id)) { done.push(curModule.id); saveDone(curPart, done); confetti(); }
+  const cb = document.getElementById('complete-btn');
+  cb.textContent = '✅ 완료된 모듈'; cb.className = 'complete-btn done';
+  updateProg(); goBack();
+}
+
+function goBack() {
+  hide(['module-detail']);
+  show({ 'module-list':'flex', 'main-header':'flex', 'bottom-bar':'flex' });
+  renderList(); updateProg();
+  if (curModules.length && getDone(curPart).length === curModules.length) showComplete();
+}
+
+function updateProg() {
+  const done = getDone(curPart), n = done.length, total = curModules.length;
+  const pct = total ? Math.round(n/total*100) : 0;
+  document.getElementById('progress-text').textContent = n + ' / ' + total + ' 완료';
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('ring-fg').style.strokeDashoffset = 94.2 - 94.2*pct/100;
+  document.getElementById('ring-pct').textContent = pct + '%';
+}
+
+function showComplete() {
+  hide(['module-list','main-header','bottom-bar']);
+  document.getElementById('complete-title').textContent = PART_NAMES[curPart] + ' 완료!';
+  document.getElementById('complete-msg').innerHTML =
+    curModules.length + '개 모듈을 모두 수료했습니다.<br>수고하셨습니다! 🎉';
+  show({ 'complete-screen':'flex' }); confetti();
+}
+
+// ── 유틸 ─────────────────────────────────────────────
+function show(map) { Object.entries(map).forEach(([id,d]) => { const e=document.getElementById(id); if(e) e.style.display=d; }); }
+function hide(ids) { ids.forEach(id => { const e=document.getElementById(id); if(e) e.style.display='none'; }); }
+
+function confetti() {
+  const cols=['#f5a623','#3dd68c','#e05c2c','#4fc3f7','#fff'];
+  for (let i=0;i<50;i++) {
+    const el=document.createElement('div'); el.className='confetti';
+    const sz=Math.random()*8+4;
+    el.style.cssText=`left:${Math.random()*100}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:fall ${Math.random()*2+1}s ease forwards;animation-delay:${Math.random()*.6}s`;
+    document.body.appendChild(el); setTimeout(()=>el.remove(),3500);
+  }
+}
+const s=document.createElement('style');
+s.textContent='@keyframes fall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}';
+document.head.appendChild(s);
+</script>
+</body>
+</html>
