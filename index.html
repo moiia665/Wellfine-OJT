@@ -11,7 +11,28 @@
   --text:#e8eaf2; --muted:#7a7f9a; --border:#2d3250;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body{
+  background:var(--bg);
+  background-image:url('wellfine_bg.png');
+  background-size:contain;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:'Noto Sans KR',sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:rgba(15,17,23,0.85);
+  z-index:-1;
+}
 .container{max-width:500px;width:100%}
 .logo{text-align:center;margin-bottom:40px}
 .logo-img{width:200px;margin-bottom:20px}
@@ -63,7 +84,7 @@ h1{font-size:28px;font-weight:900;text-align:center;margin-bottom:10px}
         <div class="part-icon">💧</div>
         <div class="part-title">충전 파트</div>
       </div>
-      <p class="part-desc">스틱 충전, 봉합, 검사 공정 등<br>30개 교육 모듈</p>
+      <p class="part-desc">스틱 충전, 봉합, 검사 공정 등<br>31개 교육 모듈</p>
       <div class="lang-selector">
         <button class="lang-btn kr" onclick="location.href='chung.html'">🇰🇷 한국어</button>
         <button class="lang-btn np" onclick="location.href='chung_np.html'">🇳🇵 नेपाली</button>
