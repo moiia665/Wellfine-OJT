@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>मिश्रण विभाग OJT तालिम</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0f1117; --surface:#1a1e2e; --surface2:#222740;
+  --accent:#f5a623; --accent2:#e05c2c;
+  --green:#3dd68c; --red:#ff4d4d; --blue:#4fc3f7;
+  --text:#e8eaf2; --muted:#7a7f9a; --border:#2d3250; --card:#1e2235;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:999;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease;overflow:hidden}
+#splash::after{content:'';position:absolute;inset:0;width:100%;height:100%;background:url('wellfine_bg.png') center center/300% no-repeat;opacity:.9;pointer-events:none;z-index:0}
+#splash>*{position:relative;z-index:1}
+#splash.hidden{opacity:0;pointer-events:none}
+.logo-mark{width:80px;height:80px;border:3px solid #d4830a;border-radius:20px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:#d4830a;cursor:pointer;animation:pulse 1.8s ease infinite;transition:transform .15s ease}
+.logo-mark:active{transform:scale(.92)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(180,100,0,.4)}50%{box-shadow:0 0 0 20px rgba(180,100,0,0)}}
+#splash h1{font-size:20px;font-weight:900;letter-spacing:-.5px;color:#1a1e2e}
+#splash p{font-size:14px;color:#3a7d55;font-weight:700;letter-spacing:-.3px}
+.splash-hint{font-size:12px;color:#c07a10;animation:blink 2s ease infinite;margin-top:-6px}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* PART SELECT SHEET */
+#part-sheet{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:flex-end;background:rgba(0,0,0,.65);backdrop-filter:blur(6px)}
+.sheet-box{width:100%;background:var(--surface);border-radius:24px 24px 0 0;padding:28px 20px 48px;display:flex;flex-direction:column;gap:12px;animation:sheetUp .3s ease}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-title{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;text-align:center;margin-bottom:6px}
+.sheet-card{display:flex;align-items:center;gap:16px;border-radius:16px;padding:18px 16px;cursor:pointer;transition:transform .15s,border-color .2s;border:1.5px solid var(--border);background:var(--card)}
+.sheet-card:active{transform:scale(.97)}
+.sheet-card.s-bae{border-color:rgba(245,166,35,.4)}
+.sheet-card.s-chung{border-color:rgba(79,195,247,.3)}
+.sheet-card.s-coming{opacity:.45;cursor:default}
+.sheet-card.s-coming:active{transform:none}
+.sc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.s-bae .sc-icon{background:rgba(245,166,35,.12)}
+.s-chung .sc-icon{background:rgba(79,195,247,.1)}
+.sc-info{flex:1}
+.sc-info h3{font-size:16px;font-weight:900}
+.sc-info p{font-size:12px;color:var(--muted);margin-top:3px}
+.sc-badge{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.s-bae .sc-badge{background:rgba(245,166,35,.1);color:var(--accent)}
+.s-chung .sc-badge{background:rgba(79,195,247,.1);color:var(--blue)}
+.sc-arrow{font-size:20px;color:var(--muted)}
+.sheet-cancel{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:12px;padding:14px;width:100%;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:4px}
+
+/* HOME */
+#home-screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:60px}
+.home-hero{padding:32px 20px 24px;border-bottom:1px solid var(--border);background:linear-gradient(160deg,var(--surface) 0%,var(--bg) 100%)}
+.ojt-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent);background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.home-hero h1{font-size:24px;font-weight:900;line-height:1.3;letter-spacing:-.5px}
+.home-hero h1 span{color:var(--accent)}
+.home-hero p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
+.home-stats{display:flex;gap:10px;margin-top:20px}
+.stat-chip{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center}
+.stat-chip .s-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--accent)}
+.stat-chip .s-label{font-size:10px;color:var(--muted);margin-top:2px}
+.part-section{padding:20px 16px 0}
+.part-section>h2{font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--muted);margin-bottom:12px}
+.part-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;margin-bottom:12px;transition:transform .15s}
+.part-card:active{transform:scale(.98)}
+.part-card-body{padding:20px 18px;display:flex;align-items:center;gap:16px}
+.part-icon{width:52px;height:52px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px}
+.part-info{flex:1}
+.part-info h3{font-size:17px;font-weight:900;letter-spacing:-.3px}
+.part-info p{font-size:12px;color:var(--muted);margin-top:4px}
+.part-count{display:inline-block;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.part-arrow{font-size:20px;color:var(--muted)}
+.h-bae{border-color:rgba(245,166,35,.35)}
+.h-bae .part-icon{background:rgba(245,166,35,.12)}
+.h-bae .part-count{background:rgba(245,166,35,.1);color:var(--accent)}
+.h-chung{border-color:rgba(79,195,247,.3)}
+.h-chung .part-icon{background:rgba(79,195,247,.1)}
+.h-chung .part-count{background:rgba(79,195,247,.1);color:var(--blue)}
+.h-coming{opacity:.5;cursor:default}
+.h-coming:active{transform:none}
+.coming-tag{margin:0 18px 14px;font-size:11px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;display:inline-block}
+.home-progress-wrap{padding:16px}
+.home-progress-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px}
+.home-progress-box h3{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:.5px}
+.prog-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.prog-row:last-child{margin-bottom:0}
+.prog-label{font-size:12px;font-weight:700;width:50px;flex-shrink:0}
+.prog-bar{flex:1;height:6px;background:var(--border);border-radius:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:6px;transition:width .5s ease}
+.fill-bae{background:var(--accent)}
+.fill-chung{background:var(--blue)}
+.prog-pct{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;width:32px;text-align:right;flex-shrink:0}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:none;align-items:center;gap:12px}
+header h1{font-size:15px;font-weight:700;flex:1}
+.back-home-btn{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;color:var(--text);flex-shrink:0}
+.progress-ring{width:36px;height:36px;position:relative;flex-shrink:0}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring circle{fill:none;stroke-width:3;stroke-linecap:round}
+.ring-bg{stroke:var(--border)}
+.ring-fg{stroke:var(--green);transition:stroke-dashoffset .5s ease}
+.progress-ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--green)}
+
+/* MODULE LIST */
+#module-list{padding:16px 16px 100px;display:none;flex-direction:column;gap:10px}
+.module-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .2s;animation:fadeUp .3s ease backwards}
+.module-card:active{transform:scale(.98)}
+.module-card.completed{border-color:rgba(61,214,140,.3)}
+.card-header{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.module-num{width:36px;height:36px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.module-card.completed .module-num{background:rgba(61,214,140,.1);color:var(--green);border-color:rgba(61,214,140,.3)}
+.card-info{flex:1}
+.card-info h3{font-size:14px;font-weight:700;line-height:1.3}
+.card-info p{font-size:11px;color:var(--muted);margin-top:2px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0}
+.module-card.completed .status-dot{background:var(--green);box-shadow:0 0 6px var(--green)}
+@keyframes fadeUp{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* MODULE DETAIL */
+#module-detail{display:none;min-height:100vh;padding-bottom:100px}
+.detail-header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:14px}
+.back-btn{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;color:var(--text);flex-shrink:0}
+.detail-header h2{font-size:15px;font-weight:700;flex:1;line-height:1.3}
+.module-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);padding:2px 7px;border-radius:5px;white-space:nowrap}
+
+/* TABS */
+.tab-nav{display:flex;background:var(--surface);border-bottom:1px solid var(--border)}
+.tab-btn{flex:1;padding:12px 4px;font-size:12px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab-btn .tab-icon{font-size:16px}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn.done{color:var(--green)}
+.tab-panel{display:none;padding:20px 16px}
+.tab-panel.active{display:block}
+
+/* EXPLAIN TAB */
+.explain-box{background:var(--surface2);border:2px dashed var(--accent);border-radius:14px}
+.explain-label{padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(245,166,35,.1);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.img-ph-logo{width:100%;aspect-ratio:4/1;background:var(--surface);border:2px dashed var(--border);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);margin-top:14px}
+.hint-box{background:rgba(224,92,44,.08);border:1px solid rgba(224,92,44,.25);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;margin-top:14px;display:flex;gap:10px}
+.hint-icon{font-size:18px;flex-shrink:0}
+
+/* QUIZ TAB */
+.quiz-wrapper{display:flex;flex-direction:column;gap:16px}
+.question-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px 16px}
+.question-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent2);margin-bottom:10px;text-transform:uppercase}
+.question-text{font-size:15px;font-weight:700;line-height:1.6}
+.options{display:flex;flex-direction:column;gap:8px}
+.option-btn{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px 14px;cursor:pointer;font-size:14px;color:var(--text);transition:all .2s;text-align:left;font-family:'Noto Sans KR',sans-serif;width:100%}
+.option-btn:active:not(:disabled){transform:scale(.98)}
+.option-num{width:26px;height:26px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--muted);flex-shrink:0}
+.option-btn.correct{border-color:var(--green);background:rgba(61,214,140,.07)}
+.option-btn.correct .option-num{background:var(--green);color:#000;border-color:var(--green)}
+.option-btn.wrong{border-color:var(--red);background:rgba(255,77,77,.07)}
+.option-btn.wrong .option-num{background:var(--red);color:#fff;border-color:var(--red)}
+.option-btn:disabled{cursor:default}
+.result-banner{border-radius:12px;padding:14px 16px;display:none;align-items:center;gap:12px;font-size:14px;font-weight:700}
+.result-banner.show{display:flex}
+.correct-banner{background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.3);color:var(--green)}
+.wrong-banner{background:rgba(255,77,77,.1);border:1px solid rgba(255,77,77,.3);color:var(--red)}
+.r-icon{font-size:22px}
+.next-tab-btn{background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:none;transition:opacity .2s;font-family:'Noto Sans KR',sans-serif}
+.next-tab-btn:active{opacity:.8}
+.next-tab-btn.show{display:block}
+
+/* VIDEO TAB */
+.video-wrapper{background:var(--surface2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;text-align:center}
+.video-label{padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);background:rgba(61,214,140,.07);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.video-inner{width:100%;aspect-ratio:9/16;background:#000;display:flex;align-items:center;justify-content:center;margin:0 auto}
+.video-inner video{width:100%;height:100%;object-fit:cover;display:block}
+.video-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);width:100%}
+.play-icon{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.06);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:22px}
+.video-ph p{font-size:12px;text-align:center;line-height:1.6;padding:0 20px}
+.video-desc{padding:14px 16px;font-size:13px;line-height:1.7;color:var(--muted);border-top:1px solid var(--border);text-align:left}
+.complete-btn{background:linear-gradient(135deg,var(--green),#27b578);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans KR',sans-serif}
+.complete-btn:active{opacity:.85}
+.complete-btn.done{background:var(--surface2);color:var(--green);border:1px solid rgba(61,214,140,.3);cursor:default}
+
+/* BOTTOM BAR */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,17,23,.95);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:10px 20px 16px;display:none;flex-direction:column;gap:6px;z-index:80}
+.bottom-info{display:flex;justify-content:space-between;align-items:center}
+.bottom-info span{font-size:11px;color:var(--muted)}
+.bottom-info strong{font-size:11px;color:var(--green)}
+.prog-bar-outer{height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+.prog-bar-inner{height:100%;background:linear-gradient(90deg,var(--green),var(--accent));border-radius:4px;transition:width .5s ease}
+
+/* COMPLETE */
+#complete-screen{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:40px 24px;text-align:center}
+.trophy{font-size:72px;margin-bottom:8px}
+#complete-screen h2{font-size:26px;font-weight:900}
+#complete-screen p{font-size:14px;color:var(--muted);line-height:1.7}
+.home-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Noto Sans KR',sans-serif}
+
+.confetti{position:fixed;pointer-events:none;z-index:9999}
+
+  .lang-bar{display:flex;gap:10px;justify-content:center;margin-bottom:-8px}
+  .lang-btn{padding:6px 20px;border-radius:20px;border:2px solid;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;background:transparent}
+  .lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .lang-btn.inactive{color:var(--accent);border-color:var(--accent)}
+  .lang-btn.inactive:hover{background:var(--accent);color:#fff}
+
+.cat-chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;letter-spacing:.3px}
+.cat-근태{background:#7a4200;color:#f5a623}
+.cat-회사이해{background:#1a6b3e;color:#3dd68c}
+.cat-공정이해도{background:#0d4a7a;color:#4fc3f7}
+.cat-설비운전{background:#7a2b00;color:#ff7043}
+.cat-CIP{background:#4a1875;color:#ab47bc}
+.cat-이상대응{background:#7a0000;color:#ef5350}
+.cat-divider{padding:12px 16px 4px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-top:1px solid var(--border);margin-top:4px}
+.cat-divider:first-child{border-top:none;margin-top:0}
+.explanation-box{background:rgba(61,214,140,.06);border:1px solid rgba(61,214,140,.3);border-radius:12px;padding:16px;margin:14px 0 8px;display:none}
+.explanation-box.show{display:block}
+.explanation-box .ex-label{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:8px;letter-spacing:.5px}
+.explanation-box .ex-text{font-size:14px;color:var(--text);line-height:1.7}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
+  <button onclick="location.href='index.html'" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← गृहपृष्ठ</button>
+  <h1 style="font-size:16px;font-weight:700;flex:1">मिश्रण विभाग (३४ मोड्युल)</h1>
+</header>
+
+<!-- MODULE LIST -->
+<div id="module-list" style="padding:20px 16px;display:flex;flex-direction:column;gap:12px"></div>
+
+<!-- MODULE DETAIL -->
+<div id="module-detail" style="display:none;min-height:100vh">
+  <div style="position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 20px">
+    <button onclick="goBack()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← पछाडि</button>
+  </div>
+  
+  <div style="padding:20px">
+    <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-bottom:6px" id="detail-tag"></div>
+    <h2 id="detail-title" style="font-size:22px;font-weight:900;margin-bottom:20px"></h2>
+    
+    <!-- TABS -->
+    <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:2px solid var(--border)" id="tab-container">
+      <button class="tab-btn active" id="tab-explain" onclick="switchTab('explain')">📖 व्याख्या</button>
+      <button class="tab-btn" id="tab-quiz" onclick="switchTab('quiz')">✏️ प्रश्न</button>
+      <button class="tab-btn" id="tab-video" onclick="switchTab('video')" style="display:none">▶️ भिडियो</button>
+    </div>
+    
+    <!-- EXPLAIN PANEL -->
+    <div id="panel-explain" class="panel active">
+      <div id="explain-img-inner" style="background:var(--surface);border-radius:12px;padding:40px;text-align:center;color:var(--muted);margin-bottom:16px"></div>
+      <button onclick="switchTab('quiz')" style="background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif">प्रश्न हल गर्नुस् →</button>
+    </div>
+    
+    <!-- QUIZ PANEL -->
+    <div id="panel-quiz" class="panel">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:12px">🔥 जाँच प्रश्न</div>
+        <div id="quiz-question" style="font-size:16px;font-weight:700;line-height:1.6;margin-bottom:20px"></div>
+        <div id="quiz-options" style="display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+      <div id="result-banner" class="result-banner"></div>
+      <div id="explanation-box" class="explanation-box">
+        <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px">💡 व्याख्या</div>
+        <div id="explanation-text" style="font-size:14px;line-height:1.7"></div>
+      </div>
+    </div>
+    
+    <!-- VIDEO PANEL -->
+    <div id="panel-video" class="panel">
+      <div style="background:var(--surface);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+        <div style="text-align:center;color:var(--muted)">
+          <div style="font-size:48px;margin-bottom:12px">▶️</div>
+          <div style="font-size:14px">भिडियो तयारी भइरहेको छ</div>
+        </div>
+      </div>
+    </div>
+    
+    <button id="complete-btn" onclick="completeModule()" style="background:var(--green);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;margin-top:20px;font-family:'Noto Sans KR',sans-serif">✅ यो मोड्युल पूरा गर्नुहोस्</button>
+  </div>
+</div>
+
+<style>
+.tab-btn{background:transparent;border:none;color:var(--muted);padding:12px 16px;font-size:14px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;font-family:'Noto Sans KR',sans-serif}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn.done{color:var(--green)}
+.panel{display:none}
+.panel.active{display:block}
+.option-btn{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);text-align:left}
+.option-btn:hover{border-color:var(--accent)}
+.option-btn.correct{border-color:var(--green);background:rgba(61,214,140,.1)}
+.option-btn.wrong{border-color:var(--red);background:rgba(255,77,77,.1)}
+.option-num{width:28px;height:28px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.result-banner{display:none;background:var(--surface2);border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
+.result-banner.show{display:block}
+.result-banner.correct-banner{border:2px solid var(--green);background:rgba(61,214,140,.05)}
+.result-banner.wrong-banner{border:2px solid var(--red);background:rgba(255,77,77,.05)}
+.explanation-box{display:none;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.explanation-box.show{display:block}
+.module-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .15s}
+.module-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.module-card.completed{border-color:var(--green);background:rgba(61,214,140,.03)}
+.cat-divider{font-size:12px;font-weight:700;color:var(--muted);padding:12px 0 8px;letter-spacing:.5px}
+</style>
+
+<script>
+const MODULES = [
+  {
+    id: 1,
+    category: "कम्पनी बुझाइ",
+    title: "वेल्फाइनका ३ मुख्य मूल्यहरू बुझाइ",
+    question: "वेल्फाइनका ३ मुख्य मूल्यहरूमध्ये 'स्वस्थ नवप्रवर्तन' लाई अभ्यासमा लिने सबैभन्दा उपयुक्त कार्य के हो?",
+    options: ["माथिल्लो अधिकारीको निर्देशन बिना शर्त पालना गर्ने", "परम्परागत तरिकाले मात्र काम गर्ने", "अकुशलता भेटिएमा सुधारको सुझाव दिने र टोली सदस्यसँग साझा गर्ने", "आफ्नो काममात्र ध्यान दिने"],
+    answer: 2,
+    explanation: "'स्वस्थ नवप्रवर्तन' भनेको दक्षता·प्रभावकारिता·आत्म व्यवस्थापन हो, अकुशलता भेटिएमा सुधारको सुझाव र साझेदारी मुख्य हो।",
+    hasVideo: false
+  },
+  {
+    id: 2,
+    category: "कम्पनी बुझाइ",
+    title: "टोली कार्य र नयाँ कामदारको OJT",
+    question: "नेपाली नयाँ कामदारलाई मिश्रण कोठामा पहिलो पटक राख्दा, अनुभवी कामदारले के गर्नुपर्छ?",
+    options: ["नयाँ कामदार आफै अनुकूल हुन पर्खनुपर्छ", "भाषा फरक भएकोले संवाद गाह्रो छ, केवल प्रदर्शन मात्र देखाउने", "छिटो उत्पादनको लागि साधारण दोहोरिने काममात्र दिने", "OJT योजना अनुसार कार्य प्रक्रिया व्याख्या गर्ने, बुझे नबुझे जाँच गर्ने र अनुकूलन समर्थन गर्ने"],
+    answer: 3,
+    explanation: "टोली कार्यमा नयाँ कामदारको स्थापना समर्थन समावेश छ। भाषा अवरोध भए तापनि दृश्य सामग्री र प्रदर्शन प्रयोग गरेर OJT गर्नुपर्छ।",
+    hasVideo: false
+  },
+  {
+    id: 3,
+    category: "कार्य प्रक्रिया",
+    title: "कच्चा पदार्थ प्राप्ति",
+    question: "कच्चा पदार्थ प्राप्त गर्दा प्याकेजिङ बक्सको कुना च्यातिएर सामग्री देखिने अवस्थामा छ, तर म्याद मिति र Batch No. सामान्य छ। सही कारबाही के हो?",
+    options: ["म्याद मिति सामान्य छ भने त्यसैगरी प्राप्त गर्ने", "बक्स मात्र बदल्न अनुरोध गरेर प्राप्त गर्ने", "प्राप्ति अस्वीकार → QA टोलीलाई रिपोर्ट → आपूर्तिकर्तालाई सम्पर्क → पुन: डेलिभरी अनुरोध", "सामग्री मात्र निकालेर प्रयोग गर्ने"],
+    answer: 2,
+    explanation: "प्याकेजिङ क्षति भएमा विदेशी पदार्थ मिसिने·प्रदूषणको जोखिम छ, प्राप्ति अस्वीकार सिद्धान्त हो। QA टोली रिपोर्ट र पुन: डेलिभरी अनुरोध आवश्यक छ।",
+    hasVideo: false
+  },
+  {
+    id: 4,
+    category: "कार्य प्रक्रिया",
+    title: "मिश्रण पूर्व तयारी",
+    question: "उत्पादन निर्देश पत्र जाँच गर्दा 'pH 4.5 भन्दा कम उत्पादन' लेखिएको छ, तर अघिल्लो दिन उही उत्पादन उत्पादनमा 'pH 4.5 भन्दा बढी' थियो भनेर सम्झना छ। कसरी प्रतिक्रिया दिनुपर्छ?",
+    options: ["सम्झना अनिश्चित छ भने उत्पादन निर्देश अनुसार अगाडि बढ्ने", "सहकर्मीलाई सोधेर बहुमतले निर्णय गर्ने", "तुरुन्त काम रोक्ने → उत्पादन व्यवस्थापन टोलीलाई रिपोर्ट → उत्पादन निर्देश पुन: जाँच अनुरोध", "pH त्यति महत्त्वपूर्ण छैन भने त्यसैगरी अगाडि बढ्ने"],
+    answer: 2,
+    explanation: "उत्पादन निर्देशमा शंका फेला परेमा तुरुन्त काम रोक्ने र उत्पादन व्यवस्थापन टोली पुन: जाँच सिद्धान्त हो। pH फरकले CIP विधि (३ चरण/५ चरण) निर्धारण गर्छ, धेरै महत्त्वपूर्ण छ।",
+    hasVideo: true
+  },
+  {
+    id: 5,
+    category: "कार्य प्रक्रिया",
+    title: "उत्पादन अघि तातो पानी CIP",
+    question: "उत्पादन अघि तातो पानी CIP गर्दा तापक्रम ८५°C मा रोकियो, थप बढेन। SOP मानक ९०°C भन्दा माथि हो। सबैभन्दा पहिले के जाँच गर्नुपर्छ?",
+    options: ["८५°C पर्याप्त छ भने त्यसैगरी अगाडि बढ्ने", "स्टीम आपूर्ति भल्भ खोल्ने अवस्था र बोयलर दबाब जाँच", "CIP समय २ गुणा लम्ब्याउने", "तापक्रममिटर बिग्रिएको ठान्ने र बेवास्ता गर्ने"],
+    answer: 1,
+    explanation: "तापक्रम कम भएमा पहिले स्टीम आपूर्ति अवस्था (भल्भ खोल्ने·बोयलर दबाब) जाँच गर्नुपर्छ। तापक्रम कम अवस्थामा CIP गरे कीटाणुनाशक प्रभाव कम हुन्छ।",
+    hasVideo: true
+  },
+  {
+    id: 6,
+    category: "कार्य प्रक्रिया",
+    title: "मिश्रण सञ्चालन",
+    question: "मिश्रण तापक्रम ७०°C राख्दै, अचानक बिजुली गयो र मिक्सर र हिटर बन्द भयो। ३ मिनेट पछि बिजुली फर्कियो। सबैभन्दा उपयुक्त कारबाही के हो?",
+    options: ["तुरुन्त मिश्रण पुन: सुरु र तापक्रम पुन: बढाउने", "मिश्रणको तापक्रम मापन → ६०°C भन्दा कम झरेमा माथिल्लो अधिकारीलाई रिपोर्ट → Batch फोहोर गर्ने निर्णय", "३ मिनेट छोटो समय हो भने त्यसैगरी जारी राख्ने", "मिश्रण पूर्ण फोहोर"],
+    answer: 1,
+    explanation: "बिजुली गएमा मिश्रण रोकिने र तापक्रम झर्छ। तापक्रम मानक भन्दा कम झरेमा कीटाणुनाशक अपूर्ण आदि गुणस्तर समस्या हुन सक्छ, माथिल्लो अधिकारीको निर्णय आवश्यक छ।",
+    hasVideo: true
+  },
+  {
+    id: 7,
+    category: "कार्य प्रक्रिया",
+    title: "कच्चा पदार्थ हाल्ने",
+    question: "पाउडर कच्चा पदार्थ हाल्दा गाँठो (जम्मा भएको) फेला पर्यो। उत्पादन निर्देशमा 'पाउडर कच्चा पदार्थ → तरल कच्चा पदार्थ' क्रममा लेखिएको छ। सही कारबाही के हो?",
+    options: ["गाँठोलाई हातले भाँचेर हाल्ने", "गाँठो हटाएर बाँकी मात्र हाल्ने", "हाल्न रोक्ने → त्यो कच्चा पदार्थ Batch पूर्ण अलग → QA टोली परीक्षण अनुरोध", "चालनी गरेर हाल्ने"],
+    answer: 2,
+    explanation: "कच्चा पदार्थ गाँठोले भण्डारणमा आर्द्रता अवशोषण·बिग्रने सम्भावना संकेत गर्छ। त्यो Batch पूर्ण अलग र QA टोली परीक्षण आवश्यक छ।",
+    hasVideo: true
+  },
+  {
+    id: 8,
+    category: "कार्य प्रक्रिया",
+    title: "कीटाणुनाशक/डिफोमिङ/स्थानान्तरण",
+    question: "कीटाणुनाशक पछि डिफोमिङ प्रक्रियामा भ्याकुम पम्प गेज -०.६MPa मा रोकियो, थप तल गएन। SOP लक्ष्य -०.८MPa भन्दा माथि हो। सबैभन्दा सम्भावित कारण के हो?",
+    options: ["भ्याकुम पम्प प्रदर्शन कम", "ट्याङ्की ढक्कन पूर्ण सील भएन", "मिश्रणको चिपचिपापन धेरै कम", "मिक्सर गति धेरै छिटो"],
+    answer: 1,
+    explanation: "भ्याकुम पम्प भ्याकुम कमको सबैभन्दा सामान्य कारण ट्याङ्की ढक्कन अपूर्ण सील हो। ढक्कन प्याकिङ अवस्था र लक अवस्था पहिले जाँच गर्नुपर्छ।",
+    hasVideo: true
+  },
+  {
+    id: 9,
+    category: "कार्य प्रक्रिया",
+    title: "भोलिको उत्पादनको पूर्व प्रशोधन",
+    question: "भोलिको उत्पादनको पूर्व प्रशोधनमा मापेको कच्चा पदार्थ होपरमा राखेको थियो। काम छाड्नु ३० मिनेट अघि अचानक भोलिको उत्पादन परिवर्तन भएको सम्पर्क आयो। सही कारबाही के हो?",
+    options: ["पहिले नै मापेको भने भोलि त्यसैगरी प्रयोग", "कच्चा पदार्थ मूल झोलामा फेरि राख्ने र भण्डारण", "मापेको कच्चा पदार्थ Batch No. रेकर्ड → सील भण्डारण → हस्तान्तरण रेकर्ड लेखन → अर्को दिन फिर्ता प्रशोधन", "त्यसैगरी फाल्ने"],
+    answer: 2,
+    explanation: "मापन पूर्ण कच्चा पदार्थ खोलेको अवस्थामा छ, Batch ट्र्याकिङ रेकर्ड पछि सील भण्डारण र फिर्ता प्रशोधन गर्नुपर्छ। मूल झोलामा फेरि राखे क्रस प्रदूषणको जोखिम छ।",
+    hasVideo: true
+  },
+  {
+    id: 10,
+    category: "कार्य प्रक्रिया",
+    title: "भोलिको उत्पादन तयारी",
+    question: "काम समाप्त पछि उपकरण सफाईमा मिश्रण ट्याङ्की भित्र तल्लो भागमा सेतो ठोस पदार्थ (लगभग ५०g) फेला पर्यो। यो के हो र कसरी प्रशोधन गर्नुपर्छ?",
+    options: ["अघिल्लो मिश्रण अवशेषको सम्भावना → तुरुन्त हटाउने पछि QA टोलीलाई रिपोर्ट → CIP पुन: गर्ने", "प्रोटिन जमेको भने सामान्य → त्यसैगरी हटाउने", "उपकरण जंग हो भने कार्यालय टोलीलाई मात्र सम्पर्क", "थोरै मात्रा हो भने बेवास्ता"],
+    answer: 0,
+    explanation: "ट्याङ्की भित्र ठोस पदार्थले अघिल्लो मिश्रण अवशेष·CIP अपूर्ण·विदेशी पदार्थ आदि कारण विविध छ। QA टोली रिपोर्ट र CIP पुन: गर्ने आवश्यक छ, कारण पत्ता लगाउन आवश्यक छ।",
+    hasVideo: true
+  },
+  {
+    id: 11,
+    category: "प्रक्रिया बुझाइ",
+    title: "मिश्रण सम्पूर्ण प्रक्रिया क्रम",
+    question: "मिश्रण पूर्ण पछि Brix मापन मूल्य १०.२ हो, उत्पादन निर्देश मानक १०.०±०.५ हो। तर उही उत्पादन विगत Batch रेकर्ड हेर्दा अधिकांश ९.८~१०.० हो। कसरी निर्णय गर्नुपर्छ?",
+    options: ["मानक भित्र छ भने उत्तीर्ण → भर्ने अगाडि बढ्ने", "मानक भित्र छ तर सामान्य भन्दा माथि → माथिल्लो अधिकारीलाई रिपोर्ट → कारण पत्ता लगाएर अगाडि बढ्ने कि निर्णय", "१०.२ धेरै माथि छ भने Batch फोहोर", "शुद्ध पानीले पातलो बनाएर १०.० मा मिलाउने"],
+    answer: 1,
+    explanation: "मानक भित्र तर विगत डाटासँग फरक ठूलो भएमा, कच्चा पदार्थ हाल्ने गल्ती·मापन गल्तीको सम्भावना छ, माथिल्लो अधिकारी रिपोर्ट र कारण पत्ता लगाउन आवश्यक छ।",
+    hasVideo: false
+  },
+  {
+    id: 12,
+    category: "प्रक्रिया बुझाइ",
+    title: "१ टन सेवा ट्याङ्कीको भूमिका",
+    question: "१ टन सेवा ट्याङ्की स्थानान्तरणमा भर्ने लाइनबाट 'उत्पादन बाहिर आउँदैन' भन्ने सम्पर्क आयो। मिश्रण कोठाबाट सबैभन्दा पहिले के जाँच गर्नुपर्छ?",
+    options: ["सेवा ट्याङ्की बाँकी मात्रा जाँच", "सेवा ट्याङ्की तल्लो भल्भ खोल्ने अवस्था र स्थानान्तरण पम्प सञ्चालन अवस्था", "भर्ने मेसिन बिग्रेको अवस्था", "मिश्रण ट्याङ्की मिक्सर गति"],
+    answer: 1,
+    explanation: "उत्पादन आपूर्ति नभएको सबैभन्दा सामान्य कारण सेवा ट्याङ्की तल्लो भल्भ नखोलेको वा स्थानान्तरण पम्प बन्द हो। मिश्रण कोठाबाट तुरुन्त जाँच सम्भव आइटमबाट जाँच गर्नुपर्छ।",
+    hasVideo: false
+  },
+  {
+    id: 13,
+    category: "प्रक्रिया बुझाइ",
+    title: "उत्पादन परिवर्तन CIP",
+    question: "A उत्पादन उत्पादन पूर्ण पछि B उत्पादन परिवर्तनको लागि ३ चरण CIP गरियो। CIP पूर्ण पछि B उत्पादन मिश्रण सुरु ३० मिनेट पछि मिश्रणको रंग सामान्य भन्दा गाढा छ। सबैभन्दा सम्भावित कारण के हो?",
+    options: ["कच्चा पदार्थ Batch फरक", "CIP अपूर्णले A उत्पादन अवशेष मिसियो", "मिश्रण तापक्रम धेरै माथि", "मिक्सर गति धेरै छिटो"],
+    answer: 1,
+    explanation: "उत्पादन परिवर्तन CIP पछि रंग असामान्य भएमा अघिल्लो उत्पादन अवशेष मिसिने सम्भावना सबैभन्दा माथि हो। CIP Ball घुम्ने खराब·पाइप मृत कोण आदि जाँच गर्नुपर्छ।",
+    hasVideo: false
+  },
+  {
+    id: 14,
+    category: "प्रक्रिया बुझाइ",
+    title: "मल्टी पाइप परिवर्तन पछि",
+    question: "मल्टी पाइप परिवर्तनमा सहकर्मीले '३ नम्बर पाइपमा बदलियो' भने, तर आँखाले हेर्दा २ नम्बर पाइप जस्तो देखिन्छ। कसरी प्रतिक्रिया दिनुपर्छ?",
+    options: ["सहकर्मीलाई विश्वास गरेर ३ नम्बरमा रेकर्ड", "आँखाको जाँचलाई विश्वास गरेर २ नम्बरमा रेकर्ड", "तुरुन्त काम रोक्ने → २ जनाले सँगै पाइप नम्बर प्लेट पुन: जाँच → लग सुधार", "अस्पष्ट भने पार्ट प्रमुखलाई मात्र रिपोर्ट"],
+    answer: 2,
+    explanation: "मल्टी पाइप गलत चिन्ने उत्पादन क्रस प्रदूषण दुर्घटनामा सीधा जोडिन्छ। तुरुन्त २ जना क्रस जाँच आवश्यक छ, निश्चित नभएसम्म काम रोक्ने सिद्धान्त हो।",
+    hasVideo: false
+  },
+  {
+    id: 15,
+    category: "प्रक्रिया बुझाइ",
+    title: "मापन हस्तान्तरण क्रस चेक",
+    question: "मापन हस्तान्तरणमा कच्चा पदार्थ झोला लेबलमा 'भिटामिन C २५kg, Batch No. २०२४०३१५' छ, तर काम निर्देशमा 'भिटामिन C २५kg, Batch No. २०२४०३१२' लेखिएको छ। सही कारबाही के हो?",
+    options: ["उही कच्चा पदार्थ हो भने त्यसैगरी प्रयोग", "Batch No. पछिल्लो छ भने २०२४०३१५ प्रयोग", "तुरुन्त काम रोक्ने → उत्पादन व्यवस्थापन टोलीलाई रिपोर्ट → उत्पादन निर्देश पुन: जाँच", "२०२४०३१२ कच्चा पदार्थ नयाँ अनुरोध"],
+    answer: 2,
+    explanation: "Batch No. नमिले कच्चा पदार्थ FIFO उल्लङ्घन·म्याद मिति फरक·गुणस्तर फरकको सम्भावना छ, उत्पादन व्यवस्थापन टोली जाँच आवश्यक छ।",
+    hasVideo: false
+  },
+  {
+    id: 16,
+    category: "प्रक्रिया बुझाइ",
+    title: "मिक्सर गति र मिश्रण गुणस्तर",
+    question: "मिश्रणमा मिक्सर गति १००rpm → १५०rpm मा बढायो र मिश्रण सतहमा फोम अत्यधिक उत्पन्न भयो। डिफोमिङ समय ३० मिनेट पछि हो। सबैभन्दा उपयुक्त कारबाही के हो?",
+    options: ["फोम डिफोमिङमा हट्छ भने त्यसैगरी अगाडि बढ्ने", "तुरुन्त मिक्सर गति १००rpm मा पुनर्स्थापना → फोम स्वाभाविक विलोप प्रतीक्षा", "मिश्रण रोक्ने", "डिफोमिङ समय २ गुणा लम्ब्याउने"],
+    answer: 1,
+    explanation: "अत्यधिक फोमले हावा मिसिने र अक्सिडेशन उत्पन्न गर्छ। तुरुन्त मिक्सर गति घटाएर थप फोम उत्पन्न रोक्ने, स्वाभाविक विलोप प्रतीक्षा गर्नु उपयुक्त छ।",
+    hasVideo: false
+  },
+  {
+    id: 17,
+    category: "उपकरण सञ्चालन",
+    title: "CIP Ball घुम्ने खराब प्रतिक्रिया",
+    question: "CIP Ball घुम्ने जाँचमा १ Ball मात्र घुम्ने खराब, बाँकी सामान्य छ। SOP मा 'सबै Ball सामान्य सञ्चालन जाँच' लेखिएको छ। अर्को कारबाही के हो?",
+    options: ["१ मात्र खराब भने CIP अगाडि बढ्ने", "खराब Ball हटाएर CIP अगाडि बढ्ने", "तुरुन्त कार्यालय टोली जाँच अनुरोध → मर्मत पूर्ण पछि CIP अगाडि बढ्ने", "CIP समय २ गुणा लम्ब्याएर पूरक"],
+    answer: 2,
+    explanation: "CIP Ball १ पनि खराब भएमा त्यो भाग सफाई मृत कोण हुन्छ, CIP अगाडि बढ्न सक्दैन। मर्मत पूर्ण पछि अगाडि बढ्नुपर्छ।",
+    hasVideo: false
+  },
+  {
+    id: 18,
+    category: "उपकरण सञ्चालन",
+    title: "बटरफ्लाइ भल्भ",
+    question: "भल्भ ह्यान्डल पाइपसँग ४५ डिग्री कोणमा छ। यो भल्भको अवस्था के हो?",
+    options: ["पूर्ण खुल्ला", "पूर्ण बन्द", "आधा खुल्ला (मध्य अवस्था)", "बिग्रेको"],
+    answer: 2,
+    explanation: "बटरफ्लाइ भल्भले ह्यान्डल कोणले खुल्ने बन्द अवस्था निर्णय गर्छ। सीधा रेखा=खुल्ला, ठाडो=बन्द, ४५ डिग्री=आधा खुल्ला अवस्था।",
+    hasVideo: false
+  },
+  {
+    id: 19,
+    category: "उपकरण सञ्चालन",
+    title: "लोड सेल पानी भर्न नसक्ने जाँच क्रम",
+    question: "लोड सेल मापनमा पानी भर्न अगाडि बढेन भने SOP आधारमा जाँच क्रम के हो?",
+    options: ["तापक्रम नियन्त्रक → मिक्सर गति → स्टीम भल्भ", "ड्रेन भल्भ खुल्ने अवस्था → लोड सेल शून्य सेटिङ → पानी चेक भल्भ", "CIP Ball → पाइप जडान → पम्प असामान्य ध्वनि", "उत्पादन निर्देश → क्षार सान्द्रता → स्थानान्तरण पम्प"],
+    answer: 1,
+    explanation: "पानी भर्न नसक्दा ①ड्रेन भल्भ खुल्ने अवस्था, ②लोड सेल शून्य सेटिङ अवस्था, ③पानी स्वचालित चेक भल्भ खोल्ने अवस्था क्रमबद्ध जाँच गर्नुपर्छ।",
+    hasVideo: true
+  },
+  {
+    id: 20,
+    category: "उपकरण सञ्चालन",
+    title: "Batch अनुसार कच्चा पदार्थ हाल्ने क्रम",
+    question: "कच्चा पदार्थ उत्पादन निर्देश क्रमभन्दा फरक हाले के समस्या हुन सक्छ?",
+    options: ["केही कच्चा पदार्थ जम्मा अवस्थामा बसेर घुल्न नसक्ने", "उत्पादन भित्र pH फरक उत्पन्न", "कच्चा पदार्थ बीच प्रतिक्रियाले अवक्षेपण वा रंग परिवर्तन उत्पन्न", "लोड सेल शून्य स्वचालित रिसेट"],
+    answer: 3,
+    explanation: "हाल्ने क्रम उल्लङ्घनले घुल्न नसक्ने·pH फरक·अवक्षेपण आदि उत्पन्न गर्छ, तर लोड सेल शून्यमा सीधा प्रभाव दिँदैन।",
+    hasVideo: true
+  },
+  {
+    id: 21,
+    category: "उपकरण सञ्चालन",
+    title: "डिफोमिङ प्रक्रिया",
+    question: "डिफोमिङ प्रक्रिया (भ्याकुम पम्प) सुरु अघि सही पूर्व सेटिङ के हो?",
+    options: ["मिक्सर गति सबैभन्दा माथि सेट", "ट्याङ्की ढक्कन पूर्ण खोलेर सञ्चालन", "भ्याकुम पम्प पाइप भल्भ खोल्ने → ट्याङ्की ढक्कन पूर्ण लक → अन्य भल्भ बन्द", "ड्रेन भल्भ खोलेर बाँकी पानी निकाल्ने"],
+    answer: 2,
+    explanation: "डिफोमिङ भ्याकुम पम्प पाइप भल्भ खोल्ने → ट्याङ्की ढक्कन पूर्ण लक → अन्य भल्भ बन्द → भ्याकुम पम्प सञ्चालन क्रम हो।",
+    hasVideo: true
+  },
+  {
+    id: 22,
+    category: "उपकरण सञ्चालन",
+    title: "संवेदी परीक्षण असामान्य प्रतिक्रिया",
+    question: "मिश्रण पूर्ण पछि संवेदी परीक्षणमा मिश्रणबाट सामान्य भन्दा अलि अमिलो गन्ध आयो। pH मापन मूल्य ४.३ हो, मानक (४.०~४.५) भित्र छ। कसरी निर्णय गर्नुपर्छ?",
+    options: ["pH मानक भित्र छ भने उत्तीर्ण", "अमिलो गन्ध सामान्य → उत्तीर्ण", "मानक भित्र तर संवेदी असामान्य → माथिल्लो अधिकारीलाई रिपोर्ट → कारण पत्ता लगाउने (कच्चा पदार्थ बिग्रिने·CIP अपूर्ण आदि)", "गन्ध व्यक्तिपरक हो भने बेवास्ता"],
+    answer: 2,
+    explanation: "मानक भित्र तर संवेदी असामान्य (अमिलो गन्ध·स्वाद·रंग परिवर्तन) भएमा कच्चा पदार्थ बिग्रिने·सूक्ष्मजीव प्रदूषण·CIP अपूर्णको सम्भावना छ, रिपोर्ट र कारण पत्ता लगाउन आवश्यक छ।",
+    hasVideo: true
+  },
+  {
+    id: 23,
+    category: "उपकरण सञ्चालन",
+    title: "सेवा ट्याङ्की स्थानान्तरण",
+    question: "सेवा ट्याङ्की स्थानान्तरणमा स्थानान्तरण पम्प दबाब सामान्य २.५bar बाट १.२bar मा झर्यो। मिश्रणको चिपचिपापन सामान्य छ। सबैभन्दा सम्भावित कारण के हो?",
+    options: ["पम्प इम्पेलर क्षति", "पाइप कतै चुहावट उत्पन्न", "सेवा ट्याङ्की बाँकी अपूर्ण", "मिश्रणको तापक्रम धेरै कम"],
+    answer: 1,
+    explanation: "पम्प दबाब तीव्र गिरावटले पाइप चुहावट·भल्भ नखोलेको·पम्प बिग्रिने आदि कारण हो। पाइप जडान भाग·भल्भ अवस्था तुरुन्त जाँच गर्नुपर्छ।",
+    hasVideo: true
+  },
+  {
+    id: 24,
+    category: "उपकरण सञ्चालन",
+    title: "नप्रयोग मल्टी पाइप ब्ल्याङ्क",
+    question: "नप्रयोग मल्टी पाइप स्यानिटरी ब्ल्याङ्कले नबन्द गरेर मिश्रण स्थानान्तरण सुरु। ५ सेकेन्ड पछि फेला पारेर तुरुन्त पम्प बन्द। सही कारबाही के हो?",
+    options: ["चुहावट छैन भने ब्ल्याङ्क जडान पछि जारी राख्ने", "तुरुन्त माथिल्लो अधिकारीलाई रिपोर्ट → भुइँ चुहावट जाँच → भुइँ सफाई·कीटाणुनाशक → ब्ल्याङ्क जडान पछि पुन: सुरु", "५ सेकेन्ड छोटो भने बेवास्ता र अगाडि बढ्ने", "त्यो Batch फोहोर"],
+    answer: 1,
+    explanation: "नप्रयोग पाइप नब्ल्याङ्क अवस्थाले मिश्रण चुहावट·क्रस प्रदूषणको जोखिम छ। तुरुन्त रिपोर्ट·स्थल जाँच·सफाई पछि पुन: सुरु सिद्धान्त हो।",
+    hasVideo: true
+  },
+  {
+    id: 25,
+    category: "CIP सफाई",
+    title: "CIP परिभाषा भूमिका",
+    question: "CIP (Cleaning In Place) को परिभाषा सही के हो?",
+    options: ["उपकरण विघटन गरेर सफाई गर्ने विधि", "उपकरण विघटन नगरी ठाउँमै स्वचालित सफाई गर्ने विधि", "बाहिरी सफाई विशेषज्ञ कम्पनीलाई अनुरोध गर्ने विधि", "कामदारले म्यानुअल सफाई गर्ने विधि"],
+    answer: 1,
+    explanation: "CIP उपकरण विघटन नगरी ठाउँमै सफाई तरल परिसंचरण गरेर स्वचालित सफाई·कीटाणुनाशक प्रणाली हो।",
+    hasVideo: false
+  },
+  {
+    id: 26,
+    category: "CIP सफाई",
+    title: "तातो पानी CIP",
+    question: "उही उत्पादन निरन्तर उत्पादनमा तातो पानी CIP तापक्रम ८७°C मा रोकियो, थप बढेन। मिश्रण सुरु सम्म २० मिनेट बाँकी छ। सबैभन्दा उपयुक्त कारबाही के हो?",
+    options: ["८७°C पर्याप्त भने CIP पूर्ण प्रशोधन", "CIP समय २ गुणा लम्ब्याएर पूरक", "तुरुन्त बोयलर कोठा·कार्यालय टोली सम्पर्क → स्टीम दबाब जाँच → ९०°C पुगेपछि CIP अगाडि बढ्ने", "चिसो पानी CIP ले प्रतिस्थापन"],
+    answer: 2,
+    explanation: "तातो पानी CIP ९०°C भन्दा माथि आवश्यक मानक हो। तापक्रम कम भएमा कीटाणुनाशक प्रभाव कम हुन्छ, कारण पत्ता लगाउने·समाधान पछि अगाडि बढ्नुपर्छ।",
+    hasVideo: false
+  },
+  {
+    id: 27,
+    category: "CIP सफाई",
+    title: "३ चरण CIP",
+    question: "उत्पादन परिवर्तन ३ चरण CIP मा २ चरण (क्षार) गरेपछि ३ चरण (तातो पानी रिन्सिङ) मा जानुअघि, रिन्सिङ पानी सेतो धमिलो छ। सही कारबाही के हो?",
+    options: ["रिन्सिङ पानी पारदर्शी नभएसम्म दोहोर्याएर रिन्सिङ", "क्षार बाँकी छ भने रिन्सिङ १ पटक मात्र थप", "धमिलो डिग्री कम भने त्यसैगरी अगाडि बढ्ने", "Divo सान QC ले तटस्थीकरण पछि रिन्सिङ"],
+    answer: 0,
+    explanation: "रिन्सिङ पानी धमिलो भएमा क्षार बाँकी सम्भावना माथि छ। पारदर्शी नभएसम्म दोहोर्याएर रिन्सिङ पछि लिटमस पेपरले pH तटस्थ जाँच आवश्यक छ।",
+    hasVideo: false
+  },
+  {
+    id: 28,
+    category: "CIP सफाई",
+    title: "५ चरण CIP",
+    question: "pH 4.5 भन्दा माथि होङसाम उत्पादन उत्पादन पछि ५ चरण CIP मा ४ चरण (एसिड सफाई) पूर्ण पछि तापक्रम ६५°C मा रोकियो, थप बढेन। ५ चरण तातो पानी २ पटक रिन्सिङ हो। कसरी प्रतिक्रिया दिनुपर्छ?",
+    options: ["६५°C ले रिन्सिङ अगाडि बढ्ने", "रिन्सिङ तापक्रम असम्बन्धित भने चिसो पानीले अगाडि बढ्ने", "तुरुन्त स्टीम आपूर्ति जाँच → ९०°C भन्दा माथि पुगेपछि तातो पानी रिन्सिङ", "रिन्सिङ पटक ४ पटकमा बढाएर पूरक"],
+    answer: 2,
+    explanation: "एसिड सफाई पछि तातो पानी रिन्सिङले बाँकी एसिड हटाउने र कीटाणुनाशक एकै साथ गर्छ, ९०°C भन्दा माथि आवश्यक छ। तापक्रम कम भएमा कीटाणुनाशक प्रभाव छैन।",
+    hasVideo: false
+  },
+  {
+    id: 29,
+    category: "CIP सफाई",
+    title: "CIP ३ प्रकार औषधि",
+    question: "CIP औषधि र प्रयोग अवस्था सही जोडिएको के हो?",
+    options: ["Diver Flo TC (क्षार) — १~२%, १~३५°C, भिजाउने", "Super Dilac (एसिड) — ०.५~४%, ६५°C भन्दा माथि, २०~३० मिनेट", "Divo सान QC (कीटाणुनाशक) — १~१३%, २०~६०°C, ५~१५ मिनेट", "Super Dilac (एसिड) — १~१३%, २०~६०°C, ५~१५ मिनेट"],
+    answer: 3,
+    explanation: "Super Dilac (एसिड) १~१३% सान्द्रता, २०~६०°C, ५~१५ मिनेट सही अवस्था हो।",
+    hasVideo: false
+  },
+  {
+    id: 30,
+    category: "CIP सफाई",
+    title: "CIP मा जाँच बिन्दु",
+    question: "CIP अगाडि बढ्दा स्थानान्तरण पम्प र मिक्सर मोटर OFF अवस्थामा थिए भने के समस्या हुन्छ?",
+    options: ["ट्याङ्की भित्र दबाब अत्यधिक माथि", "सफाई तरल परिसंचरण नभई सफाई प्रभाव कम र प्रदूषण जोखिम", "लोड सेल मापन मूल्य रिसेट", "स्टीम ह्यामरिङ उत्पन्न"],
+    answer: 1,
+    explanation: "CIP मा स्थानान्तरण पम्प·मिक्सर मोटर OFF भएमा सफाई तरल परिसंचरण नभई सफाई प्रभाव कम र प्रदूषण जोखिम उत्पन्न हुन्छ।",
+    hasVideo: true
+  },
+  {
+    id: 31,
+    category: "CIP सफाई",
+    title: "CIP पछि जाँच बिन्दु",
+    question: "CIP समाप्त पछि मिश्रण स्थानान्तरण सुरु अघि, SOP ले 'Critical Step' ले नियुक्त गरेको जाँच बिन्दु के हो?",
+    options: ["ट्याङ्की बाहिरी रंग अवस्था जाँच", "उत्पादन निर्देश कच्चा पदार्थ हाल्ने क्रम पुनर्विलोकन", "होपर भित्र बाँकी पानी पूर्ण हटाउने र ड्रेन भल्भ बन्द अवस्था २ जना क्रस जाँच", "CIP Ball परिवर्तन र स्प्रे होल सफाई"],
+    answer: 2,
+    explanation: "SOP ले ड्रेन भल्भ बन्द अवस्था Critical Step ले नियुक्त गरेर सञ्चालन शुरु अघि २ जना पारस्परिक प्रमाणीकरण अनिवार्य गरेको छ।",
+    hasVideo: true
+  },
+  {
+    id: 32,
+    category: "समस्या समाधान",
+    title: "तापक्रम उल्लङ्घन प्रतिक्रिया",
+    question: "मिश्रणमा तापक्रम उत्पादन निर्देश मानकबाट बाहिर गयो भने सही कारबाही के हो?",
+    options: ["त्यसैगरी अगाडि बढेर पछि रिपोर्ट", "स्वेच्छाले तापक्रम नियमन पछि जारी राख्ने", "तुरुन्त काम रोक्ने → माथिल्लो अधिकारीलाई रिपोर्ट → निर्देश अनुसार कारबाही", "तापक्रममिटर बिग्रेको ठान्ने र बेवास्ता"],
+    answer: 2,
+    explanation: "तापक्रम उल्लङ्घन फेला परेमा तुरुन्त काम रोकेर माथिल्लो अधिकारीलाई रिपोर्ट गरेर निर्देश अनुसार कारबाही गर्नुपर्छ। स्वेच्छा निर्णय निषेध!",
+    hasVideo: true
+  },
+  {
+    id: 33,
+    category: "समस्या समाधान",
+    title: "मल्टी पाइप गलत सञ्चालन",
+    question: "मल्टी पाइप गलत सञ्चालनले मिश्रण गलत ट्याङ्कीमा स्थानान्तरण भयो भने तुरुन्त गर्नुपर्ने कारबाही के हो?",
+    options: ["त्यसैगरी प्रयोग", "फेरि मूल ट्याङ्कीमा स्थानान्तरण", "तुरुन्त स्थानान्तरण रोक्ने → माथिल्लो अधिकारीलाई रिपोर्ट → त्यो मिश्रण अलग", "पातलो बनाएर पुन: प्रयोग"],
+    answer: 2,
+    explanation: "मल्टी पाइप गलत सञ्चालन उत्पन्न भएमा तुरुन्त स्थानान्तरण रोक्ने → माथिल्लो अधिकारीलाई रिपोर्ट → त्यो मिश्रण अलग र उत्पादन रेकर्ड लेखन सिद्धान्त हो।",
+    hasVideo: true
+  },
+  {
+    id: 34,
+    category: "समस्या समाधान",
+    title: "विदेशी पदार्थ मिसिने प्रतिक्रिया",
+    question: "मिश्रणमा विदेशी पदार्थ मिसेको फेला पारे सही कारबाही के हो?",
+    options: ["विदेशी पदार्थ मात्र हटाएर जारी राख्ने", "फिल्टर प्रक्रियामा हट्छ भने अगाडि बढ्ने", "तुरुन्त काम रोक्ने → माथिल्लो अधिकारीलाई रिपोर्ट → Batch अलग → उत्पादन रेकर्ड लेखन", "विदेशी पदार्थ साइज सानो भने बेवास्ता र अगाडि बढ्ने"],
+    answer: 2,
+    explanation: "विदेशी पदार्थ मिसिने फेला परेमा तुरुन्त काम रोक्ने → रिपोर्ट → Batch अलग → उत्पादन रेकर्ड लेखन सिद्धान्त हो। कुनै पनि अवस्थामा त्यसैगरी प्रयोग निषेध!",
+    hasVideo: true
+  },
+];
+
+const getDone = () => JSON.parse(localStorage.getItem('ojt_bae') || '[]');
+const saveDone = (arr) => localStorage.setItem('ojt_bae', JSON.stringify(arr));
+
+let curModule = null;
+let quizDone = false;
+
+function renderList() {
+  const done = getDone();
+  const el = document.getElementById('module-list');
+  el.innerHTML = '';
+  
+  let lastCat = null;
+  MODULES.forEach(m => {
+    if (m.category !== lastCat) {
+      const sep = document.createElement('div');
+      sep.className = 'cat-divider';
+      sep.textContent = '▸ ' + m.category;
+      el.appendChild(sep);
+      lastCat = m.category;
+    }
+    
+    const d = document.createElement('div');
+    d.className = 'module-card' + (done.includes(m.id) ? ' completed' : '');
+    d.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:36px;height:36px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700">${String(m.id).padStart(2,'0')}</div>
+        <div style="flex:1">
+          <div style="font-size:15px;font-weight:700">${m.title}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">${m.category}</div>
+        </div>
+        <div style="width:12px;height:12px;border-radius:50%;background:${done.includes(m.id) ? 'var(--green)' : 'var(--border)'}"></div>
+      </div>
+    `;
+    d.onclick = () => openModule(m);
+    el.appendChild(d);
+  });
+}
+
+function openModule(m) {
+  curModule = m;
+  quizDone = false;
+  
+  document.getElementById('module-list').style.display = 'none';
+  document.getElementById('module-detail').style.display = 'block';
+  document.querySelector('header').style.display = 'none';
+  
+  document.getElementById('detail-tag').textContent = 'MODULE ' + String(m.id).padStart(2,'0');
+  document.getElementById('detail-title').textContent = m.title;
+  
+  // 동영상 탭 표시/숨김
+  const videoTab = document.getElementById('tab-video');
+  if (m.hasVideo) {
+    videoTab.style.display = 'block';
+  } else {
+    videoTab.style.display = 'none';
+  }
+  
+  // 이미지
+  const imgPath = 'bae_' + String(m.id).padStart(2,'0') + '_explain_np.jpg';
+  document.getElementById('explain-img-inner').innerHTML = 
+    '<img src="' + imgPath + '" style="width:100%;height:auto;border-radius:10px" onerror="this.parentElement.innerHTML=\'<span style=\\\'font-size:48px\\\'>📷</span><div style=\\\'margin-top:12px;font-size:13px\\\'>तस्विर थपिँदैछ</div><div style=\\\'font-size:11px;font-family:JetBrains Mono,monospace;margin-top:4px\\\'>' + imgPath + '</div>\'">';
+  
+  // 퀴즈
+  document.getElementById('quiz-question').textContent = m.question;
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  m.options.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'option-btn';
+    b.innerHTML = '<span class="option-num">' + (i+1) + '</span><span>' + o + '</span>';
+    b.onclick = () => answer(i, m.answer);
+    opts.appendChild(b);
+  });
+  
+  document.getElementById('result-banner').className = 'result-banner';
+  document.getElementById('explanation-box').className = 'explanation-box';
+  
+  const done = getDone().includes(m.id);
+  const cb = document.getElementById('complete-btn');
+  cb.textContent = done ? '✅ पूरा भएको मोड्युल' : '✅ यो मोड्युल पूरा गर्नुहोस्';
+  cb.style.opacity = done ? '0.5' : '1';
+  
+  switchTab('explain');
+  window.scrollTo(0, 0);
+}
+
+function switchTab(t) {
+  ['explain','quiz','video'].forEach(n => {
+    const p = document.getElementById('panel-'+n);
+    const tb = document.getElementById('tab-'+n);
+    if (p) p.classList.toggle('active', n===t);
+    if (tb) tb.classList.toggle('active', n===t);
+  });
+  if (t==='quiz' && quizDone) document.getElementById('tab-quiz').classList.add('done');
+}
+
+function answer(chosen, correct) {
+  if (quizDone) return;
+  quizDone = true;
+  
+  document.querySelectorAll('.option-btn').forEach((b, i) => {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    if (i === chosen && chosen !== correct) b.classList.add('wrong');
+  });
+  
+  const ok = chosen === correct;
+  const banner = document.getElementById('result-banner');
+  banner.className = 'result-banner show ' + (ok ? 'correct-banner' : 'wrong-banner');
+  banner.innerHTML = '<div style="font-size:32px;margin-bottom:8px">' + (ok ? '🎉' : '❌') + '</div><div style="font-size:15px;font-weight:700">' + (ok ? 'सही!' : 'गलत। सही उत्तर ' + (correct+1) + ' हो।') + '</div>';
+  
+  document.getElementById('explanation-text').textContent = curModule.explanation;
+  document.getElementById('explanation-box').className = 'explanation-box show';
+  document.getElementById('tab-quiz').classList.add('done');
+}
+
+function completeModule() {
+  if (!curModule) return;
+  let done = getDone();
+  if (!done.includes(curModule.id)) {
+    done.push(curModule.id);
+    saveDone(done);
+  }
+  goBack();
+}
+
+function goBack() {
+  document.getElementById('module-detail').style.display = 'none';
+  document.getElementById('module-list').style.display = 'flex';
+  document.querySelector('header').style.display = 'flex';
+  renderList();
+  window.scrollTo(0, 0);
+}
+
+// 초기화
+renderList();
+</script>
+</body>
+</html>
