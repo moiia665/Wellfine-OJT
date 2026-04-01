@@ -222,7 +222,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 <!-- HEADER -->
 <header style="position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
   <button onclick="location.href='index.html'" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← गृहपृष्ठ</button>
-  <h1 style="font-size:16px;font-weight:700;flex:1">भर्ने विभाग (३० मोड्युल)</h1>
+  <h1 style="font-size:16px;font-weight:700;flex:1">भर्ने विभाग (३१ मोड्युल)</h1>
 </header>
 
 <!-- MODULE LIST -->
@@ -317,8 +317,8 @@ const MODULES = [
   {
     id: 2,
     category: "कम्पनी बुझाइ",
-    title: "충전파트 팀워크와 협업",
-    question: "충전파트 팀워크와 협업को बारेमा सही व्याख्या के हो?",
+    title: "팀워크와 신규 작업자 OJT",
+    question: "팀워크와 신규 작업자 OJTको बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
     answer: 0,
     explanation: "व्याख्या प्रविष्ट गर्नुहोस्।",
@@ -387,6 +387,16 @@ const MODULES = [
   {
     id: 9,
     category: "कार्य प्रक्रिया",
+    title: "5. 명일 생산 제품 전처리",
+    question: "5. 명일 생산 제품 전처리को बारेमा सही व्याख्या के हो?",
+    options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
+    answer: 0,
+    explanation: "व्याख्या प्रविष्ट गर्नुहोस्।",
+    hasVideo: true
+  },
+  {
+    id: 10,
+    category: "कार्य प्रक्रिया",
     title: "6. 본생산 모니터링",
     question: "6. 본생산 모니터링को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
@@ -395,7 +405,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 10,
+    id: 11,
     category: "कार्य प्रक्रिया",
     title: "7. 작업 종료 및 정리",
     question: "7. 작업 종료 및 정리को बारेमा सही व्याख्या के हो?",
@@ -405,7 +415,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 11,
+    id: 12,
     category: "प्रक्रिया बुझाइ",
     title: "충전 전체 공정 흐름",
     question: "충전 전체 공정 흐름को बारेमा सही व्याख्या के हो?",
@@ -415,7 +425,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 12,
+    id: 13,
     category: "प्रक्रिया बुझाइ",
     title: "충전기 작동 원리",
     question: "충전기 작동 원리को बारेमा सही व्याख्या के हो?",
@@ -425,7 +435,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 13,
+    id: 14,
     category: "प्रक्रिया बुझाइ",
     title: "포장재 자동 공급 시스템",
     question: "포장재 자동 공급 시스템को बारेमा सही व्याख्या के हो?",
@@ -435,7 +445,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 14,
+    id: 15,
     category: "प्रक्रिया बुझाइ",
     title: "금속검출기 작동 원리",
     question: "금속검출기 작동 원리को बारेमा सही व्याख्या के हो?",
@@ -445,7 +455,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 15,
+    id: 16,
     category: "प्रक्रिया बुझाइ",
     title: "제품별 충전 조건 이해",
     question: "제품별 충전 조건 이해को बारेमा सही व्याख्या के हो?",
@@ -455,7 +465,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 16,
+    id: 17,
     category: "उपकरण सञ्चालन",
     title: "충전기 노즐 조정 및 확인",
     question: "충전기 노즐 조정 및 확인को बारेमा सही व्याख्या के हो?",
@@ -465,17 +475,17 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 17,
+    id: 18,
     category: "उपकरण सञ्चालन",
-    title: "파우치/병/컵 규격별 세팅",
-    question: "파우치/병/컵 규격별 세팅को बारेमा सही व्याख्या के हो?",
+    title: "파우치/병/스틱 규격별 세팅",
+    question: "파우치/병/스틱 규격별 세팅को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
     answer: 0,
     explanation: "व्याख्या प्रविष्ट गर्नुहोस्।",
     hasVideo: true
   },
   {
-    id: 18,
+    id: 19,
     category: "उपकरण सञ्चालन",
     title: "충전량 정확도 점검",
     question: "충전량 정확도 점검को बारेमा सही व्याख्या के हो?",
@@ -485,7 +495,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 19,
+    id: 20,
     category: "उपकरण सञ्चालन",
     title: "실링 온도 및 압력 관리",
     question: "실링 온도 및 압력 관리को बारेमा सही व्याख्या के हो?",
@@ -495,7 +505,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 20,
+    id: 21,
     category: "उपकरण सञ्चालन",
     title: "인쇄기 잉크 농도 확인",
     question: "인쇄기 잉크 농도 확인को बारेमा सही व्याख्या के हो?",
@@ -505,7 +515,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 21,
+    id: 22,
     category: "उपकरण सञ्चालन",
     title: "금속검출기 감도 테스트",
     question: "금속검출기 감도 테스트को बारेमा सही व्याख्या के हो?",
@@ -515,7 +525,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 22,
+    id: 23,
     category: "उपकरण सञ्चालन",
     title: "컨베이어 속도 조절",
     question: "컨베이어 속도 조절को बारेमा सही व्याख्या के हो?",
@@ -525,7 +535,7 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 23,
+    id: 24,
     category: "उपकरण सञ्चालन",
     title: "부자재 교체 및 관리",
     question: "부자재 교체 및 관리को बारेमा सही व्याख्या के हो?",
@@ -535,8 +545,8 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 24,
-    category: "गुणस्तर व्यवस्थापन",
+    id: 25,
+    category: "CIP सफाई",
     title: "시간별 충전량 측정",
     question: "시간별 충전량 측정को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
@@ -545,8 +555,8 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 25,
-    category: "गुणस्तर व्यवस्थापन",
+    id: 26,
+    category: "CIP सफाई",
     title: "실링 상태 육안 검사",
     question: "실링 상태 육안 검사को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
@@ -555,8 +565,8 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 26,
-    category: "गुणस्तर व्यवस्थापन",
+    id: 27,
+    category: "CIP सफाई",
     title: "인쇄 상태 및 유통기한 확인",
     question: "인쇄 상태 및 유통기한 확인को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
@@ -565,8 +575,8 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 27,
-    category: "गुणस्तर व्यवस्थापन",
+    id: 28,
+    category: "CIP सफाई",
     title: "부적합품 격리 및 기록",
     question: "부적합품 격리 및 기록को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
@@ -575,18 +585,18 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 28,
-    category: "समस्या समाधान",
-    title: "충전 과부족 발생 시 대응",
-    question: "충전 과부족 발생 시 대응को बारेमा सही व्याख्या के हो?",
+    id: 29,
+    category: "CIP सफाई",
+    title: "충전 과부족 발생시 대응",
+    question: "충전 과부족 발생시 대응को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
     answer: 0,
     explanation: "व्याख्या प्रविष्ट गर्नुहोस्।",
     hasVideo: true
   },
   {
-    id: 29,
-    category: "समस्या समाधान",
+    id: 30,
+    category: "CIP सफाई",
     title: "포장재 걸림 발생 시 조치",
     question: "포장재 걸림 발생 시 조치को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
@@ -595,8 +605,8 @@ const MODULES = [
     hasVideo: true
   },
   {
-    id: 30,
-    category: "समस्या समाधान",
+    id: 31,
+    category: "CIP सफाई",
     title: "금속 검출 시 대응 절차",
     question: "금속 검출 시 대응 절차को बारेमा सही व्याख्या के हो?",
     options: ["विकल्प १", "विकल्प २", "विकल्प ३", "विकल्प ४"],
