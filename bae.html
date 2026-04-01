@@ -247,7 +247,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
     
     <!-- EXPLAIN PANEL -->
     <div id="panel-explain" class="panel active">
-      <div id="explain-img-inner" style="background:var(--surface);border-radius:12px;padding:40px;text-align:center;color:var(--muted);margin-bottom:16px"></div>
+      <div id="explain-img-inner" style="background:var(--surface);border-radius:12px;overflow:hidden;margin-bottom:16px"></div>
       <button onclick="switchTab('quiz')" style="background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif">문제 풀기 →</button>
     </div>
     
@@ -706,7 +706,7 @@ function openModule(m) {
   // 이미지
   const imgPath = 'bae_' + String(m.id).padStart(2,'0') + '_explain.jpg';
   document.getElementById('explain-img-inner').innerHTML = 
-    '<img src="' + imgPath + '" style="width:100%;height:auto;border-radius:10px" onerror="this.parentElement.innerHTML=\'<span style=\\\'font-size:48px\\\'>📷</span><div style=\\\'margin-top:12px;font-size:13px\\\'>이미지 추가 예정</div><div style=\\\'font-size:11px;font-family:JetBrains Mono,monospace;margin-top:4px\\\'>' + imgPath + '</div>\'">';
+    '<img src="' + imgPath + '" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML=\'<div style=\\\'padding:40px;text-align:center\\\'><span style=\\\'font-size:48px\\\'>📷</span><div style=\\\'margin-top:12px;font-size:13px\\\'>이미지 추가 예정</div><div style=\\\'font-size:11px;font-family:JetBrains Mono,monospace;margin-top:4px\\\'>' + imgPath + '</div>\'">';
   
   // 퀴즈
   document.getElementById('quiz-question').textContent = m.question;
