@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>웰파인 생산팀 OJT 교육</title>
@@ -96,5 +98,14 @@ h1{font-size:28px;font-weight:900;text-align:center;margin-bottom:10px}
     © 2026 Wellfine. All rights reserved.
   </div>
 </div>
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/Wellfine-OJT/service-worker.js')
+      .then(registration => console.log('SW registered:', registration))
+      .catch(error => console.log('SW registration failed:', error));
+  });
+}
+</script>
 </body>
 </html>
