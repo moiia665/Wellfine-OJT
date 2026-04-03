@@ -1,0 +1,28 @@
+{
+  "name": "(주) 웰파인 생산팀 OJT교육 앱",
+  "short_name": "웰파인 OJT",
+  "description": "웰파인 생산팀 신입 직원을 위한 배합/충전 파트 OJT 교육 앱",
+  "start_url": "/Wellfine-OJT/",
+  "scope": "/Wellfine-OJT/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "ko-KR",
+  "dir": "ltr"
+}
