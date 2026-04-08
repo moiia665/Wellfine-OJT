@@ -694,7 +694,9 @@ function openModule(m) {
   
   document.getElementById('detail-tag').textContent = 'MODULE ' + String(m.id).padStart(2,'0');
   document.getElementById('detail-title').textContent = m.title;
-  
+
+  // 브라우저 히스토리에 상태 추가
+  history.pushState({view: 'detail', module: m.id}, '', '');
   // 동영상 탭 표시/숨김
   const videoTab = document.getElementById('tab-video');
   if (m.hasVideo) {
