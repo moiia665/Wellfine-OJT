@@ -770,6 +770,21 @@ function goBack() {
   }
 }
 
+// 초기 상태 설정
+history.replaceState({view: 'list'}, '', '');
+
+// popstate 이벤트 (브라우저 뒤로가기 처리)
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.view === 'list') {
+    // 모듈 리스트로 돌아가기
+    document.getElementById('module-detail').style.display = 'none';
+    document.getElementById('module-list').style.display = 'flex';
+    document.querySelector('header').style.display = 'flex';
+    renderList();
+    window.scrollTo(0, 0);
+  }
+});
+
 // 초기화
 renderList();
 </script>
