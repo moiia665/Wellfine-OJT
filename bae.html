@@ -757,15 +757,16 @@ function completeModule() {
 }
 
 function goBack() {
-  document.getElementById('module-detail').style.display = 'none';
-  document.getElementById('module-list').style.display = 'flex';
-  document.querySelector('header').style.display = 'flex';
-  renderList();
-  window.scrollTo(0, 0);
-  
-  // 현재 state가 detail이면 list로 변경
+  // history.back() 호출 (popstate에서 UI 업데이트 처리)
   if (history.state && history.state.view === 'detail') {
     history.back();
+  } else {
+    // 직접 호출된 경우 UI만 업데이트
+    document.getElementById('module-detail').style.display = 'none';
+    document.getElementById('module-list').style.display = 'flex';
+    document.querySelector('header').style.display = 'flex';
+    renderList();
+    window.scrollTo(0, 0);
   }
 }
 

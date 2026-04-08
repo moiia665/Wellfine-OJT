@@ -773,17 +773,38 @@ function completeModule() {
 }
 
 function goBack() {
-  document.getElementById('module-detail').style.display = 'none';
-  document.getElementById('module-list').style.display = 'flex';
-  document.querySelector('header').style.display = 'flex';
-  renderList();
-  window.scrollTo(0, 0);
+  const detailView = document.getElementById('module-detail');
   
-  // हालको state detail छ भने list मा परिवर्तन गर्नुहोस्
-  if (history.state && history.state.view === 'detail') {
+  // detail 화면이 열려있을 때만 history.back() 호출
+  if (detailView.style.display === 'block') {
     history.back();
   }
 }
+
+// 페이지 로드 시 초기 상태 설정
+if (!history.state || !history.state.view) {
+  history.replaceState({view: 'list'}, '', '');
+}
+
+// 브라우저 뒤로가기 버튼 처리
+window.addEventListener('popstate', function(event) {
+  const detailView = document.getElementById('module-detail');
+  
+  // detail 화면이 열려있으면 닫기
+  if (detailView.style.display === 'block') {
+    detailView.style.display = 'none';
+    document.getElementById('module-list').style.display = 'flex';
+    document.querySelector('header').style.display = 'flex';
+    renderList();
+    window.scrollTo(0, 0);
+  }
+});
+
+// 초기화
+renderList();
+    window.scrollTo(0, 0);
+  }
+});
 
 // 초기화
 renderList();
