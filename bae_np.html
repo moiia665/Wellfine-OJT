@@ -775,17 +775,7 @@ function completeModule() {
 }
 
 function goBack() {
-  // UI 직접 업데이트
-  document.getElementById('module-detail').style.display = 'none';
-  document.getElementById('module-list').style.display = 'flex';
-  document.querySelector('header').style.display = 'flex';
-  renderList();
-  window.scrollTo(0, 0);
-  
-  // history에서도 제거
-  if (history.state && history.state.view === 'detail') {
-    history.back();
-  }
+  history.back();
 }
 
 // 페이지 로드 시 초기 상태 설정
