@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ne">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>चार्जिङ विभाग OJT तालिम</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<title>फिलिङ विभाग OJT तालिम</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700;900&family=Noto+Sans+Devanagari:wght@400;500;700;900&family=Noto+Sans+Devanagari:wght@400;500;700;900&family=Noto+Sans+Devanagari:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#0f1117; --surface:#1a1e2e; --surface2:#222740;
@@ -13,7 +13,7 @@
   --text:#e8eaf2; --muted:#7a7f9a; --border:#2d3250; --card:#1e2235;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif;min-height:100vh;overflow-x:hidden}
 
 /* SPLASH */
 #splash{position:fixed;inset:0;z-index:999;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease;overflow:hidden}
@@ -49,7 +49,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .s-bae .sc-badge{background:rgba(245,166,35,.1);color:var(--accent)}
 .s-chung .sc-badge{background:rgba(79,195,247,.1);color:var(--blue)}
 .sc-arrow{font-size:20px;color:var(--muted)}
-.sheet-cancel{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:12px;padding:14px;width:100%;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:4px}
+.sheet-cancel{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:12px;padding:14px;width:100%;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif;margin-top:4px}
 
 /* HOME */
 #home-screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:60px}
@@ -149,7 +149,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 .question-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent2);margin-bottom:10px;text-transform:uppercase}
 .question-text{font-size:15px;font-weight:700;line-height:1.6}
 .options{display:flex;flex-direction:column;gap:8px}
-.option-btn{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px 14px;cursor:pointer;font-size:14px;color:var(--text);transition:all .2s;text-align:left;font-family:'Noto Sans KR',sans-serif;width:100%}
+.option-btn{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px 14px;cursor:pointer;font-size:14px;color:var(--text);transition:all .2s;text-align:left;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif;width:100%}
 .option-btn:active:not(:disabled){transform:scale(.98)}
 .option-num{width:26px;height:26px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--muted);flex-shrink:0}
 .option-btn.correct{border-color:var(--green);background:rgba(61,214,140,.07)}
@@ -162,7 +162,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 .correct-banner{background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.3);color:var(--green)}
 .wrong-banner{background:rgba(255,77,77,.1);border:1px solid rgba(255,77,77,.3);color:var(--red)}
 .r-icon{font-size:22px}
-.next-tab-btn{background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:none;transition:opacity .2s;font-family:'Noto Sans KR',sans-serif}
+.next-tab-btn{background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:none;transition:opacity .2s;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif}
 .next-tab-btn:active{opacity:.8}
 .next-tab-btn.show{display:block}
 
@@ -175,7 +175,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 .play-icon{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.06);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:22px}
 .video-ph p{font-size:12px;text-align:center;line-height:1.6;padding:0 20px}
 .video-desc{padding:14px 16px;font-size:13px;line-height:1.7;color:var(--muted);border-top:1px solid var(--border);text-align:left}
-.complete-btn{background:linear-gradient(135deg,var(--green),#27b578);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans KR',sans-serif}
+.complete-btn{background:linear-gradient(135deg,var(--green),#27b578);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif}
 .complete-btn:active{opacity:.85}
 .complete-btn.done{background:var(--surface2);color:var(--green);border:1px solid rgba(61,214,140,.3);cursor:default}
 
@@ -192,23 +192,23 @@ header h1{font-size:15px;font-weight:700;flex:1}
 .trophy{font-size:72px;margin-bottom:8px}
 #complete-screen h2{font-size:26px;font-weight:900}
 #complete-screen p{font-size:14px;color:var(--muted);line-height:1.7}
-.home-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Noto Sans KR',sans-serif}
+.home-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif}
 
 .confetti{position:fixed;pointer-events:none;z-index:9999}
 
   .lang-bar{display:flex;gap:10px;justify-content:center;margin-bottom:-8px}
-  .lang-btn{padding:6px 20px;border-radius:20px;border:2px solid;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;background:transparent}
+  .lang-btn{padding:6px 20px;border-radius:20px;border:2px solid;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif;background:transparent}
   .lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
   .lang-btn.inactive{color:var(--accent);border-color:var(--accent)}
   .lang-btn.inactive:hover{background:var(--accent);color:#fff}
 
 .cat-chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;letter-spacing:.3px}
-.cat-회사이해{background:#1a6b3e;color:#3dd68c}
-.cat-업무절차{background:#1a4a6b;color:#64b5f6}
-.cat-기능설명{background:#6b4a00;color:#ffb74d}
-.cat-설비세척{background:#4a1875;color:#ce93d8}
-.cat-공정이해도{background:#0d4a7a;color:#4fc3f7}
-.cat-이상대응{background:#7a0000;color:#ef5350}
+.cat-company{background:#1a6b3e;color:#3dd68c}
+.cat-procedure{background:#1a4a6b;color:#64b5f6}
+.cat-function{background:#6b4a00;color:#ffb74d}
+.cat-cleaning{background:#4a1875;color:#ce93d8}
+.cat-process{background:#0d4a7a;color:#4fc3f7}
+.cat-abnormal{background:#7a0000;color:#ef5350}
 .cat-divider{padding:12px 16px 4px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-top:1px solid var(--border);margin-top:4px}
 .cat-divider:first-child{border-top:none;margin-top:0}
 .explanation-box{background:rgba(61,214,140,.06);border:1px solid rgba(61,214,140,.3);border-radius:12px;padding:16px;margin:14px 0 8px;display:none}
@@ -221,8 +221,8 @@ header h1{font-size:15px;font-weight:700;flex:1}
 
 <!-- HEADER -->
 <header style="position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
-  <button onclick="location.href='index.html'" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← गृहपृष्ठ</button>
-  <h1 style="font-size:16px;font-weight:700;flex:1">मिश्रण विभाग (३४ मोड्युल)</h1>
+  <button onclick="location.href='index.html'" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif">← गृहपृष्ठ</button>
+  <h1 style="font-size:16px;font-weight:700;flex:1">फिलिङ पार्ट (26 मोड्युल)</h1>
 </header>
 
 <!-- MODULE LIST -->
@@ -231,7 +231,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 <!-- MODULE DETAIL -->
 <div id="module-detail" style="display:none;min-height:100vh">
   <div style="position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 20px">
-    <button onclick="goBack()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← पछाडि</button>
+    <button onclick="goBack()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif">← पछाडि</button>
   </div>
   
   <div style="padding:20px">
@@ -248,7 +248,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
     <!-- EXPLAIN PANEL -->
     <div id="panel-explain" class="panel active">
       <div id="explain-img-inner" style="background:var(--surface);border-radius:12px;overflow:hidden;margin-bottom:16px"></div>
-      <button onclick="switchTab('quiz')" style="background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif">प्रश्न हल गर्नुस् →</button>
+      <button onclick="switchTab('quiz')" style="background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif">प्रश्न हल गर्नुस् →</button>
     </div>
     
     <!-- QUIZ PANEL -->
@@ -275,17 +275,17 @@ header h1{font-size:15px;font-weight:700;flex:1}
       </div>
     </div>
     
-    <button id="complete-btn" onclick="completeModule()" style="background:var(--green);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;margin-top:20px;font-family:'Noto Sans KR',sans-serif">✅ यो मोड्युल पूरा गर्नुहोस्</button>
+    <button id="complete-btn" onclick="completeModule()" style="background:var(--green);color:#000;border:none;border-radius:12px;padding:16px;width:100%;font-size:15px;font-weight:900;cursor:pointer;margin-top:20px;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif">✅ यो मोड्युल पूरा गर्नुहोस्</button>
   </div>
 </div>
 
 <style>
-.tab-btn{background:transparent;border:none;color:var(--muted);padding:12px 16px;font-size:14px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;font-family:'Noto Sans KR',sans-serif}
+.tab-btn{background:transparent;border:none;color:var(--muted);padding:12px 16px;font-size:14px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-btn.done{color:var(--green)}
 .panel{display:none}
 .panel.active{display:block}
-.option-btn{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);text-align:left}
+.option-btn{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;font-family:'Noto Sans Devanagari','Noto Sans KR',sans-serif;font-size:14px;color:var(--text);text-align:left}
 .option-btn:hover{border-color:var(--accent)}
 .option-btn.correct{border-color:var(--green);background:rgba(61,214,140,.1)}
 .option-btn.wrong{border-color:var(--red);background:rgba(255,77,77,.1)}
@@ -306,268 +306,268 @@ header h1{font-size:15px;font-weight:700;flex:1}
 const MODULES = [
   {
     id: 1,
-    category: "회사이해",
-    title: "वेलफाइन ३ मुख्य मूल्य बुझ्ने",
-    question: "वेलफाइन को '고객 건강 실현(ग्राहक स्वास्थ्य सिद्धि)' मूल्यसँग सबैभन्दा प्रत्यक्ष रूपमा जोडिएको चार्जिङ कार्यस्थल व्यवहार कुन हो?",
-    options: ["उत्पादन गति अधिकतम बढाएर डेडलाइन पूरा गर्नु","अशुद्धि शंका लागेमा तुरुन्त उपकरण रोकेर गुणस्तर टिमलाई रिपोर्ट गर्नु","दोषपूर्ण सामान राम्रो बक्समा मिसाएर नोक्सान घटाउनु","सहकर्मीको गल्ती आफैं चुपचाप सम्हाल्नु","व्यक्तिगत प्रदर्शन पहिलो प्राथमिकतामा राख्नु"],
+    category: "कम्पनी बुझाइ",
+    title: "Wellfine का 3 मुख्य मूल्यहरू बुझ्ने",
+    question: "Wellfine का 3 मुख्य मूल्यहरूमध्ये 'ग्राहकको स्वास्थ्य साकार पार्ने' कुरासँग फिलिङ क्षेत्रमा सबैभन्दा प्रत्यक्ष जोडिने व्यवहार कुन हो?",
+    options: ["डेलिभरी मिति मिलाउन उत्पादन गति सकेसम्म बढाउने","विदेशी पदार्थ शंका भएमा मेसिन तुरुन्त रोक्ने र गुणस्तर टिमलाई रिपोर्ट गर्ने","नोक्सान घटाउन दोषपूर्ण वस्तु राम्रो वस्तुको बाकसमा मिसाउने","सहकर्मीको गल्ती आफैं चुपचाप समाधान गर्ने","व्यक्तिगत लक्ष्य पूरा गर्नु सबैभन्दा प्राथमिकता दिने"],
     answer: 1,
-    explanation: "고객 건강 실현(ग्राहक स्वास्थ्य सिद्धि) भनेको अशुद्धि वा दोष फेलापर्दा तुरुन्त रोकेर रिपोर्ट गर्नु हो। उत्पादन नोक्सानभन्दा उत्पाद सुरक्षा पहिले हुन्छ।",
+    explanation: "ग्राहकको स्वास्थ्य साकार पार्नु भनेको विदेशी पदार्थ वा दोष देखिएमा तुरुन्त रोक्ने र रिपोर्ट गर्ने व्यवहारबाट अभ्यास हुन्छ। आँखाअगाडिको घाटाभन्दा उत्पादन सुरक्षा प्राथमिक हो।",
     hasVideo: false
   },
   {
     id: 2,
-    category: "회사이해",
-    title: "टिमवर्क र नया कामदार OJT",
-    question: "नेपाली नया कामदारलाई स्टिक मेसिन सञ्चालन सिकाउँदा भाषा बाधा पार गर्ने सबैभन्दा प्रभावकारी तरिका कुन हो?",
-    options: ["कोरियनमा बिस्तारै पटक पटक बुझाउनु","वास्तविक उपकरण अगाडि प्रदर्शन → प्रत्यक्ष अभ्यास → चेकलिस्ट जाँच क्रममा गर्नु","नेपाली अनुवादक नआउन्जेल पर्खनु","कोरियन SOP कागज मात्र दिनु","भिडियो मात्र बारम्बार हेराउनु"],
+    category: "कम्पनी बुझाइ",
+    title: "टीमवर्क र नयाँ कामदार OJT",
+    question: "नेपाली नयाँ कामदारलाई स्टिक मेसिन चलाउने कुरा सिकाउँदा भाषा अवरोध हटाउने सबैभन्दा प्रभावकारी तरिका कुन हो?",
+    options: ["कोरियन भाषामा बिस्तारै दोहोर्‍याएर व्याख्या गर्ने","वास्तविक मेसिन अगाडि नमुना देखाउने → आफैं अभ्यास गराउने → चेकलिस्टले पुष्टि गर्ने क्रम अपनाउने","नेपाली अनुवादक आउँदासम्म पर्खने","कोरियन SOP कागजात मात्र दिने","भिडियो मात्र बारम्बार हेर्न लगाउने"],
     answer: 1,
-    explanation: "भाषा बाधा दृश्य·वास्तविक·अभ्यास केन्द्रित OJT बाट पार गरिन्छ। देखाउनु(प्रदर्शन) → गराउनु(अभ्यास) → जाँच्नु(चेकलिस्ट) ३ चरण नै मुख्य हो।",
+    explanation: "भाषा अवरोध दृश्य, वास्तविक मेसिन र अभ्यास केन्द्रित OJT बाट हटाइन्छ। देखाउने(नमुना) → गराउने(अभ्यास) → पुष्टि गर्ने(चेकलिस्ट) यी 3 चरण मुख्य हुन्।",
     hasVideo: false
   },
   {
     id: 3,
-    category: "업무절차",
-    title: "सञ्चालन पूर्व तयारी",
-    question: "स्टिक मेसिन सञ्चालन गर्नुअघि तापमान नियन्त्रक र होपर हिटर पहिले켜야 하는 이유로 올바른 것은?",
-    options: ["전기 절약을 위해 미리 켜둔다","실링 온도와 호퍼 품온 안정화에 30~40분이 소요되기 때문이다","배합실 신호를 받아야 켤 수 있기 때문이다","CIP가 끝난 후에만 켤 수 있기 때문이다","설비 점검을 위해 예열이 필요하기 때문이다"],
+    category: "कार्य प्रक्रिया",
+    title: "सञ्चालन अघि तयारी",
+    question: "स्टिक मेसिन चलाउनुअघि तापमान नियन्त्रक र होपर हिटर पहिले ON गर्नुपर्ने सबैभन्दा सही कारण कुन हो?",
+    options: ["बिजुली बचत गर्न पहिले नै ON राखिन्छ","सिलिङ तापमान र होपरको उत्पादन तापमान स्थिर हुन 30~40 मिनेट लाग्छ","मिक्सिङ रूमबाट सिग्नल आएपछि मात्र ON गर्न सकिन्छ","CIP सकिएपछि मात्र ON गर्न सकिन्छ","मेसिन जाँचका लागि प्रिहिट आवश्यक भएकाले"],
     answer: 1,
-    explanation: "तापमान नियन्त्रक र होपर हिटर पहिले तताउन ३०~४० मिनेट लाग्छ। तापमान नपुगेको अवस्थामा उत्पादन सुरु गर्दा सिलिङ दोष देखिन्छ।",
+    explanation: "तापमान नियन्त्रक र होपर हिटर प्रिहिट हुन 30~40 मिनेट चाहिन्छ। तापमान नपुगेको अवस्थामा उत्पादन सुरु गर्दा सिलिङ दोष आउँछ।",
     hasVideo: false
   },
   {
     id: 4,
-    category: "업무절차",
-    title: "사전 세팅",
-    question: "배합액 이송 전 호퍼 드레인 밸브 잠금 상태를 육안으로 확인해야 하는 이유는?",
-    options: ["드레인 밸브가 열려 있으면 배합액이 전량 유실되기 때문이다","드레인 밸브가 열려 있으면 CIP가 자동 시작되기 때문이다","드레인 밸브가 열려 있으면 전원이 차단되기 때문이다","드레인 밸브 상태는 생산 중에도 바뀌기 때문이다","드레인 밸브가 열려 있으면 실링 온도가 낮아지기 때문이다"],
+    category: "कार्य प्रक्रिया",
+    title: "सञ्चालन अघि सेटिङ",
+    question: "मिश्रित तरल पठाउनुअघि होपर ड्रेन भल्भ लक भएको अवस्था आँखाले अनिवार्य पुष्टि गर्नुपर्ने कारण के हो?",
+    options: ["ड्रेन भल्भ खुला भएमा मिश्रित तरल सबै बाहिर बग्छ","ड्रेन भल्भ खुला भएमा CIP आफैं सुरु हुन्छ","ड्रेन भल्भ खुला भएमा मेसिनको पावर काटिन्छ","ड्रेन भल्भको अवस्था उत्पादनको बीचमा पनि बारम्बार बदलिन्छ","ड्रेन भल्भ खुला भएमा सिलिङ तापमान घट्छ"],
     answer: 0,
-    explanation: "드레인 밸브 열림 시 배합액이 전량 외부로 유실됩니다. 호퍼 이송 전 반드시 잠김 상태를 육안으로 확인해야 합니다.",
+    explanation: "ड्रेन भल्भ खुला अवस्थामा मिश्रित तरल पठाउँदा सबै बाहिर निस्कन्छ। SOP 6.2.1 अनुसार होपर ड्रेन भल्भ लक भएको आँखाले पुष्टि गरेपछि मात्र स्थानान्तरण सुरु गर्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 5,
-    category: "업무절차",
-    title: "레이저 프린터 세팅",
-    question: "레이저 프린터 소비기한 변경 후 반드시 확인할 사항으로 올바른 것은?",
-    options: ["프린터 전원을 껐다 켠다","대표 문구 변경 후 나머지 5개 문구가 동일하게 변경되었는지 확인한다","소비기한은 1개만 수정하면 자동 적용된다","마킹 버튼을 끈 상태에서 생산한다","변경 후 즉시 생산을 재개한다"],
+    category: "कार्य प्रक्रिया",
+    title: "लेजर प्रिन्टर सेटिङ",
+    question: "लेजर प्रिन्टरमा उपभोग म्याद परिवर्तन गरेपछि अनिवार्य रूपमा पुष्टि गर्नुपर्ने कुरा कुन हो?",
+    options: ["प्रिन्टरको पावर OFF गरेर फेरि ON गर्ने","मुख्य वाक्य परिवर्तन गरेपछि बाँकी 5 वटा वाक्य पनि उस्तै परिवर्तन भए/नभएको पुष्टि गर्ने","उपभोग म्याद 1 ठाउँमा मात्र परिवर्तन गरे स्वतः लागू हुन्छ","मार्किङ बटन OFF राखेर उत्पादन सुरु गर्ने","परिवर्तन गरेपछि तुरुन्त उत्पादन पुनः सुरु गर्ने"],
     answer: 1,
-    explanation: "소비기한 변경 후 나머지 5개 문구도 동일하게 변경됐는지 확인이 필수입니다. 마킹은 생산 중 항상 켜둬야 합니다.",
+    explanation: "उपभोग म्याद मुख्य वाक्यमा परिवर्तन गरेपछि बाँकी 5 वटा वाक्य पनि एउटै रूपमा परिवर्तन भएको अनिवार्य पुष्टि गर्नुपर्छ। मार्किङ लगातार ON राख्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 6,
-    category: "기능설명",
-    title: "नियन्त्रण प्यानल कार्य विवरण",
-    question: "기능선택에서 '호퍼레벨체크'를 OFF로 설정하면 어떤 문제가 발생하는가?",
-    options: ["호퍼 온도가 올라가지 않는다","배합액이 하한 레벨 이하여도 설비가 계속 가동되어 빈 충전이 발생한다","세로실링이 작동하지 않는다","CIP 모드로 전환된다","마크센서가 비활성화된다"],
+    category: "फङ्सन विवरण",
+    title: "कन्ट्रोल प्यानल फङ्सन विवरण",
+    question: "फङ्सन चयन स्क्रिनमा 'Hopper Level Check' OFF राख्दा कस्तो समस्या आउन सक्छ?",
+    options: ["होपर तापमान बढ्दैन","होपरको मिश्रित तरल तल्लो लेभलभन्दा तल झरे पनि मेसिन चलिरहन्छ र खाली फिलिङ हुन सक्छ","ठाडो सिलिङ चल्दैन","CIP मोडमा बदलिन्छ","मार्क सेन्सर निष्क्रिय हुन्छ"],
     answer: 1,
-    explanation: "호퍼레벨체크 OFF 시 하한 레벨 도달 여부 무관하게 설비가 계속 가동됩니다. 배합액 없이 충전되는 빈 충전 불량이 발생할 수 있습니다.",
+    explanation: "Hopper Level Check OFF हुँदा तल्लो लेभल पुगे/नपुगेको कुरासँग सम्बन्ध नभई मेसिन चलिरहन्छ। मिश्रित तरल बिना फिलिङ हुने खाली फिलिङ दोष हुन सक्छ।",
     hasVideo: false
   },
   {
     id: 7,
-    category: "기능설명",
-    title: "Operation 운전화면",
-    question: "운전화면 '제품길이' 설정값의 올바른 기준은?",
-    options: ["원단 아이마크 길이와 동일하게 입력","아이마크 기준 길이에 6~7mm를 합산한 수치","임의의 값을 입력해도 무관","제조지시서의 중량값을 입력","이전 품목 설정값을 유지"],
+    category: "फङ्सन विवरण",
+    title: "Operation सञ्चालन स्क्रिन",
+    question: "Operation स्क्रिनमा 'Product Length' सेटिङ मान राख्दा सही आधार के हो?",
+    options: ["फिल्मको I-mark लम्बाइसँग उस्तै राख्ने","I-mark आधार लम्बाइमा 6~7mm थपेर राख्ने","जुनसुकै मान राखे पनि cutting मा असर पर्दैन","Manufacturing order को तौल मान जस्ताको तस्तै राख्ने","अघिल्लो उत्पादनको सेटिङ जस्ताको तस्तै राख्ने"],
     answer: 1,
-    explanation: "제품길이 = 아이마크 기준 길이 + 6~7mm입니다. 이 설정이 컷팅 타이밍에 직접 영향을 줍니다.",
+    explanation: "Product Length सेटिङ मान = I-mark आधार लम्बाइ + 6~7mm हो। यो सेटिङले cutting timing मा प्रत्यक्ष असर गर्छ।",
     hasVideo: false
   },
   {
     id: 8,
-    category: "기능설명",
+    category: "फङ्सन विवरण",
     title: "Event List",
-    question: "알람 발생 후 RESET을 눌렀는데 알람이 해제되지 않는다. 원인은?",
-    options: ["RESET을 너무 빨리 눌렀기 때문","알람 발생 원인을 해결하지 않은 상태에서 RESET을 눌렀기 때문","전원을 껐다 켜야만 해제된다","RESET은 관리자 계정에서만 작동한다","Event List 화면을 먼저 확인해야 한다"],
+    question: "मेसिन चलिरहेको बेला alarm आयो र RESET बटन थिच्दा पनि alarm हटेन। सबैभन्दा सही कारण कुन हो?",
+    options: ["RESET बटन धेरै छिटो थिचिएकाले","Alarm को कारण समाधान नगरी RESET थिचिएकाले","पावर OFF/ON गरेपछि मात्र alarm हट्छ","RESET administrator account मा मात्र चल्छ","Event List स्क्रिन पहिले हेरेपछि मात्र RESET चल्छ"],
     answer: 1,
-    explanation: "원인 미해결 상태에서 RESET을 눌러도 알람은 해제되지 않습니다. 반드시 원인 조치 후 RESET을 눌러야 합니다.",
+    explanation: "कारण समाधान नभएको अवस्थामा RESET थिचे पनि alarm हट्दैन। कारण पुष्टि र उपाय गरेपछि मात्र RESET थिच्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 9,
-    category: "기능설명",
-    title: "हिटर नियन्त्रण",
-    question: "히터 컨트롤에서 SV와 PV 차이가 18℃일 때 올바른 조치는?",
-    options: ["즉시 생산 시작","AT 버튼을 터치하여 자동 튜닝 수행","SV를 현재 PV와 같게 낮춘다","설비 전원을 끄고 엔지니어 호출","냉각바 ON으로 온도를 낮춘다"],
+    category: "फङ्सन विवरण",
+    title: "Heater Control",
+    question: "Heater Control स्क्रिनमा SV(सेट तापमान) र PV(हालको तापमान) बीच 18℃ फरक हुँदा गर्नुपर्ने उपाय कुन हो?",
+    options: ["तुरुन्त उत्पादन सुरु गर्न मिल्छ","फरक 10℃ भन्दा बढी भएकाले AT बटन touch गरेर auto tuning गर्ने","SV मानलाई हालको PV जस्तै घटाउने","मेसिनको पावर OFF गरेर engineer बोलाउने","Cooling bar ON गरेर तापमान घटाउने"],
     answer: 1,
-    explanation: "SV-PV 차이 10℃ 이상 시 AT(자동 튜닝) 버튼을 터치합니다. 튜닝 완료 후 온도가 안정될 때까지 기다린 뒤 생산을 시작합니다.",
+    explanation: "SV र PV को फरक 10℃ भन्दा बढी भए AT(auto tuning) बटन touch गर्नुपर्छ। AT पूरा भएपछि तापमान स्थिर हुँदासम्म पर्खेर मात्र उत्पादन सुरु गर्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 10,
-    category: "기능설명",
-    title: "आपूर्ति एकाइ सेटिङ",
-    question: "생산 운전 중 공급세척이 'RUN' 상태임을 발견했다. 발생하는 문제는?",
-    options: ["실링 온도가 낮아진다","배합액이 정량 충전되지 않아 중량 미달이 발생한다","호퍼 레벨이 급격히 상승한다","마크센서가 오작동한다","인쇄 불량이 발생한다"],
+    category: "फङ्सन विवरण",
+    title: "आपूर्ति भाग सेटिङ",
+    question: "उत्पादन सञ्चालनको बीचमा Supply Wash सेटिङ 'RUN' अवस्थामा रहेको भेटियो। यसबाट के समस्या आउँछ?",
+    options: ["सिलिङ तापमान घट्छ","मिश्रित तरल metering cylinder हुँदै नभरिई सफाइ मार्गतिर bypass हुन्छ र तौल कम हुन्छ","होपर लेभल अचानक बढ्छ","मार्क सेन्सर गलत काम गर्छ","प्रिन्टिङ दोष आउँछ"],
     answer: 1,
-    explanation: "공급세척 RUN은 CIP 전용 설정입니다. 생산 중 RUN 상태면 배합액이 정량 충전되지 않아 중량 미달이 발생합니다.",
+    explanation: "Supply Wash RUN CIP का लागि मात्र प्रयोग हुने सेटिङ हो। उत्पादनको बीचमा RUN भए मिश्रित तरल निश्चित मात्रामा भरिँदैन र तौल कमी हुन्छ। उत्पादन गर्दा अनिवार्य OFF राख्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 11,
-    category: "기능설명",
-    title: "Transfer 원료이송설정",
-    question: "Transfer 화면의 지연시간(Check Time) 올바른 설정 범위는?",
-    options: ["10초~50초","100초~200초","300초~500초","600초~900초","자동 감지로 설정 불필요"],
+    category: "फङ्सन विवरण",
+    title: "Transfer कच्चा पदार्थ स्थानान्तरण सेटिङ",
+    question: "Transfer(raw material transfer) स्क्रिनको 'Check Time' delay time का लागि सही सेटिङ दायरा कुन हो?",
+    options: ["10~50 सेकेन्ड","100~200 सेकेन्ड","300~500 सेकेन्ड","600~900 सेकेन्ड","सेटिङ आवश्यक छैन, स्वतः detect हुन्छ"],
     answer: 2,
-    explanation: "지연시간 설정값은 300초~500초입니다. 호퍼 수위 하한 도달 후 이 시간이 지나면 설비가 자동 정지됩니다.",
+    explanation: "Delay time सेटिङ 300~500 सेकेन्ड हो। होपरको स्तर lower limit मा पुगेपछि यो समय बितेमा मेसिन स्वतः रोकिन्छ।",
     hasVideo: false
   },
   {
     id: 12,
-    category: "기능설명",
+    category: "फङ्सन विवरण",
     title: "Nozzle up",
-    question: "젤리 제품 충전 시 노즐 이동 속도를 액상류보다 느리게 설정하는 이유는?",
-    options: ["점도가 높아 빠른 속도로 충전 시 기포 유입 및 실링 불량이 발생하기 때문이다","젤리는 노즐 크기가 작기 때문이다","PP 원단은 빠른 속도를 견디지 못하기 때문이다","젤리 충전량이 액상보다 많기 때문이다","느린 속도가 정량 정확도를 높이기 때문이다"],
+    question: "Jelly उत्पादन फिलिङ गर्दा nozzle को moving speed liquid product भन्दा ढिलो राख्नुपर्ने कारण के हो?",
+    options: ["Jelly को viscosity धेरै भएकाले छिटो भर्दा हावा पस्ने र सिलिङ दोष आउन सक्छ","Jelly को nozzle size सानो भएकाले","Jelly फिल्म PP material भएकाले छिटो speed सहन सक्दैन","Jelly को भरिने मात्रा liquid भन्दा धेरै भएकाले","ढिलो speed ले मात्रात्मक शुद्धता बढाउने भएकाले"],
     answer: 0,
-    explanation: "젤리류는 점도가 높아 노즐 이동 속도가 빠르면 기포 유입 및 실링 불량이 발생합니다.",
+    explanation: "Jelly प्रकारमा viscosity उच्च हुन्छ। Nozzle moving speed धेरै छिटो भए air bubble पस्ने र सिलिङ दोष आउँछ। ढिलो speed बाट filling stability सुरक्षित गर्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 13,
-    category: "기능설명",
-    title: "컨트롤판넬 조작법",
-    question: "생산 중 이물 발견으로 즉시 정지 시 사용하는 버튼과 해제 방법으로 올바른 것은?",
-    options: ["STOP - 즉시 정지, 재가동 불가","비상정지 - 즉시 정지, 시계방향 회전으로 해제","JOG - 누르는 동안만 정지","RESET - 즉시 정지 후 알람 초기화","FILL OFF - 충전만 중단, 설비 계속 가동"],
+    category: "फङ्सन विवरण",
+    title: "कन्ट्रोल प्यानल चलाउने तरिका",
+    question: "मेसिन चलिरहेको बेला विदेशी पदार्थ भेटिएर तुरुन्त रोक्नुपर्छ। यस समयमा प्रयोग गर्ने बटन र त्यसको विशेषता कुन हो?",
+    options: ["STOP बटन - तुरुन्त रोकिन्छ र फेरि चलाउन मिल्दैन","Emergency Stop बटन - उपकरण तुरुन्त रोकिन्छ,release गर्दा clockwise घुमाइन्छ","JOG बटन - थिचेको समयमा मात्र रोकिएको अवस्था कायम हुन्छ","RESET बटन - तुरुन्त रोकिएपछि alarm reset हुन्छ","FILL बटन OFF - filling मात्र बन्द हुन्छ र मेसिन चलिरहन्छ"],
     answer: 1,
-    explanation: "비상정지 버튼으로 즉시 정지합니다. 해제는 시계방향 회전입니다. STOP은 감속 후 안전 정지로 비상 상황과 다릅니다.",
+    explanation: "Emergency Stop बटन थिचेपछि उपकरण तुरुन्त रोकिन्छ।release गर्न बटनलाई clockwise घुमाइन्छ। STOP भने deceleration पछि safe stop हो, emergency situation भन्दा फरक छ।",
     hasVideo: false
   },
   {
     id: 14,
-    category: "설비세척",
+    category: "उपकरण सफाइ",
     title: "COP",
-    question: "COP 작업 시 에어호스 분리 후 재조립할 때 반드시 지켜야 할 규칙은?",
-    options: ["색상별로 분류 보관","번호별로 정리하고 재조립 시 노즐 번호와 호스 번호를 반드시 일치시킨다","분리 후 한곳에 모아둔다","매번 새 호스로 교체한다","분리 전 에어밸브를 ON 유지"],
+    question: "COP गर्दा 1~10 नम्बर air hose छुट्याउँदा अनिवार्य पालना गर्नुपर्ने नियम कुन हो?",
+    options: ["रङ अनुसार छुट्याएर राख्ने","नम्बर अनुसार मिलाएर राखी confusion रोक्ने, र पुनः जडान गर्दा nozzle number र hose number अनिवार्य मिलाउने","छुट्याएपछि एउटै ठाउँमा जम्मा गर्ने","Air hose पुनः प्रयोग नगरी हरेक पटक नयाँ फेर्ने","छुट्याउनुअघि air valve ON अवस्थामा राख्ने"],
     answer: 1,
-    explanation: "에어호스는 번호별 정리 후 재조립 시 노즐·호스 번호를 반드시 일치시켜야 합니다. 상단 빨간색(IN), 하단 검정색(OUT).",
+    explanation: "Air hose नम्बर अनुसार मिलाएर राख्नुपर्छ, र पुनः जडान गर्दा nozzle number र hose number अनिवार्य मिल्नुपर्छ। माथिल्लो fitting मा रातो(IN), तल्लो fitting मा कालो(OUT) जोडिन्छ।",
     hasVideo: false
   },
   {
     id: 15,
-    category: "설비세척",
+    category: "उपकरण सफाइ",
     title: "CIP",
-    question: "열수 CIP 시 공급세척 'RUN' 설정 이유와 완료 후 확인사항으로 올바른 것은?",
-    options: ["RUN: 실링바 온도 유지 / 완료 후: 드레인 밸브 열림 확인","RUN: 세척액을 노즐까지 순환 / 완료 후: 공급세척 OFF 및 드레인 밸브 잠금 확인","RUN: 배합액 순환 / 완료 후: RUN 상태 유지","RUN: 호퍼 교반 활성화 / 완료 후: 온도조절기 OFF","RUN: 잔수 제거 / 완료 후: 전원 차단"],
+    question: "Filling room मा hot-water CIP गर्दा Supply Wash लाई 'RUN' राख्ने कारण र CIP सकिएपछि अनिवार्य पुष्टि गर्ने कुरा कुन हो?",
+    options: ["RUN: sealing bar temperature कायम राख्न / सकिएपछि: drain valve खुला छ कि पुष्टि","RUN: मिश्रित तरल nozzle सम्म circulate गर्न / सकिएपछि: Supply Wash OFF र drain valve lock पुष्टि","RUN: cleaning liquid nozzle सम्म circulate गर्न / सकिएपछि: Supply Wash RUN कायम राख्ने","RUN: hopper agitation सक्रिय गर्न / सकिएपछि: temperature controller OFF पुष्टि","RUN: बाँकी पानी हटाउन / सकिएपछि: power cut पुष्टि"],
     answer: 1,
-    explanation: "CIP 시 공급세척 RUN으로 세척액을 노즐까지 순환시킵니다. 완료 후 공급세척 OFF, 드레인 밸브 잠금을 교차 확인합니다.",
+    explanation: "CIP गर्दा Supply Wash RUN गरेर cleaning liquid nozzle सम्म circulate गराइन्छ। CIP सकिएपछि Supply Wash OFF र drain valve lock अवस्था कामदारहरूबीच cross-check गर्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 16,
-    category: "공정이해도",
-    title: "चार्जिङ आधारभूत प्रक्रिया क्रम",
-    question: "스틱기 하루 작업의 올바른 공정 순서는?",
-    options: ["배합액 이송 → 온도조절기 ON → 열수 CIP → 정규 충전 → CIP/COP","가동 전 준비(온도조절기·호퍼히터 ON) → 열수 CIP → 잔수 제거 → 배합액 이송 → 정규 충전 → CIP/COP","열수 CIP → 배합액 이송 → 온도조절기 ON → 정규 충전 → COP","공급세척 RUN → 열수 CIP → 배합액 이송 → 정규 충전 → CIP","온도조절기 ON → 배합액 이송 → 열수 CIP → 정규 충전 → COP"],
+    category: "प्रक्रिया बुझाइ",
+    title: "फिलिङ आधारभूत प्रक्रिया क्रम",
+    question: "स्टिक मेसिनको एक दिनको कामको सही प्रक्रिया क्रम कुन हो?",
+    options: ["मिश्रित तरल स्थानान्तरण → तापमान नियन्त्रक ON → hot-water CIP → regular filling → CIP/COP","सञ्चालनअघि तयारी(तापमान नियन्त्रक·होपर हिटर ON) → hot-water CIP → बाँकी पानी हटाउने → मिश्रित तरल स्थानान्तरण → regular filling → CIP/COP","hot-water CIP → मिश्रित तरल स्थानान्तरण → तापमान नियन्त्रक ON → regular filling → COP","Supply Wash RUN → hot-water CIP → मिश्रित तरल स्थानान्तरण → regular filling → CIP","तापमान नियन्त्रक ON → मिश्रित तरल स्थानान्तरण → hot-water CIP → regular filling → COP"],
     answer: 1,
-    explanation: "तापमान नियन्त्रक·होपर हिटर ON(३०~४० मिनेट) → तातो पानी CIP → बाँकी पानी हटाउने → मिश्रण तरल पदार्थ ट्रान्सफर → उत्पादन → CIP/COP क्रम हो।",
+    explanation: "तापमान नियन्त्रक·होपर हिटर preheat(30~40 मिनेट) → hot-water CIP → बाँकी पानी पूर्ण रूपमा हटेको पुष्टि → मिश्रित तरल स्थानान्तरण → regular filling → अन्त्यपछि CIP/COP क्रम हो। SOP section 6 आधार।",
     hasVideo: false
   },
   {
     id: 17,
-    category: "공정이해도",
+    category: "प्रक्रिया बुझाइ",
     title: "स्टिक उपकरण संरचना बुझ्ने",
-    question: "스틱 설비에서 '줏대'의 역할로 올바른 것은?",
-    options: ["배합액을 저장하고 충전부에 공급한다","노즐의 정렬을 유지하고 충전 위치를 고정한다","스틱 세로 방향 열실링을 수행한다","개봉을 위한 노치를 형성한다","일정량의 액을 정확히 충전한다"],
+    question: "स्टिक उपकरणमा 'Jutdae'(nozzle guide/holder) को सही भूमिका कुन हो?",
+    options: ["मिश्रित तरल भण्डारण गरी filling unit मा निश्चित flow rate ले आपूर्ति गर्छ","Nozzle alignment कायम राख्ने र filling position fixed गर्ने","स्टिकको vertical heat sealing गर्ने","खोल्नका लागि notch(cut line) बनाउने","निश्चित मात्राको तरल सही रूपमा भर्ने उपकरण हो"],
     answer: 1,
-    explanation: "줏대는 노즐 정렬 유지 및 충전 위치를 고정합니다. 호퍼 → 노즐 → 줏대 → 실링 → 냉각바 → 노치·컷팅 순서입니다.",
+    explanation: "Jutdae ले nozzle alignment कायम राख्ने र filling position fixed गर्ने भूमिका गर्छ। संरचना क्रम: hopper(supply) → nozzle(filling port) → Jutdae(position fixing) → sealing → cooling bar → notch·cutting।",
     hasVideo: false
   },
   {
     id: 18,
-    category: "공정이해도",
-    title: "कपडाको प्रकार र सिलिङ तापमान सेटिङ",
-    question: "PP 원단과 LLD PE 원단의 올바른 실링 온도 설정값은?",
-    options: ["PP: 150~160℃ / LLD PE: 180~200℃","PP: 180~200℃ / LLD PE: 160~180℃","PP와 LLD PE 모두 180℃ 동일","PP: 200~220℃ / LLD PE: 150~160℃","원단 종류 무관 190℃ 고정"],
+    category: "प्रक्रिया बुझाइ",
+    title: "फिल्मको प्रकार र सिलिङ तापमान सेटिङ",
+    question: "PP film र LLD PE film का लागि सही sealing temperature सेटिङ कुन हो?",
+    options: ["PP: 150~160℃ / LLD PE: 180~200℃","PP: 180~200℃ / LLD PE: 160~180℃","PP: 200~220℃ / LLD PE: 150~160℃","PP र LLD PE दुवै 180℃ एउटै राख्ने","Film type जेसुकै भए पनि 190℃ fixed राख्ने"],
     answer: 1,
-    explanation: "PP: १८०~२००℃, LLD PE: १६०~१८०℃ हो। तापमान गलत सेट गर्दा सिलिङ दोष देखिन्छ।",
+    explanation: "PP: 180~200℃, LLD PE: 160~180℃ हो। PP कडा विशेषताका कारण high temperature चाहिन्छ, LLD PE नरम भएकाले lower temperature मा पनि sealing हुन्छ। गलत temperature setting सिलिङ दोषको मुख्य कारण हो।",
     hasVideo: false
   },
   {
     id: 19,
-    category: "공정이해도",
-    title: "충전 품질 점검 항목",
-    question: "'기밀도(Leak-proof)' 불량 확인 방법으로 가장 적절한 것은?",
-    options: ["인쇄 상태를 육안으로 확인","스틱을 손으로 눌러 누액 여부 확인 또는 침지 테스트","중량선별기 수치 확인","아이마크 위치 센서 감지","가로실링 온도 측정"],
+    category: "प्रक्रिया बुझाइ",
+    title: "फिलिङ गुणस्तर जाँच बुँदा",
+    question: "Filling quality का 4 मुख्य check item मध्ये 'Leak-proof' दोष पुष्टि गर्ने सबैभन्दा उपयुक्त तरिका कुन हो?",
+    options: ["स्टिक बाहिरी भागको printing अवस्था आँखाले पुष्टि गर्ने","स्टिक हातले थिचेर leakage छ/छैन पुष्टि गर्ने वा immersion test गर्ने","weight checker को value पुष्टि गर्ने","I-mark position sensor ले detect गर्ने","horizontal sealing temperature मापन गर्ने"],
     answer: 1,
-    explanation: "기밀도 점검은 스틱을 눌러보거나 침지 테스트로 누액을 확인합니다. 4대 점검항목은 기밀도·실링·중량·인쇄입니다.",
+    explanation: "Leak-proof check गर्दा स्टिक थिचेर वा immersion test गरेर leakage पुष्टि गरिन्छ। 4 मुख्य check item: leak-proof, sealing, weight, printing हुन्।",
     hasVideo: false
   },
   {
     id: 20,
-    category: "공정이해도",
-    title: "नोजल प्रकार अनुसार विशेषता",
-    question: "상하구동 노즐에서 노즐 하강 길이가 너무 짧을 때 발생하는 문제는?",
-    options: ["노즐 끝 잔액이 실링부를 오염시켜 실링 불량 발생","낙하 높이 증가로 기포가 유입된다","충전량이 기준보다 많아진다","세로실링 온도가 낮아진다","원단이 정상 이송되지 않는다"],
+    category: "प्रक्रिया बुझाइ",
+    title: "नोजल प्रकारअनुसार विशेषता",
+    question: "स्टिक 4·5·6 नम्बर मेसिनको up/down drive nozzle मा nozzle lowering length धेरै छोटो हुँदा के समस्या आउँछ?",
+    options: ["Nozzle tip मा बाँकी तरलले sealing part दूषित गरी सिलिङ दोष ल्याउँछ","Drop height बढेर air bubble पस्छ","Filling amount आधारभन्दा बढी हुन्छ","Vertical sealing temperature घट्छ","Film normal रूपमा feed हुँदैन"],
     answer: 1,
-    explanation: "노즐 하강 너무 짧음 → 낙하 높이 증가 → 기포 유입. 너무 길면 → 잔액이 실링부 오염 → 실링 불량.",
+    explanation: "Nozzle lowering length छोटो भए drop height बढ्छ र air bubble पस्छ। उल्टो, धेरै लामो भए nozzle tip को बाँकी तरलले sealing part दूषित गरी सिलिङ दोष ल्याउँछ।",
     hasVideo: false
   },
   {
     id: 21,
-    category: "이상대응",
-    title: "दोष फेला परेमा आधारभूत प्रतिक्रिया प्रक्रिया",
-    question: "실링 불량이 연속 발견되었다. 원인 불명 시 올바른 조치 순서는?",
-    options: ["원인 파악 후 설비 정지","즉시 설비 정지 → 불량품 분리 보관 → 상급자·품질팀 보고 → 원인 확인 전 재가동 금지","실링 온도 올리고 계속 가동","불량 3개 이하는 허용 범위","RESET 후 재가동"],
+    category: "असामान्य अवस्था प्रतिक्रिया",
+    title: "दोष भेटिँदा आधारभूत प्रतिक्रिया प्रक्रिया",
+    question: "उत्पादनको बीचमा सिलिङ दोष लगातार भेटियो। कारण स्पष्ट नभएको अवस्थामा सबैभन्दा सही कदम क्रम कुन हो?",
+    options: ["कारण आफैं पत्ता लगाएपछि मेसिन रोक्ने","तुरुन्त मेसिन रोक्ने → दोषपूर्ण वस्तु अलग राख्ने → supervisor·quality team लाई report गर्ने → कारण पुष्टि नभएसम्म पुनः सञ्चालन नगर्ने","Sealing temperature बढाएर लगातार चलाउने","दोष 3 वटा भन्दा कम भए acceptable range भएकाले उत्पादन जारी राख्ने","RESET बटन थिचेर पुनः चलाउने"],
     answer: 1,
-    explanation: "①즉시 정지 ②불량품 분리 보관 ③상급자·품질팀 보고 ④원인 불명 시 재가동 금지. 설비 결함이면 공무팀 협조 요청.",
+    explanation: "दोष भेटिएमा: ① तुरुन्त मेसिन रोक्ने ② दोषपूर्ण वस्तु राम्रो वस्तुबाट अलग राख्ने ③ supervisor·quality team लाई तुरुन्त report गर्ने ④ कारण अस्पष्ट भए पुनः सञ्चालन नगर्ने। उपकरण दोष भए maintenance team को सहयोग माग्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 22,
-    category: "이상대응",
-    title: "सिलिङ दोष कारण र उपाय",
-    question: "원단 교체 후 가로실링 불량 발생, PV 143℃ / SV 200℃. 올바른 조치는?",
-    options: ["SV를 143℃로 낮춘다","즉시 설비 정지 → 불량품 격리 → 온도 안정 후 시운전 → 실링 확인 후 재가동","냉각바 OFF하여 온도 높인다","AT 버튼으로 즉시 생산 가능 상태 만든다","원단 교체 후 불량은 정상이므로 대기"],
+    category: "असामान्य अवस्था प्रतिक्रिया",
+    title: "सिलिङ दोषका कारण र उपाय",
+    question: "Film परिवर्तन गरेपछि horizontal sealing भाग उठेको छ र adhesion अपूर्ण छ। Heater Control स्क्रिनमा PV 143℃ र SV 200℃ देखिएमा सबैभन्दा उपयुक्त उपाय कुन हो?",
+    options: ["SV लाई 143℃ मा घटाएर हालको तापमानसँग मिलाउने","तुरुन्त मेसिन रोक्ने → दोषपूर्ण वस्तु quarantine गर्ने → SV temperature stable हुँदासम्म पर्खने → trial run पछि sealing अवस्था पुष्टि गरी पुनः सञ्चालन गर्ने","Cooling bar OFF गरेर sealing temperature बढाउने","AT बटन थिचेर तुरुन्त उत्पादनयोग्य अवस्था बनाउने","Film परिवर्तनपछि sealing defect सामान्य भएकाले 30 वटा उत्पादनपछि stabilization पर्खने"],
     answer: 1,
-    explanation: "온도 미달(PV 143℃ vs SV 200℃) 상태에서 생산 시 실링 불량 발생. 설비 정지 후 온도 안정화(SV 도달) 대기 후 시운전으로 확인합니다.",
+    explanation: "Temperature कम(PV 143℃ vs SV 200℃) अवस्थामा उत्पादन गर्दा सिलिङ दोष आउँछ। मेसिन रोकेर तापमान SV मा पुगेपछि stable हुँदासम्म पर्खनुपर्छ र trial run बाट पुष्टि गर्नुपर्छ।",
     hasVideo: false
   },
   {
     id: 23,
-    category: "이상대응",
-    title: "भर्ने मात्रा विचलन कारण र उपाय",
-    question: "기준 19.8g±0.6g인데 평균 18.7g 중량 미달, 공급세척이 RUN 상태. 올바른 조치는?",
-    options: ["전체 노즐 ▲ 버튼으로 중량 증가","즉시 설비 정지 → 공급세척 OFF → 상급자 보고 → 불량품 격리","전진속도를 높여 충전량 증가","호퍼 배합액 추가 이송","실링 온도를 올려 충전 압력 증가"],
+    category: "असामान्य अवस्था प्रतिक्रिया",
+    title: "फिलिङ मात्रा विचलनका कारण र उपाय",
+    question: "Pregnant women liquid calcium stick उत्पादनमा आधार 19.8g±0.6g भए पनि समग्र average 18.7g भएर underweight भयो। Supply Wash RUN अवस्थामा थियो भने सही उपाय कुन हो?",
+    options: ["सबै nozzle weight ▲ button ले एकैपटक बढाउने","तुरुन्त मेसिन रोक्ने → Supply Wash OFF मा परिवर्तन गर्ने → supervisor लाई report गर्ने → दोषपूर्ण वस्तु quarantine गर्ने","Forward speed बढाएर filling amount बढाउने","होपरमा थप मिश्रित तरल स्थानान्तरण गर्ने","Sealing temperature बढाएर filling pressure बढाउने"],
     answer: 1,
-    explanation: "공급세척 RUN = 충전량 미달의 직접 원인. 즉시 정지 후 OFF 변경, 불량품 격리가 우선. 실제 사례: 임산부 액상칼슘 P박스 13개분 폐기.",
+    explanation: "Supply Wash RUN अवस्था filling amount कम हुनुको direct cause हो। मेसिन तुरुन्त रोकेर Supply Wash OFF मा परिवर्तन गर्ने र दोषपूर्ण वस्तु quarantine गर्ने काम प्राथमिक हो। वास्तविक केस: pregnant women liquid calcium P-box 13 box बराबर discard भयो।",
     hasVideo: false
   },
   {
     id: 24,
-    category: "이상대응",
-    title: "인쇄 불량 원인 및 조치",
-    question: "소비기한 인쇄가 공란으로 발견됐다. 가장 먼저 확인해야 할 사항은?",
-    options: ["레이저 프린터 렌즈 이물 확인","프린트 스위치 ON 여부와 비전검사 ON 여부 확인","소비기한 설정값 재입력","설비 재가동","인쇄 불량 제품 전량 폐기"],
+    category: "असामान्य अवस्था प्रतिक्रिया",
+    title: "प्रिन्टिङ दोषका कारण र उपाय",
+    question: "उत्पादनको बीचमा स्टिकको उपभोग म्याद print खाली भेटियो। सबैभन्दा पहिले पुष्टि गर्नुपर्ने कुरा कुन हो?",
+    options: ["Laser printer lens मा foreign matter छ/छैन पुष्टि गर्ने","Function selection स्क्रिनमा Print switch ON छ कि र Vision Inspection ON छ कि पुष्टि गर्ने","उपभोग म्याद setting value फेरि input गर्ने","मेसिन पुनः start गर्ने","Printing defect भएका सबै product discard गर्ने"],
     answer: 1,
-    explanation: "인쇄 공란 발생 시 프린트 ON·비전검사 ON 여부 우선 확인. 실제 사례에서 프린트 OFF·비전검사 OFF 상태 생산 휴먼에러가 다수 발생했습니다.",
+    explanation: "Print blank भेटिएमा पहिले Print switch ON र Vision Inspection ON छ/छैन पुष्टि गर्नुपर्छ। वास्तविक केसहरूमा Print OFF वा Vision Inspection OFF अवस्थामा उत्पादन चलेको human error धेरै पटक भएको छ।",
     hasVideo: false
   },
   {
     id: 25,
-    category: "이상대응",
-    title: "원단 관련 불량 조치",
-    question: "파우치 역방향 투입으로 인쇄 방향 불량 발생 시 조치는?",
-    options: ["아이마크 센서 위치 조정","즉시 설비 정지 → 투입 방향 확인 → 해당 시간대 불량품 선별","실링 온도 재설정","원단 교체","마크센서 OFF 후 재가동"],
+    category: "असामान्य अवस्था प्रतिक्रिया",
+    title: "फिल्मसम्बन्धी दोषको उपाय",
+    question: "Rotary machine मा pouch feeder मा राख्दा उपभोग म्याद print direction उल्टो निस्कियो। कारण र उपायका रूपमा सही कुरा कुन हो?",
+    options: ["I-mark sensor position बिग्रेकाले sensor position adjust गर्ने","Pouch उल्टो दिशामा insert भएको कारण हो, त्यसैले तुरुन्त मेसिन रोक्ने, insert direction पुष्टि गर्ने, र उक्त समयका दोषपूर्ण वस्तु sort गर्ने","Sealing temperature गलत setting भएकाले temperature reset गर्ने","Film delamination भएकाले film बदल्ने","Mark sensor OFF गरेर पुनः चलाउने"],
     answer: 1,
-    explanation: "파우치 역방향 투입 → 인쇄 방향 불량. 즉시 정지 후 해당 시간대 P박스 전수 선별. 실제 사례: 성균관 명품 P박스 12개분 60포 폐기.",
+    explanation: "Pouch उल्टो दिशामा insert भए printing direction defect आउँछ। तुरुन्त रोकिएपछि उक्त समयका P-box सबै sort गर्नुपर्छ। वास्तविक केस: Sungkyunkwan Premium P-box 12 box, 60 pack discard भयो।",
     hasVideo: false
   },
   {
     id: 26,
-    category: "이상대응",
-    title: "CIP मोड नबदल्दा र नियन्त्रण प्यानल सेटिङ त्रुटि प्रतिक्रिया",
-    question: "CIP 모드를 생산 모드로 변경하지 않고 가동 시 발생하는 현상과 조치는?",
-    options: ["실링 온도 낮아짐 → 온도 올리고 계속 가동","액 넘침 현상 → 즉시 설비 정지 → 기기·노즐 세척 → 설정 변경 후 재가동","충전량 감소 → 노즐 중량 증가","원단 박리 → 원단 교체","비전검사 OFF 후 계속 가동"],
+    category: "असामान्य अवस्था प्रतिक्रिया",
+    title: "CIP मोड नफेर्दा हुने कन्ट्रोल प्यानल सेटिङ त्रुटि प्रतिक्रिया",
+    question: "Filling सुरु गर्नुअघि CIP mode लाई production mode मा नफेरी चलाउँदा आउने अवस्था र उपाय कुन हो?",
+    options: ["Sealing temperature घट्छ, त्यसैले temperature बढाएर लगातार चलाउने","Liquid overflow हुन्छ → तुरुन्त मेसिन रोक्ने → machine र nozzle सफा गर्ने → setting परिवर्तन गरेपछि पुनः सञ्चालन गर्ने","Filling amount घट्छ, त्यसैले nozzle weight बढाउने","Film delamination हुन्छ, त्यसैले film बदल्ने","Vision Inspection OFF गरेर लगातार चलाउने"],
     answer: 1,
-    explanation: "CIP 모드 미변경 → 액 넘침 발생. 즉시 정지 후 기기·노즐 세척 및 설정 변경이 필요합니다. 실제 사례: 마시는센시안 생산 시 발생.",
+    explanation: "CIP mode परिवर्तन नगरी filling सुरु गर्दा liquid overflow हुन्छ। तुरुन्त मेसिन रोकिएपछि machine·nozzle सफाइ र setting परिवर्तन आवश्यक हुन्छ। वास्तविक केस: Drinking Sensian उत्पादन गर्दा भयो।",
     hasVideo: false
   }
 ];
 
-const getDone = () => JSON.parse(localStorage.getItem('ojt_bae') || '[]');
-const saveDone = (arr) => localStorage.setItem('ojt_bae', JSON.stringify(arr));
+const getDone = () => JSON.parse(localStorage.getItem('ojt_chung') || '[]');
+const saveDone = (arr) => localStorage.setItem('ojt_chung', JSON.stringify(arr));
 
 let curModule = null;
 let quizDone = false;
@@ -615,7 +615,7 @@ function openModule(m) {
   document.getElementById('detail-tag').textContent = 'MODULE ' + String(m.id).padStart(2,'0');
   document.getElementById('detail-title').textContent = m.title;
   
-  // 동영상 탭 표시/숨김
+  // Show/hide video tab
   const videoTab = document.getElementById('tab-video');
   if (m.hasVideo) {
     videoTab.style.display = 'block';
@@ -623,12 +623,12 @@ function openModule(m) {
     videoTab.style.display = 'none';
   }
   
-  // 이미지
-  const imgPath = 'bae_' + String(m.id).padStart(2,'0') + '_explain_np.jpg';
+  // Image
+  const imgPath = '%EC%B6%A9%EC%A0%84%EC%9D%B4%EB%AF%B8%EC%A7%80/chung_' + String(m.id).padStart(2,'0') + '_explain_np.jpg';
   document.getElementById('explain-img-inner').innerHTML = 
     '<img src="' + imgPath + '" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML=\'<div style=\\\'padding:40px;text-align:center\\\'><span style=\\\'font-size:48px\\\'>📷</span><div style=\\\'margin-top:12px;font-size:13px\\\'>तस्विर थपिँदैछ</div><div style=\\\'font-size:11px;font-family:JetBrains Mono,monospace;margin-top:4px\\\'>' + imgPath + '</div>\'">';
   
-  // 퀴즈
+  // Quiz
   document.getElementById('quiz-question').textContent = m.question;
   const opts = document.getElementById('quiz-options');
   opts.innerHTML = '';
@@ -700,7 +700,7 @@ function goBack() {
   window.scrollTo(0, 0);
 }
 
-// 초기화
+// Initialize
 renderList();
 </script>
 </body>
