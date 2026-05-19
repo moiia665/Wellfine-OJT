@@ -203,11 +203,11 @@ header h1{font-size:15px;font-weight:700;flex:1}
   .lang-btn.inactive:hover{background:var(--accent);color:#fff}
 
 .cat-chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;letter-spacing:.3px}
-.cat-근태{background:#7a4200;color:#f5a623}
 .cat-회사이해{background:#1a6b3e;color:#3dd68c}
+.cat-업무절차{background:#1a4a6b;color:#64b5f6}
+.cat-기능설명{background:#6b4a00;color:#ffb74d}
+.cat-설비세척{background:#4a1875;color:#ce93d8}
 .cat-공정이해도{background:#0d4a7a;color:#4fc3f7}
-.cat-설비운전{background:#7a2b00;color:#ff7043}
-.cat-CIP{background:#4a1875;color:#ab47bc}
 .cat-이상대응{background:#7a0000;color:#ef5350}
 .cat-divider{padding:12px 16px 4px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-top:1px solid var(--border);margin-top:4px}
 .cat-divider:first-child{border-top:none;margin-top:0}
@@ -222,7 +222,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 <!-- HEADER -->
 <header style="position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
   <button onclick="location.href='index.html'" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← 홈</button>
-  <h1 style="font-size:16px;font-weight:700;flex:1">충전 파트 (31개 모듈)</h1>
+  <h1 style="font-size:16px;font-weight:700;flex:1">충전 파트 (27개 모듈)</h1>
 </header>
 
 <!-- MODULE LIST -->
@@ -242,7 +242,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
     <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:2px solid var(--border)" id="tab-container">
       <button class="tab-btn active" id="tab-explain" onclick="switchTab('explain')">📖 설명</button>
       <button class="tab-btn" id="tab-quiz" onclick="switchTab('quiz')">✏️ 문제</button>
-      <button class="tab-btn" id="tab-video" onclick="switchTab('video')" style="display:none">▶️ 영상</button>
+      
     </div>
     
     <!-- EXPLAIN PANEL -->
@@ -262,16 +262,6 @@ header h1{font-size:15px;font-weight:700;flex:1}
       <div id="explanation-box" class="explanation-box">
         <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px">💡 해설</div>
         <div id="explanation-text" style="font-size:14px;line-height:1.7"></div>
-      </div>
-    </div>
-    
-    <!-- VIDEO PANEL -->
-    <div id="panel-video" class="panel">
-      <div style="background:var(--surface);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
-        <div style="text-align:center;color:var(--muted)">
-          <div style="font-size:48px;margin-bottom:12px">▶️</div>
-          <div style="font-size:14px">영상 준비 중입니다</div>
-        </div>
       </div>
     </div>
     
@@ -308,316 +298,276 @@ const MODULES = [
     id: 1,
     category: "회사이해",
     title: "웰파인 3대 핵심가치 이해",
-    question: "웰파인 3대 핵심가치 중 '건강한 혁신'을 실천하는 구체적 행동으로 가장 적절한 것은?",
-    options: ["상사의 지시를 무조건 따르기", "전통적인 방식만 고수하기", "비효율을 발견하면 개선안을 제시하고 팀원과 공유하기", "본인 업무에만 집중하기"],
-    answer: 2,
-    explanation: "'건강한 혁신'은 효율성·효과성·자기관리를 의미하며, 비효율 발견 시 개선안 제시와 공유가 핵심이다.",
-    hasVideo: true
+    question: "웰파인의 3대 핵심가치 중 '고객 건강 실현'과 가장 직접적으로 연결되는 충전 현장 행동은?",
+    options: ["생산 속도를 최대한 높여 납기를 맞춘다","이물이 의심될 때 설비를 즉시 정지하고 품질팀에 보고한다","불량품을 양품 박스에 섞어 손실을 줄인다","동료 실수는 본인이 조용히 처리한다","개인 성과 달성을 최우선으로 한다"],
+    answer: 1,
+    explanation: "고객 건강 실현은 이물·불량 발생 시 즉시 정지·보고로 실천됩니다. 눈앞의 손실보다 제품 안전이 우선입니다.",
+    hasVideo: false
   },
   {
     id: 2,
     category: "회사이해",
     title: "팀워크와 신규 작업자 OJT",
-    question: "네팔 출신 신규 작업자를 충전라인에 배치할 때, 선배 작업자의 올바른 OJT 방식은?",
-    options: ["신입이 스스로 적응할 때까지 기다리기", "언어가 다르니 말로 설명보다 시범만 보여주기", "빠른 생산을 위해 단순 반복작업만 시키기", "OJT 계획에 따라 작업 절차를 설명하고, 이해 여부를 확인하며 적응 지원하기"],
-    answer: 3,
-    explanation: "팀워크는 신규 작업자의 정착 지원을 포함한다. 언어 장벽이 있어도 시각자료와 시범을 활용하여 OJT를 진행해야 한다.",
-    hasVideo: true
+    question: "네팔 신규 작업자에게 스틱기 조작을 교육할 때 언어 장벽을 극복하는 가장 효과적인 방법은?",
+    options: ["한국어로 천천히 반복 설명한다","실물 설비 앞에서 시범 → 직접 실습 → 체크리스트 확인 순으로 진행한다","네팔어 통역사가 올 때까지 대기한다","한글 SOP 문서만 전달한다","동영상만 반복 시청하게 한다"],
+    answer: 1,
+    explanation: "언어 장벽은 시각·실물·실습 중심 OJT로 극복합니다. 보여주고(시범) → 시키고(실습) → 확인(체크리스트) 3단계가 핵심입니다.",
+    hasVideo: false
   },
   {
     id: 3,
     category: "업무절차",
-    title: "1. 작업 준비 및 위생 점검",
-    question: "작업 시작 전 위생 점검에서 작업자의 손톱에 매니큐어가 발견되었다. 올바른 대응은?",
-    options: ["손톱이 짧으면 매니큐어는 괜찮다", "장갑을 착용하면 문제없다", "매니큐어 제거 후 작업 투입 → 위생 관리 교육 실시", "생산 일정이 급하면 우선 투입 후 다음부터 주의"],
-    answer: 2,
-    explanation: "매니큐어는 박리되어 이물로 혼입될 위험이 있어 제거 필수다. 장갑 착용과 무관하게 위생 기준 준수가 원칙이다.",
-    hasVideo: true
+    title: "가동 전 준비사항",
+    question: "스틱기 가동 전 온도조절기와 호퍼히터를 먼저 켜야 하는 이유로 가장 올바른 것은?",
+    options: ["전기 절약을 위해 미리 켜둔다","실링 온도와 호퍼 품온이 안정화되는 데 30~40분이 소요되기 때문이다","배합실에서 신호를 받아야 켤 수 있기 때문이다","CIP가 끝난 후에만 켤 수 있기 때문이다","설비 점검을 위해 예열이 필요하기 때문이다"],
+    answer: 1,
+    explanation: "온도조절기·호퍼히터 예열에는 30~40분이 필요합니다. 온도 미달 상태에서 생산 시작 시 실링 불량이 발생합니다.",
+    hasVideo: false
   },
   {
     id: 4,
     category: "업무절차",
-    title: "2. 포장재 수불 및 확인",
-    question: "포장재 입고 시 외박스 모서리가 찢어져 내부 필름이 보이는 상태다. 유통기한과 Batch No.는 정상이다. 올바른 조치는?",
-    options: ["유통기한이 정상이면 그대로 수령", "외박스만 교체 요청 후 수령", "수령 거부 → QA팀 보고 → 공급사 연락 → 재입고 요청", "내부 필름만 꺼내서 사용"],
-    answer: 2,
-    explanation: "포장재 파손은 이물 유입·오염 위험이 있어 수령 거부가 원칙이다. QA팀 보고 및 재입고 조치가 필요하다.",
-    hasVideo: true
+    title: "가동 전 세팅",
+    question: "배합액 이송 전 호퍼 드레인 밸브 잠금 상태를 반드시 육안으로 확인해야 하는 이유는?",
+    options: ["드레인 밸브가 열려 있으면 배합액이 전량 외부로 유실되기 때문이다","드레인 밸브가 열려 있으면 CIP가 자동 시작되기 때문이다","드레인 밸브가 열려 있으면 설비 전원이 차단되기 때문이다","드레인 밸브 상태는 생산 중에도 수시로 바뀌기 때문이다","드레인 밸브가 열려 있으면 실링 온도가 낮아지기 때문이다"],
+    answer: 0,
+    explanation: "드레인 밸브 열림 상태에서 배합액을 이송하면 전량 외부 유실됩니다. SOP 6.2.1: '호퍼 드레인 밸브 잠김 상태 육안 확인 후 이송 개시'",
+    hasVideo: false
   },
   {
     id: 5,
     category: "업무절차",
-    title: "3. 설비 가동 전 점검",
-    question: "충전기 가동 전 노즐 청결도 점검에서 노즐 내부에 하얀 고형물(약 2mm)이 발견되었다. 다음 조치는?",
-    options: ["작은 크기니 그대로 가동", "에어건으로 불어내고 가동", "즉시 설비팀·QA팀 보고 → 원인 파악 → 재세척 후 가동", "필터에서 걸러질 것이니 무시"],
-    answer: 2,
-    explanation: "노즐 내 이물은 이전 제품 잔류·세척 불량·외부 오염 등 다양한 원인이 있다. 설비팀과 QA팀 보고 및 재세척 후 가동이 원칙이다.",
-    hasVideo: true
+    title: "레이저 프린터 세팅",
+    question: "레이저 프린터에서 소비기한 변경 후 반드시 확인해야 할 사항으로 올바른 것은?",
+    options: ["프린터 전원을 끄고 다시 켠다","대표 문구 변경 후 나머지 5개 문구가 동일하게 변경되었는지 확인한다","소비기한은 1개만 수정하면 자동 적용된다","마킹 버튼을 끈 상태에서 생산을 시작한다","변경 후 즉시 생산을 재개한다"],
+    answer: 1,
+    explanation: "소비기한은 대표 문구 변경 후 나머지 5개 문구도 동일하게 변경됐는지 반드시 확인해야 합니다. 마킹은 지속적으로 켜둬야 합니다.",
+    hasVideo: false
   },
   {
     id: 6,
-    category: "업무절차",
-    title: "4-1. 충전기 운전 절차",
-    question: "본생산 중 충전량을 측정했더니 표준 100g에서 평균 97g이 나왔다. 허용 오차는 ±3g이다. 어떻게 판단해야 하는가?",
-    options: ["허용 오차 내니 합격 → 그대로 진행", "허용 오차 내지만 평균이 하한선 근접 → 팀장 보고 → 원인 분석(충전 펌프 압력 등) → 조정 여부 결정", "97g은 너무 낮으니 즉시 Batch 폐기", "충전량을 103g으로 올려서 평균 맞추기"],
+    category: "기능설명",
+    title: "제어판넬 기능 설명",
+    question: "기능선택 화면에서 '호퍼레벨체크'를 OFF로 설정했을 때 발생하는 문제는?",
+    options: ["호퍼 온도가 올라가지 않는다","호퍼 배합액이 하한 레벨 이하로 떨어져도 설비가 계속 가동되어 빈 충전이 발생할 수 있다","세로실링이 작동하지 않는다","CIP 모드로 전환된다","마크센서가 비활성화된다"],
     answer: 1,
-    explanation: "허용 오차 내지만 과거 데이터와 큰 차이가 있거나 하한선에 근접하면 충전 펌프 압력 등 원인 분석이 필요하다.",
-    hasVideo: true
+    explanation: "호퍼레벨체크 OFF 시 하한 레벨 도달 여부와 관계없이 설비가 계속 가동됩니다. 배합액 없이 충전되는 빈 충전 불량이 발생할 수 있습니다.",
+    hasVideo: false
   },
   {
     id: 7,
-    category: "업무절차",
-    title: "4-2. 포장 운전 절차",
-    question: "포장 라인에서 '인쇄 유통기한 누락' 제품이 발견되었다. 생산 시작 30분 경과 상태다. 올바른 대응은?",
-    options: ["발견 즉시 라인 정지 → 팀장 보고 → 시작 시점부터 현재까지 생산품 전수 격리 → 인쇄기 점검", "누락 제품만 골라내고 계속 진행", "앞으로 잘 나오면 이전 제품은 샘플링 검사", "30분 정도면 소량이니 폐기하고 진행"],
-    answer: 0,
-    explanation: "인쇄 누락 발견 시 문제 발생 시점을 알 수 없으므로 시작부터 전수 격리가 원칙이다. 라인 정지 후 원인 제거 필수.",
-    hasVideo: true
+    category: "기능설명",
+    title: "Operation 운전화면",
+    question: "운전화면에서 '제품길이' 설정값을 입력할 때 올바른 기준은?",
+    options: ["원단 아이마크 길이와 동일하게 입력한다","아이마크 기준 길이에 6~7mm를 합산한 수치로 입력한다","임의의 값을 입력해도 컷팅에 영향이 없다","제조지시서의 중량값을 그대로 입력한다","이전 품목의 설정값을 그대로 유지한다"],
+    answer: 1,
+    explanation: "제품길이 설정값은 아이마크 기준 길이 + 6~7mm입니다. 이 설정이 컷팅 타이밍에 직접적인 영향을 줍니다.",
+    hasVideo: false
   },
   {
     id: 8,
-    category: "업무절차",
-    title: "5. 시생산 및 품질 확인",
-    question: "명일 생산 제품의 반제품(bulk)을 미리 준비해 두었는데, 작업 종료 30분 전 내일 생산 제품이 변경되었다는 연락을 받았다. 올바른 조치는?",
-    options: ["이미 준비했으니 내일 그대로 사용", "반제품을 원래 용기에 다시 넣고 보관", "준비된 반제품의 Batch No. 기록 → 밀봉 보관 → 인수인계 기록 작성 → 익일 반납 처리", "그대로 폐기"],
-    answer: 2,
-    explanation: "준비된 반제품은 개봉 상태로 Batch 추적이 필요하다. 기록 후 밀봉 보관 및 반납 처리가 필요하다.",
-    hasVideo: true
+    category: "기능설명",
+    title: "Event List",
+    question: "설비 가동 중 알람이 발생했을 때 RESET 버튼을 눌렀으나 알람이 해제되지 않았다. 원인으로 가장 올바른 것은?",
+    options: ["RESET 버튼을 너무 빨리 눌렀기 때문이다","알람 발생 원인을 해결하지 않은 상태에서 RESET을 눌렀기 때문이다","전원을 껐다 켜야만 알람이 해제된다","RESET은 관리자 계정에서만 작동한다","Event List 화면을 먼저 확인해야 RESET이 작동한다"],
+    answer: 1,
+    explanation: "원인 미해결 상태에서 RESET을 눌러도 알람은 해제되지 않습니다. 반드시 원인 확인 및 조치 후 RESET을 눌러야 합니다.",
+    hasVideo: false
   },
   {
     id: 9,
-    category: "업무절차",
-    title: "5. 명일 생산 제품 전처리",
-    question: "본생산 중 충전기 화면에 '온도 이상 경보'가 표시되었다. 설정 온도 85℃인데 현재 79℃로 떨어졌다. 가장 먼저 해야 할 조치는?",
-    options: ["온도가 조금만 낮아서 그대로 진행", "즉시 생산 중지 → 팀장 보고 → 히터 상태 점검 → 온도 복구 후 재개", "온도를 90℃로 올려서 보상", "생산 속도를 늦춰서 대응"],
+    category: "기능설명",
+    title: "히터 컨트롤",
+    question: "히터 컨트롤 화면에서 SV(설정온도)와 PV(현재온도) 차이가 18℃일 때 취해야 할 조치는?",
+    options: ["즉시 생산을 시작해도 된다","차이가 10℃ 이상이므로 AT 버튼을 터치하여 자동 튜닝을 수행한다","SV 값을 현재 PV와 같게 낮춘다","설비 전원을 끄고 엔지니어를 호출한다","냉각바를 ON 하여 온도를 낮춘다"],
     answer: 1,
-    explanation: "온도 이탈은 제품 점도·미생물 안정성에 영향을 준다. 즉시 중지 후 원인 파악 및 복구가 원칙이다.",
-    hasVideo: true
+    explanation: "SV와 PV 차이가 10℃ 이상이면 AT(자동 튜닝) 버튼을 터치합니다. AT 완료 후 온도가 안정될 때까지 기다린 뒤 생산을 시작해야 합니다.",
+    hasVideo: false
   },
   {
     id: 10,
-    category: "업무절차",
-    title: "6. 본생산 모니터링",
-    question: "작업 종료 후 설비 청소 중 충전 호퍼 하단에서 검은색 고무 조각(약 5mm)이 발견되었다. 이것은 무엇이며 어떻게 대응해야 하는가?",
-    options: ["호퍼 패킹 파손 가능성 → 즉시 QA팀·설비팀 보고 → 당일 생산품 격리 → 패킹 교체", "작은 조각이니 그냥 버리기", "다음날 교체 예약만 하기", "청소 시 생기는 먼지로 판단"],
-    answer: 0,
-    explanation: "호퍼 고무 패킹 파손으로 추정되며, 당일 생산품에 혼입되었을 가능성이 있다. 즉시 보고 및 제품 격리가 필요하다.",
-    hasVideo: true
+    category: "기능설명",
+    title: "공급부 설정",
+    question: "생산 운전 중 공급세척 설정이 'RUN' 상태임을 발견했다. 이로 인해 발생하는 문제는?",
+    options: ["실링 온도가 낮아진다","배합액이 정량실린더를 통해 충전되지 않고 세척 경로로 우회되어 중량 미달이 발생한다","호퍼 레벨이 급격히 상승한다","마크센서가 오작동한다","인쇄 불량이 발생한다"],
+    answer: 1,
+    explanation: "공급세척 RUN은 CIP 전용 설정입니다. 생산 중 RUN 상태면 배합액이 정량 충전되지 않아 중량 미달이 발생합니다. 생산 시에는 반드시 OFF로 설정해야 합니다.",
+    hasVideo: false
   },
   {
     id: 11,
-    category: "업무절차",
-    title: "7. 작업 종료 및 정리",
-    question: "충전 공정 전체 흐름에서 '시생산'과 '본생산'의 가장 중요한 차이점은 무엇인가?",
-    options: ["시생산은 속도가 느리고, 본생산은 속도가 빠르다", "시생산은 품질 확인·설비 안정화가 목적이고, 본생산은 정량 생산이 목적이다", "시생산은 신입이 하고, 본생산은 경력자가 한다", "시생산과 본생산은 동일하다"],
-    answer: 1,
-    explanation: "시생산은 설비 세팅 검증·품질 확인이 목적이며, 본생산은 안정화 후 정량 생산을 목표로 한다.",
-    hasVideo: true
+    category: "기능설명",
+    title: "Transfer 원료이송설정",
+    question: "Transfer(원료이송) 화면의 '지연시간(Check Time)' 설정값으로 올바른 범위는?",
+    options: ["10초~50초","100초~200초","300초~500초","600초~900초","설정 불필요, 자동 감지된다"],
+    answer: 2,
+    explanation: "지연시간 설정값은 300초~500초입니다. 호퍼 수위가 하한치에 도달한 후 이 시간이 지나면 설비가 자동 정지됩니다.",
+    hasVideo: false
   },
   {
     id: 12,
-    category: "공정이해도",
-    title: "충전 전체 공정 흐름",
-    question: "충전기가 정상 작동하지 않는다. 가장 먼저 확인해야 할 항목은?",
-    options: ["충전 펌프 압력", "전원 공급 상태 및 에러 메시지", "노즐 교체 이력", "전날 생산 기록"],
-    answer: 1,
-    explanation: "설비 고장 시 가장 먼저 전원·에러코드 확인이 원칙이다. 이후 세부 점검을 진행한다.",
-    hasVideo: true
+    category: "기능설명",
+    title: "Nozzle up",
+    question: "젤리 제품 충전 시 노즐 이동 속도를 액상류보다 느리게 설정해야 하는 이유는?",
+    options: ["젤리는 점도가 높아 빠른 속도로 충전하면 기포 유입 및 실링 불량이 발생할 수 있기 때문이다","젤리는 노즐 크기가 작기 때문이다","젤리 원단은 PP 재질이라 빠른 속도를 견디지 못하기 때문이다","젤리 충전량이 액상보다 많기 때문이다","느린 속도가 정량 정확도를 높이기 때문이다"],
+    answer: 0,
+    explanation: "젤리류는 점도가 높아 노즐 이동 속도가 빠르면 기포 유입 및 실링 불량이 발생합니다. 느린 속도로 충전 안정성을 확보해야 합니다.",
+    hasVideo: false
   },
   {
     id: 13,
-    category: "공정이해도",
-    title: "충전기 작동 원리",
-    question: "포장재 자동 공급 시스템에서 필름이 반복적으로 걸린다. 가장 가능성 높은 원인은?",
-    options: ["충전 속도가 너무 빠름", "필름 롤 텐션 불균형 또는 가이드 롤러 이물", "작업자 실수", "제품 온도가 너무 높음"],
+    category: "기능설명",
+    title: "컨트롤판넬 조작법",
+    question: "설비 가동 중 이물이 발견되어 즉시 정지해야 한다. 이때 사용하는 버튼과 그 특징으로 올바른 것은?",
+    options: ["STOP 버튼 - 즉시 정지되며 재가동 불가","비상정지 버튼 - 장비가 즉시 정지되며, 해제 시 시계방향으로 회전","JOG 버튼 - 누르는 동안만 정지 상태 유지","RESET 버튼 - 즉시 정지 후 알람 초기화","FILL 버튼 OFF - 충전만 중단되고 설비는 계속 가동"],
     answer: 1,
-    explanation: "필름 걸림의 주요 원인은 텐션 조절 불량·롤러 이물·정렬 불량이다.",
-    hasVideo: true
+    explanation: "비상정지 버튼을 누르면 장비가 즉시 정지합니다. 해제는 버튼을 시계방향으로 회전시킵니다. STOP은 감속 후 안전 정지로 비상 상황과 다릅니다.",
+    hasVideo: false
   },
   {
     id: 14,
-    category: "공정이해도",
-    title: "포장재 자동 공급 시스템",
-    question: "금속검출기 테스트에서 표준 Fe 2.0mm 시편이 검출되지 않았다. 다음 조치는?",
-    options: ["감도를 높여서 다시 테스트", "즉시 생산 중지 → 금속검출기 점검 → 재보정 → 테스트 통과 후 재개", "시편이 작아서 안 나온 것이니 3.0mm로 테스트", "하루 한 번만 테스트하니 내일 다시 확인"],
+    category: "설비세척",
+    title: "COP",
+    question: "COP 작업 시 1~10번 에어호스를 분리할 때 반드시 지켜야 할 규칙은?",
+    options: ["색상별로 분류하여 보관한다","번호별로 정리하여 혼동을 방지하고, 재조립 시 노즐 번호와 호스 번호를 반드시 일치시킨다","분리 후 한곳에 모아둔다","에어호스는 재사용하지 않고 매번 교체한다","분리 전에 에어밸브를 ON 상태로 유지한다"],
     answer: 1,
-    explanation: "금속검출 실패는 중대 품질 이슈로, 즉시 생산 중지 및 재보정 후 재개가 원칙이다.",
-    hasVideo: true
+    explanation: "에어호스는 번호별로 정리해야 하며 재조립 시 노즐 번호와 호스 번호가 반드시 일치해야 합니다. 상단 피팅에 빨간색(IN), 하단 피팅에 검정색(OUT)을 연결합니다.",
+    hasVideo: false
   },
   {
     id: 15,
-    category: "공정이해도",
-    title: "금속검출기 작동 원리",
-    question: "제품별 충전 조건(온도·압력·속도)을 변경할 때 반드시 해야 하는 것은?",
-    options: ["팀장 구두 승인만 받기", "작업 지시서 확인 → 조건 변경 → 시생산 → 품질 확인 → 기록", "경험으로 조정하기", "전날 조건 그대로 사용"],
+    category: "설비세척",
+    title: "CIP",
+    question: "충전실 열수 CIP 진행 시 공급세척을 'RUN'으로 설정하는 이유와, CIP 완료 후 반드시 확인해야 할 사항으로 올바른 것은?",
+    options: ["RUN: 실링바 온도 유지 / 완료 후: 드레인 밸브 열림 확인","RUN: 배합액이 노즐까지 순환되도록 / 완료 후: 공급세척 OFF 및 드레인 밸브 잠금 확인","RUN: 세척액을 노즐까지 순환시키기 위해 / 완료 후: 공급세척 RUN 상태 유지","RUN: 호퍼 교반을 활성화하기 위해 / 완료 후: 온도조절기 OFF 확인","RUN: 잔수를 제거하기 위해 / 완료 후: 전원 차단 확인"],
     answer: 1,
-    explanation: "제품별 충전 조건은 작업지시서 기준 필수이며, 변경 시 시생산·품질 확인·기록이 원칙이다.",
-    hasVideo: true
+    explanation: "CIP 시 공급세척 RUN으로 세척액을 노즐까지 순환시킵니다. CIP 완료 후에는 반드시 공급세척 OFF, 드레인 밸브 잠금 상태를 작업자 간 교차 확인해야 합니다.",
+    hasVideo: false
   },
   {
     id: 16,
     category: "공정이해도",
-    title: "제품별 충전 조건 이해",
-    question: "충전 노즐 조정 중 노즐 높이를 2mm 낮췄더니 충전 정확도가 개선되었다. 다음 조치는?",
-    options: ["그대로 진행", "원래대로 복구", "팀장 보고 → 조정 내용 기록 → 시생산 재검증 → 작업지시서 반영 건의", "다른 노즐도 모두 2mm 낮추기"],
-    answer: 2,
-    explanation: "임의 조정은 팀장 보고 및 기록이 필수이며, 재검증 후 표준에 반영해야 한다.",
-    hasVideo: true
+    title: "충전 기본 공정 순서",
+    question: "스틱기 하루 작업의 올바른 공정 순서는?",
+    options: ["배합액 이송 → 온도조절기 ON → 열수 CIP → 정규 충전 → CIP/COP","가동 전 준비(온도조절기·호퍼히터 ON) → 열수 CIP → 잔수 제거 → 배합액 이송 → 정규 충전 → CIP/COP","열수 CIP → 배합액 이송 → 온도조절기 ON → 정규 충전 → COP","공급세척 RUN → 열수 CIP → 배합액 이송 → 정규 충전 → CIP","온도조절기 ON → 배합액 이송 → 열수 CIP → 정규 충전 → COP"],
+    answer: 1,
+    explanation: "온도조절기·호퍼히터 예열(30~40분) → 열수 CIP → 잔수 완전 제거 확인 → 배합액 이송 → 정규 충전 → 종료 후 CIP/COP 순서입니다. SOP 6절 기준.",
+    hasVideo: false
   },
   {
     id: 17,
-    category: "설비운전",
-    title: "충전기 노즐 조정 및 확인",
-    question: "스틱 파우치 규격 변경 시 세팅해야 할 주요 항목이 아닌 것은?",
-    options: ["노즐 간격", "실링 온도", "제품 배합비", "컨베이어 속도"],
-    answer: 2,
-    explanation: "배합비는 제품 레시피로 규격 변경과 무관하다. 노즐·실링·컨베이어는 규격에 맞춰 조정한다.",
-    hasVideo: true
+    category: "공정이해도",
+    title: "스틱 설비 구조 이해",
+    question: "스틱 설비에서 '줏대'의 역할로 올바른 것은?",
+    options: ["배합액을 저장하고 충전부에 일정 유량으로 공급한다","노즐의 정렬을 유지하고 충전 위치를 고정한다","스틱 세로 방향 열실링을 수행한다","개봉을 위한 노치(절취선)를 형성한다","일정량의 액을 정확히 충전하는 장치이다"],
+    answer: 1,
+    explanation: "줏대는 노즐 정렬 유지 및 충전 위치를 고정하는 역할을 합니다. 호퍼(공급) → 노즐(충전구) → 줏대(위치고정) → 실링 → 냉각바 → 노치·컷팅 순서로 구성됩니다.",
+    hasVideo: false
   },
   {
     id: 18,
-    category: "설비운전",
-    title: "파우치/병/스틱 규격별 세팅",
-    question: "시간별 충전량 측정에서 10:00에 98g, 11:00에 102g, 12:00에 97g으로 들쭉날쭉하다. 허용 오차는 100g ±5g이다. 어떻게 판단하는가?",
-    options: ["모두 허용 오차 내니 합격", "허용 오차 내지만 변동이 크므로 충전 펌프·점도·온도 등 원인 분석 필요", "평균이 99g이면 문제없음", "시간대별로 속도 조정"],
+    category: "공정이해도",
+    title: "원단의 종류와 실링 온도 설정",
+    question: "PP 원단과 LLD PE 원단의 실링 온도 설정값으로 올바른 것은?",
+    options: ["PP: 150~160℃ / LLD PE: 180~200℃","PP: 180~200℃ / LLD PE: 160~180℃","PP: 200~220℃ / LLD PE: 150~160℃","PP와 LLD PE 모두 180℃로 동일하게 설정한다","원단 종류와 관계없이 190℃로 고정한다"],
     answer: 1,
-    explanation: "허용 오차 내이지만 변동 폭이 크면 펌프 압력·제품 점도·온도 등 안정성 문제를 의심해야 한다.",
-    hasVideo: true
+    explanation: "PP: 180~200℃, LLD PE: 160~180℃입니다. PP는 단단한 특성으로 고온 필요, LLD PE는 부드러운 특성으로 저온에서도 실링됩니다. 온도 오설정은 실링 불량의 주요 원인입니다.",
+    hasVideo: false
   },
   {
     id: 19,
-    category: "설비운전",
-    title: "충전량 정확도 점검",
-    question: "실링 온도가 설정값 140℃에서 135℃로 떨어졌다. 실링 상태는 육안으로 정상으로 보인다. 조치는?",
-    options: ["육안 정상이면 계속 진행", "즉시 생산 중지 → 실링 온도 복구 → 135℃로 생산된 제품 샘플링 검사 → 실링 강도 테스트", "145℃로 올려서 보상", "속도를 늦춰서 대응"],
+    category: "공정이해도",
+    title: "충전 품질 점검 항목",
+    question: "충전 품질 4대 점검 항목 중 '기밀도(Leak-proof)' 불량을 확인하는 방법으로 가장 적절한 것은?",
+    options: ["스틱 외관의 인쇄 상태를 육안으로 확인한다","스틱을 손으로 눌러 누액 여부를 확인하거나 침지 테스트를 진행한다","중량선별기 수치를 확인한다","아이마크 위치를 센서로 감지한다","가로실링 온도를 측정한다"],
     answer: 1,
-    explanation: "실링 온도 이탈은 육안 정상이어도 실링 강도 부족 가능성이 있어, 온도 복구 및 해당 구간 제품 검증이 필요하다.",
-    hasVideo: true
+    explanation: "기밀도 점검은 스틱을 눌러보거나 침지 테스트로 누액을 확인합니다. 4대 점검항목은 기밀도·실링·중량·인쇄입니다.",
+    hasVideo: false
   },
   {
     id: 20,
-    category: "설비운전",
-    title: "실링 온도 및 압력 관리",
-    question: "인쇄기 잉크 농도가 점점 연해지고 있다. 가장 먼저 확인할 사항은?",
-    options: ["인쇄 속도", "잉크 잔량 및 희석 비율", "제품 온도", "작업자 교체 여부"],
-    answer: 1,
-    explanation: "잉크 농도 저하는 잔량 부족·희석 과다가 주요 원인이다. 즉시 확인 및 보충이 필요하다.",
-    hasVideo: true
+    category: "공정이해도",
+    title: "정량실린더·노즐 충전량 보정 원리",
+    question: "5번 노즐 충전량이 기준(20.0g)보다 0.3g 낮게 측정된다. 개별 보정으로 수정하려면 버튼을 몇 회 눌러야 하는가?",
+    options: ["1회","2회","3회","5회","10회"],
+    answer: 2,
+    explanation: "개별 노즐 보정 버튼은 1회당 0.10g 단위로 조정됩니다. 0.3g 보정을 위해서는 ▲ 버튼을 3회 눌러야 합니다.",
+    hasVideo: false
   },
   {
     id: 21,
-    category: "설비운전",
-    title: "인쇄기 잉크 농도 확인",
-    question: "금속검출기 감도 테스트에서 Fe 2.0mm는 통과했지만 SUS 2.5mm가 검출되지 않았다. 올바른 판단은?",
-    options: ["Fe가 통과했으니 합격", "SUS 검출 실패는 감도 재조정 필요 → 즉시 생산 중지 → 재보정 후 테스트", "SUS는 비자성이라 검출 안 되는 게 정상", "테스트 시편 문제로 판단"],
+    category: "공정이해도",
+    title: "노즐 타입별 특성",
+    question: "스틱 4·5·6호기의 상하구동 노즐에서 노즐 하강 길이가 너무 짧을 때 발생하는 문제는?",
+    options: ["노즐 끝 잔액이 실링부를 오염시켜 실링 불량이 발생한다","낙하 높이 증가로 기포가 유입된다","충전량이 기준보다 많아진다","세로실링 온도가 낮아진다","원단이 정상 이송되지 않는다"],
     answer: 1,
-    explanation: "금속검출기는 Fe·SUS 모두 검출해야 한다. SUS 미검출은 감도 이상으로 즉시 재보정 필요하다.",
-    hasVideo: true
+    explanation: "노즐 하강 길이가 짧으면 낙하 높이가 증가해 기포가 유입됩니다. 반대로 너무 길면 노즐 끝 잔액이 실링부를 오염시켜 실링 불량이 발생합니다.",
+    hasVideo: false
   },
   {
     id: 22,
-    category: "설비운전",
-    title: "금속검출기 감도 테스트",
-    question: "컨베이어 속도를 올렸더니 제품 간격이 좁아져 금속검출기를 통과할 때 오검출(정상 제품을 불량으로 판정)이 발생했다. 원인은?",
-    options: ["금속검출기 고장", "제품 간격 부족으로 인한 간섭 현상", "제품에 금속 혼입", "컨베이어 벨트 문제"],
+    category: "이상대응",
+    title: "불량 발견 시 기본 대응 절차",
+    question: "생산 중 실링 불량이 연속으로 발견되었다. 원인이 불명확한 상황에서 가장 올바른 조치 순서는?",
+    options: ["원인을 스스로 파악한 뒤 설비를 정지한다","즉시 설비 정지 → 불량품 분리 보관 → 상급자·품질팀 보고 → 원인 확인 전까지 재가동 금지","실링 온도를 올리고 계속 가동한다","불량 3개 이하는 허용 범위이므로 계속 생산한다","RESET 버튼을 누르고 재가동한다"],
     answer: 1,
-    explanation: "제품 간격이 좁으면 금속검출기 센서 간섭이 발생한다. 속도 조정 또는 간격 조절이 필요하다.",
-    hasVideo: true
+    explanation: "불량 발견 시: ①즉시 설비 정지 ②불량품 양품과 분리 보관 ③상급자·품질팀 즉시 보고 ④원인 불명확 시 재가동 금지. 설비 결함이면 공무팀 협조 요청합니다.",
+    hasVideo: false
   },
   {
     id: 23,
-    category: "설비운전",
-    title: "컨베이어 속도 조절",
-    question: "부자재(라벨) 교체 시 이전 제품의 라벨이 일부(약 20장) 남았다. 올바른 처리 방법은?",
-    options: ["다음에 그 제품 생산할 때 사용", "Batch No. 기록 → 밀봉 보관 → 다음 동일 제품 생산 시 사용 (유효기간 내)", "폐기", "신제품 라벨 밑에 섞어두기"],
+    category: "이상대응",
+    title: "실링 불량 원인 및 조치",
+    question: "원단 교체 후 가로실링 부위가 들떠있고 접착이 불완전하다. 히터 컨트롤 화면의 PV가 143℃, SV가 200℃를 가리키고 있다면 가장 적절한 조치는?",
+    options: ["SV를 143℃로 낮춰 현재 온도에 맞춘다","즉시 설비 정지 → 불량품 격리 → SV 온도가 안정될 때까지 대기 → 시운전 후 실링 상태 확인 후 재가동","냉각바를 OFF하여 실링 온도를 높인다","AT 버튼을 눌러 즉시 생산 가능 상태로 만든다","원단 교체 후 실링 불량은 정상이므로 30개 생산 후 안정화를 기다린다"],
     answer: 1,
-    explanation: "부자재는 Batch 추적 관리 대상으로, 기록 후 보관하여 동일 제품 생산 시 재사용 가능하다.",
-    hasVideo: true
+    explanation: "온도 미달(PV 143℃ vs SV 200℃) 상태에서 생산하면 실링 불량이 발생합니다. 설비를 정지하고 온도가 SV에 도달해 안정화될 때까지 대기 후 시운전으로 확인합니다.",
+    hasVideo: false
   },
   {
     id: 24,
-    category: "설비운전",
-    title: "부자재 교체 및 관리",
-    question: "시간별 충전량 측정 결과가 지속적으로 표준 대비 +2~3g 높게 나온다. 조치는?",
-    options: ["고객에게 유리하니 그대로 진행", "팀장 보고 → 충전 펌프 압력 하향 조정 → 재측정 → 표준 범위 내 안정화", "평균이 맞으면 상관없음", "속도를 올려서 상쇄"],
+    category: "이상대응",
+    title: "충전량 편차 원인 및 조치",
+    question: "임산부용 액상칼슘 스틱 생산 중 기준 19.8g±0.6g인데 전체 평균이 18.7g으로 중량 미달이 발생했다. 공급세척이 RUN 상태였다면 올바른 조치는?",
+    options: ["전체 노즐 중량을 ▲ 버튼으로 일괄 증가시킨다","즉시 설비 정지 → 공급세척 OFF 변경 → 상급자 보고 → 불량품 격리","전진속도를 높여 충전량을 증가시킨다","호퍼 배합액을 추가 이송한다","실링 온도를 높여 충전 압력을 올린다"],
     answer: 1,
-    explanation: "충전량 초과는 원가 손실·제품 균일성 저하 문제가 있어 표준 범위 내로 조정해야 한다.",
-    hasVideo: true
+    explanation: "공급세척 RUN 상태는 충전량 미달의 직접 원인입니다. 설비 즉시 정지 후 공급세척 OFF 변경, 불량품 격리가 우선입니다. 실제 사례: 임산부 액상칼슘 P박스 13개분 폐기.",
+    hasVideo: false
   },
   {
     id: 25,
-    category: "CIP",
-    title: "시간별 충전량 측정",
-    question: "실링 상태 육안 검사에서 실링 라인이 물결 모양으로 불규칙하다. 가장 가능성 높은 원인은?",
-    options: ["작업자 검사 실수", "실링 바 온도 불균일 또는 압력 불균형", "제품 점도 문제", "포장재 불량"],
+    category: "이상대응",
+    title: "인쇄 불량 원인 및 조치",
+    question: "생산 중 스틱 소비기한 인쇄가 공란으로 확인되었다. 가장 먼저 확인해야 할 사항은?",
+    options: ["레이저 프린터 렌즈 이물 여부를 확인한다","기능선택 화면에서 프린트 스위치가 ON 상태인지, 비전검사가 ON 상태인지 확인한다","소비기한 설정값을 재입력한다","설비를 재가동한다","인쇄 불량 제품을 모두 폐기한다"],
     answer: 1,
-    explanation: "실링 라인 불규칙은 실링 바 온도·압력 불균일이 주요 원인이다. 설비 점검이 필요하다.",
-    hasVideo: true
+    explanation: "인쇄 공란 발생 시 우선 프린트 스위치 ON 여부와 비전검사 ON 여부를 확인합니다. 실제 사례에서 프린트 OFF 또는 비전검사 OFF 상태로 생산이 진행된 휴먼에러가 다수 발생했습니다.",
+    hasVideo: false
   },
   {
     id: 26,
-    category: "CIP",
-    title: "실링 상태 육안 검사",
-    question: "인쇄된 유통기한을 확인했더니 '2025.04.31'로 표시되어 있다. 4월은 30일까지인데 31일로 인쇄되었다. 올바른 대응은?",
-    options: ["하루 차이니 무시", "즉시 라인 정지 → 팀장·QA팀 보고 → 해당 Batch 전량 격리 → 인쇄 설정 수정 → 재작업 여부 결정", "다음부터 주의", "4월 30일로 해석하면 됨"],
+    category: "이상대응",
+    title: "원단 관련 불량 조치",
+    question: "로터리 설비에서 파우치를 급대에 투입했는데 소비기한 인쇄 방향이 반대로 나왔다. 원인과 조치로 올바른 것은?",
+    options: ["아이마크 센서 위치가 틀어진 것이므로 센서 위치를 조정한다","파우치 역방향 투입이 원인이므로 즉시 설비 정지 후 투입 방향 확인, 해당 시간대 불량품 선별","실링 온도 오설정이 원인이므로 온도를 재설정한다","원단 박리 현상이므로 원단을 교체한다","마크센서를 OFF하고 재가동한다"],
     answer: 1,
-    explanation: "유통기한 오류는 중대 결함으로 전량 격리 및 재작업·폐기 결정이 필요하다.",
-    hasVideo: true
+    explanation: "파우치 역방향 투입 시 인쇄 방향 불량이 발생합니다. 즉시 정지 후 해당 시간대 P박스를 전수 선별합니다. 실제 사례: 성균관 명품 P박스 12개분 60포 폐기.",
+    hasVideo: false
   },
   {
     id: 27,
-    category: "CIP",
-    title: "인쇄 상태 및 유통기한 확인",
-    question: "부적합품(실링 불량) 발견 시 격리 방법으로 올바른 것은?",
-    options: ["바닥에 따로 모아두기", "빨간 테이프로 표시만 하기", "부적합품 전용 용기에 담기 → '부적합' 표시 → Batch No.·불량 유형·수량 기록 → 지정 장소 격리", "생산 종료 후 일괄 처리"],
-    answer: 2,
-    explanation: "부적합품은 즉시 전용 용기 격리·표시·기록이 원칙이며, 정품과의 혼입 방지가 핵심이다.",
-    hasVideo: true
-  },
-  {
-    id: 28,
-    category: "CIP",
-    title: "부적합품 격리 및 기록",
-    question: "충전 과부족이 연속 3회 발생했다. 허용 오차는 100g ±3g인데 105g, 106g, 104g이 나왔다. 올바른 조치는?",
-    options: ["3회 모두 오차 범위 밖이므로 즉시 생산 중지 → 충전 펌프 압력 점검 → 하향 조정 → 재측정 → 안정화 확인", "평균이 105g이면 큰 문제 아님", "속도 조정으로 대응", "충전량 기준을 105g으로 변경"],
-    answer: 0,
-    explanation: "연속 오차 초과는 시스템 이상 신호로, 즉시 중지 및 원인 제거 후 재개가 원칙이다.",
-    hasVideo: true
-  },
-  {
-    id: 29,
-    category: "CIP",
-    title: "충전 과부족 발생시 대응",
-    question: "포장재(필름)가 가이드를 벗어나 반복적으로 걸린다. 즉시 조치 순서로 올바른 것은?",
-    options: ["라인 정지 → 필름 걸림 제거 → 텐션·가이드 롤러 점검 → 재정렬 → 시운전 → 정상 확인 후 재개", "그냥 다시 끼우고 진행", "속도 늦추고 진행", "포장재 롤 교체"],
-    answer: 0,
-    explanation: "포장재 걸림은 라인 정지 후 텐션·정렬 점검 및 재세팅 후 재개가 원칙이다.",
-    hasVideo: true
-  },
-  {
-    id: 30,
-    category: "CIP",
-    title: "포장재 걸림 발생 시 조치",
-    question: "금속검출기에서 알람이 울렸다. 해당 제품을 다시 통과시켰더니 알람이 안 울렸다. 어떻게 판단하는가?",
-    options: ["오검출이니 정상 제품으로 판정", "2차 통과 시 정상이면 합격", "즉시 격리 → QA팀 보고 → 정밀 검사(X-ray 등) → 원인 파악 → 처리 결정", "금속검출기 점검만 하기"],
-    answer: 2,
-    explanation: "금속검출 알람은 오검출 가능성도 있지만, 안전을 위해 격리·정밀 검사가 원칙이다. 육안이나 재검출로 판단 불가.",
-    hasVideo: true
-  },
-  {
-    id: 31,
-    category: "CIP",
-    title: "금속 검출 시 대응 절차",
-    question: "금속 검출 알람 후 해당 제품과 전후 5개씩 총 11개를 격리했다. QA팀 검사 결과 금속 미검출. 다음 조치는?",
-    options: ["정상 제품으로 복귀", "QA팀 판정 기록 → 팀장 승인 → 정상 제품 복귀 / 금속검출기 감도 재점검", "전량 폐기", "재작업"],
+    category: "이상대응",
+    title: "CIP 모드 미변경 등 컨트롤 패널 설정 오류 대응",
+    question: "충전 시작 전 CIP 모드를 생산 모드로 변경하지 않고 가동했을 때 발생하는 현상과 조치로 올바른 것은?",
+    options: ["실링 온도가 낮아지므로 온도를 올리고 계속 가동한다","액 넘침 현상 발생 → 즉시 설비 정지 → 기기 세척 및 노즐 세척 → 설정 변경 후 재가동","충전량이 줄어드므로 노즐 중량을 올린다","원단 박리가 발생하므로 원단을 교체한다","비전검사를 OFF하고 계속 가동한다"],
     answer: 1,
-    explanation: "QA팀 검사 후 미검출이면 정상 복귀 가능하나, 기록 및 승인 절차와 금속검출기 감도 재점검이 필요하다.",
-    hasVideo: true
-  },
+    explanation: "CIP 모드 미변경 상태로 충전 시작 시 액 넘침 현상이 발생합니다. 즉시 설비 정지 후 기기·노즐 세척 및 설정 변경이 필요합니다. 실제 사례: 마시는센시안 생산 시 발생.",
+    hasVideo: false
+  }
 ];
 
-const getDone = () => JSON.parse(localStorage.getItem('ojt_chung') || '[]');
-const saveDone = (arr) => localStorage.setItem('ojt_chung', JSON.stringify(arr));
+const getDone = () => JSON.parse(localStorage.getItem('ojt_bae') || '[]');
+const saveDone = (arr) => localStorage.setItem('ojt_bae', JSON.stringify(arr));
 
 let curModule = null;
 let quizDone = false;
@@ -665,16 +615,10 @@ function openModule(m) {
   document.getElementById('detail-tag').textContent = 'MODULE ' + String(m.id).padStart(2,'0');
   document.getElementById('detail-title').textContent = m.title;
   
-  // 동영상 탭 표시/숨김
-  const videoTab = document.getElementById('tab-video');
-  if (m.hasVideo) {
-    videoTab.style.display = 'block';
-  } else {
-    videoTab.style.display = 'none';
-  }
+  
   
   // 이미지
-  const imgPath = 'chung_' + String(m.id).padStart(2,'0') + '_explain.jpg';
+  const imgPath = 'bae_' + String(m.id).padStart(2,'0') + '_explain.jpg';
   document.getElementById('explain-img-inner').innerHTML = 
     '<img src="' + imgPath + '" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML=\'<div style=\\\'padding:40px;text-align:center\\\'><span style=\\\'font-size:48px\\\'>📷</span><div style=\\\'margin-top:12px;font-size:13px\\\'>이미지 추가 예정</div><div style=\\\'font-size:11px;font-family:JetBrains Mono,monospace;margin-top:4px\\\'>' + imgPath + '</div>\'">';
   
@@ -703,7 +647,7 @@ function openModule(m) {
 }
 
 function switchTab(t) {
-  ['explain','quiz','video'].forEach(n => {
+  ['explain','quiz'].forEach(n => {
     const p = document.getElementById('panel-'+n);
     const tb = document.getElementById('tab-'+n);
     if (p) p.classList.toggle('active', n===t);
