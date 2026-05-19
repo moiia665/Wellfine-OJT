@@ -222,7 +222,7 @@ header h1{font-size:15px;font-weight:700;flex:1}
 <!-- HEADER -->
 <header style="position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px">
   <button onclick="location.href='index.html'" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">← 홈</button>
-  <h1 style="font-size:16px;font-weight:700;flex:1">충전 파트 (27개 모듈)</h1>
+  <h1 style="font-size:16px;font-weight:700;flex:1">충전 파트 (26개 모듈)</h1>
 </header>
 
 <!-- MODULE LIST -->
@@ -487,16 +487,6 @@ const MODULES = [
   {
     id: 20,
     category: "공정이해도",
-    title: "정량실린더·노즐 충전량 보정 원리",
-    question: "5번 노즐 충전량이 기준(20.0g)보다 0.3g 낮게 측정된다. 개별 보정으로 수정하려면 버튼을 몇 회 눌러야 하는가?",
-    options: ["1회","2회","3회","5회","10회"],
-    answer: 2,
-    explanation: "개별 노즐 보정 버튼은 1회당 0.10g 단위로 조정됩니다. 0.3g 보정을 위해서는 ▲ 버튼을 3회 눌러야 합니다.",
-    hasVideo: false
-  },
-  {
-    id: 21,
-    category: "공정이해도",
     title: "노즐 타입별 특성",
     question: "스틱 4·5·6호기의 상하구동 노즐에서 노즐 하강 길이가 너무 짧을 때 발생하는 문제는?",
     options: ["노즐 끝 잔액이 실링부를 오염시켜 실링 불량이 발생한다","낙하 높이 증가로 기포가 유입된다","충전량이 기준보다 많아진다","세로실링 온도가 낮아진다","원단이 정상 이송되지 않는다"],
@@ -505,7 +495,7 @@ const MODULES = [
     hasVideo: false
   },
   {
-    id: 22,
+    id: 21,
     category: "이상대응",
     title: "불량 발견 시 기본 대응 절차",
     question: "생산 중 실링 불량이 연속으로 발견되었다. 원인이 불명확한 상황에서 가장 올바른 조치 순서는?",
@@ -515,7 +505,7 @@ const MODULES = [
     hasVideo: false
   },
   {
-    id: 23,
+    id: 22,
     category: "이상대응",
     title: "실링 불량 원인 및 조치",
     question: "원단 교체 후 가로실링 부위가 들떠있고 접착이 불완전하다. 히터 컨트롤 화면의 PV가 143℃, SV가 200℃를 가리키고 있다면 가장 적절한 조치는?",
@@ -525,7 +515,7 @@ const MODULES = [
     hasVideo: false
   },
   {
-    id: 24,
+    id: 23,
     category: "이상대응",
     title: "충전량 편차 원인 및 조치",
     question: "임산부용 액상칼슘 스틱 생산 중 기준 19.8g±0.6g인데 전체 평균이 18.7g으로 중량 미달이 발생했다. 공급세척이 RUN 상태였다면 올바른 조치는?",
@@ -535,7 +525,7 @@ const MODULES = [
     hasVideo: false
   },
   {
-    id: 25,
+    id: 24,
     category: "이상대응",
     title: "인쇄 불량 원인 및 조치",
     question: "생산 중 스틱 소비기한 인쇄가 공란으로 확인되었다. 가장 먼저 확인해야 할 사항은?",
@@ -545,7 +535,7 @@ const MODULES = [
     hasVideo: false
   },
   {
-    id: 26,
+    id: 25,
     category: "이상대응",
     title: "원단 관련 불량 조치",
     question: "로터리 설비에서 파우치를 급대에 투입했는데 소비기한 인쇄 방향이 반대로 나왔다. 원인과 조치로 올바른 것은?",
@@ -555,7 +545,7 @@ const MODULES = [
     hasVideo: false
   },
   {
-    id: 27,
+    id: 26,
     category: "이상대응",
     title: "CIP 모드 미변경 등 컨트롤 패널 설정 오류 대응",
     question: "충전 시작 전 CIP 모드를 생산 모드로 변경하지 않고 가동했을 때 발생하는 현상과 조치로 올바른 것은?",
