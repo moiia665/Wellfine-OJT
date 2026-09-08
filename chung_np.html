@@ -624,7 +624,7 @@ function openModule(m) {
   }
   
   // Image
-  const imgPath = '%EC%B6%A9%EC%A0%84%EC%9D%B4%EB%AF%B8%EC%A7%80/chung_' + String(m.id).padStart(2,'0') + '_explain_np.jpg';
+  const imgPath = 'chung_' + String(m.id).padStart(2,'0') + '_explain_np.jpg';
   document.getElementById('explain-img-inner').innerHTML = 
     '<img src="' + imgPath + '" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML=\'<div style=\\\'padding:40px;text-align:center\\\'><span style=\\\'font-size:48px\\\'>📷</span><div style=\\\'margin-top:12px;font-size:13px\\\'>तस्विर थपिँदैछ</div><div style=\\\'font-size:11px;font-family:JetBrains Mono,monospace;margin-top:4px\\\'>' + imgPath + '</div>\'">';
   
